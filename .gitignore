@@ -1,11 +1,9 @@
-
 ###> Eclipse folders ###
 /bin
 /.settings
 /.classpath
 /.project
 /target
-
 
 # Compiled class file
 *.class
