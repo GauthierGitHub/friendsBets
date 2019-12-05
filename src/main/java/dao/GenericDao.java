@@ -39,4 +39,12 @@ public class GenericDao<T> {
 				.collect(Collectors.toList());
 		return lt;
 	}
+	
+	// TODO findOne
+//	public T findOne(Predicate<T> predicate) {
+//		T t = database.stream()
+//				.findFirst(predicate)
+//				.collect(Collectors.toList());
+//		return lt;
+//	}
 }

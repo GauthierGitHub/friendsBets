@@ -20,6 +20,10 @@ public class Group {
 		return id;
 	}
 
+	public void setAdminGroup(User user) {
+		this.adminGroup = user;
+	}
+
 	public User getAdminGroup() {
 		return adminGroup;
 	}
