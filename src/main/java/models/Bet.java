@@ -3,7 +3,6 @@ package models;
 /**
  * id = match+user
  * @author Gauthier Barbet
- *
  */
 public class Bet {
 

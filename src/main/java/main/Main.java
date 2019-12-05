@@ -1,28 +1,45 @@
 package main;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
+import exceptions.MyException;
 import models.Group;
 import models.User;
+import services.GroupService;
+import services.UserService;
 
 public class Main {
 
 	public static void main(String[] args) {
 
 		// Initialization DATABASE
-		List<User> userDB = new ArrayList<User>(); 
-		for (int i = 0; i < 5; i++) {
-			userDB.add(new User("nickname"+i));
+		UserService userServ = new UserService();
+		GroupService groupServ = new GroupService();
+		for (int i = 0; i < 3 ; i++) {
+			User u = new User("nickname" + i, "email" + i, "password" +i);
+			userServ.newUser(u);
+			groupServ.createGroup(u); // 5 groups with nickname + i as admin
 		}
 		
-		// Initialize Groups by user with id=1
-		List<Group> groupDB = new ArrayList<Group>(); 
-		for (int i = 0; i < 5; i++) {
-			Function<User, Group> MemberToGroup = x -> x.createGroup();
-			groupDB.add(MemberToGroup.apply(userDB.get(1)));
+		// Add users in a group
+		Group group0 = groupServ.getgDao()
+				.findBy(x -> x.getId()==1)
+				.get(0);
+		List<User> users = userServ.getuDao()
+				.findBy(x -> x.getNickname().contains("nickname"));
+		try {
+			groupServ.addUserInGroup(group0, users);
+		} catch (MyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		// Diplay
+//		userServ.getuDao().findAll().stream()
+//			.forEach(System.out::println);
+		groupServ.getgDao().findAll().stream()
+			.forEach(System.out::println);
+		
 	}
 
 }
