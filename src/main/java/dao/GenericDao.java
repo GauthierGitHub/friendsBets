@@ -23,7 +23,11 @@ public class GenericDao<T> {
 	public void delete(T t) {
 		database.remove(t);
 	}
-
+/**
+ * a refaire
+ * @param t
+ * @param index
+ */
 	public void update(T t, int index) {
 		database.set(index, t);
 	}
