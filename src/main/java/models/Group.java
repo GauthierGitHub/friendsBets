@@ -1,40 +1,26 @@
 package models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Entity
+ * @author Gauthier Barbet
+ *
+ */
+@Entity
 public class Group {
-	private static int AUTO_INCREMENT = 0;
+	@Id
+	@GeneratedValue
 	private int id;
+	@OneToOne
 	private User adminGroup;
+	@ManyToMany
 	private List<User> userList = new ArrayList<User>();
+	@OneToMany(mappedBy = "group")
 	private List<Bet> betList = new ArrayList<Bet>();
 
-	public Group(User u) {
-		this.id = AUTO_INCREMENT++;
-		this.userList.add(u);
-		this.adminGroup = u;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setAdminGroup(User user) {
-		this.adminGroup = user;
-	}
-
-	public User getAdminGroup() {
-		return adminGroup;
-	}
-
-	public List<User> getUserList() {
-		return userList;
-	}
-
-	public List<Bet> getBetList() {
-		return betList;
-	}
 
 	@Override
 	public String toString() {

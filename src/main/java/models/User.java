@@ -1,5 +1,6 @@
 package models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -7,17 +8,21 @@ import java.util.List;
  * @author Gauthier Barbet
  *
  */
+@Entity
 public class User {
 
-	private static int AUTO_INCREMENT = 0;
+	@Id
+	@GeneratedValue
 	private static int id;
 	private String nickname;
 	private String password;
 	private String email;
+	@OneToMany(mappedBy = "user")
+	private List<Bet> bets;
+	@ManyToMany
 	private List<Group> grpList;
 
 	public User(String nickname, String email, String password) {
-		this.id = AUTO_INCREMENT++;
 		this.nickname = nickname;
 		this.email = email;
 		this.password = password;

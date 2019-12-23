@@ -1,17 +1,10 @@
 package main;
 
-import java.util.List;
-
-import exceptions.MyException;
-import models.Group;
-import models.User;
-import services.GroupService;
-import services.UserService;
-
 public class Main {
 
 	public static void main(String[] args) {
 
+		/*
 		////////////// Initialization DATABASE ///////////
 		UserService userServ = new UserService();
 		GroupService groupServ = new GroupService();
@@ -53,7 +46,7 @@ public class Main {
 //			.forEach(System.out::println);
 		groupServ.getgDao().findAll().stream()
 			.forEach(System.out::println);
-		
+		*/
 	}
 
 }
