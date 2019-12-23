@@ -4,6 +4,12 @@
   <artifactId>friendsBets</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>friendsBets</name>
+    <!--
+    <properties>
+        <maven.compiler.source>11.0.5</maven.compiler.source>
+        <maven.compiler.target>11.0.5</maven.compiler.target>
+    </properties>
+    -->
   <dependencies>
   	<dependency>
   		<groupId>org.mockito</groupId>
