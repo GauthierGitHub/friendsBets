@@ -36,13 +36,13 @@ public class GenericDao<T> {
 		return database;
 	}
 
-	public List<T> findBy(Predicate<T> predicate) {
-		List<T> lt = new ArrayList<T>(); 
-		lt = database.stream()
-				.filter(predicate)
-				.collect(Collectors.toList());
-		return lt;
-	}
+//	public List<T> findBy(Predicate<T> predicate) {
+//		List<T> lt = new ArrayList<T>(); 
+//		lt = database.stream()
+//				.filter(predicate)
+//				.collect(Collectors.toList());
+//		return lt;
+//	}
 	
 	// TODO findOne
 //	public T findOne(Predicate<T> predicate) {
