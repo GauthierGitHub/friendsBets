@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/dtd/hibernate-configuration">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">
+			com.mysql.cj.jdbc.Driver
+		</property>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQL57Dialect
+		</property>
+		<property name="show_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<mapping class="models.FriendsBetsUser"></mapping>
+		<mapping class="models.FriendsBetsGroup"></mapping>
+		<mapping class="models.FriendsBetsMatch"></mapping>
+		<mapping class="models.Bet"></mapping>
+		<!-- 
+		<mapping class="graze.models.Address"></mapping>
+		<mapping class="graze.models.Administrator"></mapping>
+		<mapping class="graze.models.Alternative"></mapping>
+		<mapping class="graze.models.Content"></mapping>
+		<mapping class="graze.models.Element"></mapping>
+		<mapping class="graze.models.ElementType"></mapping>
+		<mapping class="graze.models.Event"></mapping>
+		<mapping class="graze.models.EventType"></mapping>
+		<mapping class="graze.models.Impact"></mapping>
+		<mapping class="graze.models.Member"></mapping>
+		<mapping class="graze.models.Observation"></mapping>
+		<mapping class="graze.models.OsmElement"></mapping>
+		<mapping class="graze.models.Producer"></mapping>
+		<mapping class="graze.models.RoleType"></mapping>
+		<mapping class="graze.models.Strike"></mapping> -->
+	</session-factory>
+</hibernate-configuration>

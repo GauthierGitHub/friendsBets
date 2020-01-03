@@ -1,17 +1,17 @@
 package services;
 
-import dao.UserDao;
-import models.User;
+import dao.FriendsBetsUserDao;
+import models.FriendsBetsUser;
 
 public class UserService {
 
-	private UserDao uDao = new UserDao();
+	private FriendsBetsUserDao uDao = new FriendsBetsUserDao();
 	
-	public void newUser(User u) {
+	public void newUser(FriendsBetsUser u) throws Exception {
 		uDao.save(u);
 	}
 
-	public UserDao getuDao() {
+	public FriendsBetsUserDao getuDao() {
 		return uDao;
 	}
 }

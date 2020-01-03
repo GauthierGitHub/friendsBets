@@ -9,6 +9,14 @@
 	<!-- <properties> <maven.compiler.source>11.0.5</maven.compiler.source> 
 		<maven.compiler.target>11.0.5</maven.compiler.target> </properties> -->
 	<dependencies>
+	
+		<!--  UNIT TEST -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
@@ -19,29 +27,30 @@
 			<artifactId>mockito-junit-jupiter</artifactId>
 			<version>3.1.0</version>
 		</dependency>
+		
+		<!--  PERSISTANCE -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.3.12.Final</version>
+			<version>5.4.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.48</version>
+			<version>8.0.18</version>
 		</dependency>
+		
+		<!--  JSON FROM API -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		
+		<!--  PARSING JSON -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson/jackson-datatype-json-org -->
-		<!-- 
-		<dependency>
-			<groupId>com.fasterxml.jackson</groupId>
-			<artifactId>jackson-datatype-json-org</artifactId>
-			<version>1.8.0</version>
-		</dependency>
-		 -->
+		<!-- <dependency> <groupId>com.fasterxml.jackson</groupId> <artifactId>jackson-datatype-json-org</artifactId> 
+			<version>1.8.0</version> </dependency> -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

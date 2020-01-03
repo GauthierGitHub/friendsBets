@@ -10,14 +10,14 @@ import java.util.List;
  *
  */
 @Entity
-public class Group {
+public class FriendsBetsGroup {
 	@Id
 	@GeneratedValue
 	private int id;
 	@OneToOne
-	private User adminGroup;
+	private FriendsBetsUser adminGroup;
 	@ManyToMany
-	private List<User> userList = new ArrayList<User>();
+	private List<FriendsBetsUser> userList = new ArrayList<FriendsBetsUser>();
 	@OneToMany(mappedBy = "group")
 	private List<Bet> betList = new ArrayList<Bet>();
 
@@ -25,7 +25,7 @@ public class Group {
 	@Override
 	public String toString() {
 		String users = "|";
-		for (User u : userList) {
+		for (FriendsBetsUser u : userList) {
 			users += u.getNickname() + "|";
 		}
 		return "Group " + id + "(admin = " + adminGroup.getNickname() 

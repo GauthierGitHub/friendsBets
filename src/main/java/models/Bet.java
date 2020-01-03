@@ -1,8 +1,6 @@
 package models;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * @Entity
@@ -12,12 +10,14 @@ import javax.persistence.OneToOne;
 @Entity
 public class Bet {
 
-	@OneToOne
-	private Match match;
+	@Id
+	private int id;
 	@ManyToOne
-	private User user;
+	private FriendsBetsMatch match;
 	@ManyToOne
-	private Group group;
+	private FriendsBetsUser user;
+	@ManyToOne
+	private FriendsBetsGroup group;
 	private int [] score = new int [2];
 
 }

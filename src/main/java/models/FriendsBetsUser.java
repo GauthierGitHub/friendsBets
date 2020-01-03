@@ -3,30 +3,32 @@ package models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * @Entity
  * @author Gauthier Barbet
  *
  */
 @Entity
-public class User {
+public class FriendsBetsUser {
 
 	@Id
 	@GeneratedValue
-	private static int id;
+	@Column(name="id",unique=true,nullable=false)
+	private int id;
 	private String nickname;
 	private String password;
 	private String email;
 	@OneToMany(mappedBy = "user")
 	private List<Bet> bets;
 	@ManyToMany
-	private List<Group> grpList;
+	private List<FriendsBetsGroup> grpList;
 
-	public User(String nickname, String email, String password) {
+	public FriendsBetsUser(String nickname, String email, String password) {
 		this.nickname = nickname;
 		this.email = email;
 		this.password = password;
-		this.grpList = new ArrayList<Group>();
+		this.grpList = new ArrayList<FriendsBetsGroup>();
 	}
 
 	public String getNickname() {
@@ -53,20 +55,20 @@ public class User {
 		this.email = email;
 	}
 
-	public List<Group> getGrpList() {
+	public List<FriendsBetsGroup> getGrpList() {
 		return grpList;
 	}
 
-	public void setGrpList(List<Group> grpList) {
+	public void setGrpList(List<FriendsBetsGroup> grpList) {
 		this.grpList = grpList;
 	}
 
-	public static int getId() {
+	public int getId() {
 		return id;
 	}
 
 	@Override
 	public String toString() {
-		return "User [nickname=" + nickname + ", grpList=" + grpList + "]";
+		return "FriendsBetsUser [nickname=" + nickname + ", grpList=" + grpList + "]";
 	}
 }
