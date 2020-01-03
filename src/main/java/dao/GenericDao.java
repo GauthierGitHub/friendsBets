@@ -1,9 +1,11 @@
 package dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import utils.HibernateUtils;
 
 
 /**
@@ -13,29 +15,103 @@ import java.util.stream.Collectors;
  * @param <T>
  */
 public class GenericDao<T> {
+	
+	private Class<T> clazz;
 
-	protected List<T> database = new ArrayList<T>();
-
-	public void save(T t) {
-		database.add(t);
+	public GenericDao(Class<T> clazz) {
+		this.clazz = clazz;
+	}
+	
+	public T findById(Session s, int id) {
+		return s.get(clazz, id);
 	}
 
-	public void delete(T t) {
-		database.remove(t);
+	public T findById(int id) {
+		Session s = HibernateUtils.getSessionfactory().openSession();
+		T p = findById(s, id);
+		s.close();
+		return p;
 	}
-/**
- * a refaire
- * @param t
- * @param index
- */
-	public void update(T t, int index) {
-		database.set(index, t);
+	
+	
+	public List<T> findAll(Session s) {
+		return s.createQuery("FROM "+clazz.getName(), clazz).getResultList();
 	}
 
 	public List<T> findAll() {
-		return database;
+		Session s = HibernateUtils.getSessionfactory().openSession();
+		List<T> ps = findAll(s);
+		s.close();
+		return ps;
+	}
+	
+	public void save(Session s, Transaction t, T p) {
+		s.save(p);
+	}
+	
+	public void save(Session s, T p) throws Exception {
+		Transaction t = s.beginTransaction();
+		try {
+			save(s, t, p);
+			t.commit();
+		} catch (Exception e) {
+			if (t != null) t.rollback();
+			throw e;
+		}
+	}
+	
+	public void save(T p) throws Exception {
+		Session s = HibernateUtils.getSessionfactory().openSession();
+		save(s, p);
+		s.close();
+	}
+	
+
+	public void update(Session s, Transaction t, T p) {
+		s.update(p);
+	}
+	
+	public void update(Session s, T p) throws Exception {
+		Transaction t = s.beginTransaction();
+		try {
+			update(s, t, p);
+			t.commit();
+		} catch (Exception e) {
+			if (t != null) t.rollback();
+			throw e;
+		}
+	}
+	
+	public void update(T p) throws Exception {
+		Session s = HibernateUtils.getSessionfactory().openSession();
+		update(s, p);
+		s.close();
+	}
+	
+	
+	public void delete(Session s, Transaction t, T p) {
+		s.delete(p);
+	}
+	
+	public void delete(Session s, T p) throws Exception {
+		Transaction t = s.beginTransaction();
+		try {
+			delete(s, t, p);
+			t.commit();
+		} catch (Exception e) {
+			if (t != null) t.rollback();
+			throw e;
+		}
+	}
+	
+	public void delete(T p) throws Exception {
+		Session s = HibernateUtils.getSessionfactory().openSession();
+		delete(s, p);
+		s.close();
 	}
 
+	
+	// TODO old version
 //	public List<T> findBy(Predicate<T> predicate) {
 //		List<T> lt = new ArrayList<T>(); 
 //		lt = database.stream()
@@ -43,8 +119,6 @@ public class GenericDao<T> {
 //				.collect(Collectors.toList());
 //		return lt;
 //	}
-	
-	// TODO findOne
 //	public T findOne(Predicate<T> predicate) {
 //		T t = database.stream()
 //				.findFirst(predicate)

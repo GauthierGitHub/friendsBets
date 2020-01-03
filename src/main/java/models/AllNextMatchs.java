@@ -14,7 +14,7 @@ import org.json.simple.parser.ParseException;
 
 public class AllNextMatchs {
 
-	private List<Match> nextMatchs;
+	private List<FriendsBetsMatch> nextMatchs;
 
 	/**
 	 * TODO matched with time
