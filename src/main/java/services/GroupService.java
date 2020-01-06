@@ -1,5 +1,36 @@
 package services;
 
-public class GroupService {
+import java.util.List;
 
+import dao.FriendsBetsGroupDao;
+import models.FriendsBetsGroup;
+import models.FriendsBetsUser;
+
+/**
+ * TODO Exceptions
+ * @author gauthier
+ *
+ */
+public class GroupService {
+	private FriendsBetsGroupDao gDao = new FriendsBetsGroupDao();	
+	
+	public void createGroup(FriendsBetsGroup g) throws Exception {
+		gDao.save(g);
+	}
+	
+	public void deleteGroup(FriendsBetsGroup g) throws Exception {
+		gDao.delete(g);
+	}
+	
+	public void updateGroup(FriendsBetsGroup g) throws Exception {
+		gDao.update(g);
+	}
+	
+	public List<FriendsBetsGroup> findAllGroups() {
+		return gDao.findAll();
+	}
+	public void addUserToGroup(FriendsBetsGroup g, FriendsBetsUser u) throws Exception {
+		g.getUserList().add(u);
+		updateGroup(g);
+	}
 }

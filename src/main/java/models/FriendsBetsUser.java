@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -13,8 +14,14 @@ import javax.persistence.OneToMany;
 
 /**
  * @Entity
- * @author Gauthier Barbet
- *
+ * @author Gauthier Barbet 
+ * TODO fetchType ? Only User get fetchType ? :
+ *         org.hibernate.loader.MultipleBagFetchException: cannot simultaneously
+ *         fetch multiple bags error :
+ *         org.hibernate.LazyInitializationException: failed to lazily
+ *         initialize a collection of role: models.FriendsBetsUser.betsFollowed,
+ *         could not initialize proxy - no Session
+ *  TODO see serializable id
  */
 @Entity
 public class FriendsBetsUser {
@@ -27,12 +34,23 @@ public class FriendsBetsUser {
 	private String password;
 	@Column(unique = true, nullable = false)
 	private String email;
+	// org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch
+	// multiple bags ?
 	@OneToMany(mappedBy = "betInitialUser")
 	private List<FriendsBetsBet> betsInitialized;
-	@ManyToMany(mappedBy = "followers")
+	@ManyToMany(mappedBy = "followers", fetch = FetchType.LAZY)
 	private Set<FriendsBetsBet> betsFollowed;
-	@ManyToMany(mappedBy = "userList")
+	@ManyToMany(mappedBy = "userList", fetch = FetchType.EAGER)
 	private List<FriendsBetsGroup> grpList;
+
+	/**
+	 * TODO: delete this constructor
+	 */
+	public FriendsBetsUser() {
+		this.nickname = "defaultnickname";
+		this.email = "defaultemail";
+		this.password = "defaultpassword";
+	}
 
 	public FriendsBetsUser(String nickname, String email, String password) {
 		this.nickname = nickname;
@@ -79,6 +97,8 @@ public class FriendsBetsUser {
 
 	@Override
 	public String toString() {
-		return "FriendsBetsUser [nickname=" + nickname + ", grpList=" + grpList + "]";
+		return "FriendsBetsUser [id=" + id + ", nickname=" + nickname + ", password=" + password + ", email=" + email
+				+ ", grpList=" + grpList + "]";
 	}
+
 }
