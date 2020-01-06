@@ -13,15 +13,16 @@ import java.util.List;
 public class FriendsBetsUser {
 
 	@Id
-	@GeneratedValue
-	@Column(name="id",unique=true,nullable=false)
+	@GeneratedValue // Unique and nullable aren't necessary
 	private int id;
+	@Column(unique = true, nullable = false)
 	private String nickname;
 	private String password;
+	@Column(unique = true, nullable = false)
 	private String email;
 	@OneToMany(mappedBy = "user")
 	private List<Bet> bets;
-	@ManyToMany
+	@ManyToMany(mappedBy = "userList")
 	private List<FriendsBetsGroup> grpList;
 
 	public FriendsBetsUser(String nickname, String email, String password) {
