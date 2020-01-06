@@ -3,10 +3,7 @@ package main;
 import org.hibernate.Session;
 
 import dao.FriendsBetsUserDao;
-import exceptions.ParseException;
 import utils.HibernateUtils;
-import models.AllNextMatchs;
-import models.FriendsBetsGroup;
 import models.FriendsBetsUser;
 
 public class Main {

@@ -15,7 +15,7 @@
 		<mapping class="models.FriendsBetsUser"></mapping>
 		<mapping class="models.FriendsBetsGroup"></mapping>
 		<mapping class="models.FriendsBetsMatch"></mapping>
-		<mapping class="models.Bet"></mapping>
+		<mapping class="models.FriendsBetsBet"></mapping>
 		<!-- 
 		<mapping class="graze.models.Address"></mapping>
 		<mapping class="graze.models.Administrator"></mapping>

@@ -1,8 +1,15 @@
 package models;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  * @Entity
@@ -20,8 +27,10 @@ public class FriendsBetsUser {
 	private String password;
 	@Column(unique = true, nullable = false)
 	private String email;
-	@OneToMany(mappedBy = "user")
-	private List<Bet> bets;
+	@OneToMany(mappedBy = "betInitialUser")
+	private List<FriendsBetsBet> betsInitialized;
+	@ManyToMany(mappedBy = "followers")
+	private Set<FriendsBetsBet> betsFollowed;
 	@ManyToMany(mappedBy = "userList")
 	private List<FriendsBetsGroup> grpList;
 
