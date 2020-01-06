@@ -1,4 +1,4 @@
-package models;
+package apiGetAndParse;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -11,6 +11,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import models.FriendsBetsMatch;
 
 public class AllNextMatchs {
 

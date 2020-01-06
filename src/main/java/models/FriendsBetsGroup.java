@@ -1,8 +1,17 @@
 package models;
 
-import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @Entity
@@ -15,12 +24,16 @@ public class FriendsBetsGroup {
 	@GeneratedValue
 	private int id;
 	@OneToOne
-	@Column(unique = true, nullable = false)
+	@JoinColumn(nullable = false) //  @Column(s) not allowed on a @OneToOne property.
 	private FriendsBetsUser adminGroup;
-	@ManyToMany(mappedBy = "grpList")
-	private List<FriendsBetsUser> userList = new ArrayList<FriendsBetsUser>();
+	/**
+	 * Set is better than arrayList. Jpa will not create both primary key
+	 * in the association Table with List ...
+	 */
+	@ManyToMany
+	private Set<FriendsBetsUser> userList = new HashSet<FriendsBetsUser>();
 	@OneToMany(mappedBy = "group")
-	private List<Bet> betList = new ArrayList<Bet>();
+	private List<FriendsBetsBet> betList = new ArrayList<FriendsBetsBet>();
 
 	@Override
 	public String toString() {

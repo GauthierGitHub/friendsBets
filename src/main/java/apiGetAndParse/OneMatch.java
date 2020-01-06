@@ -1,5 +1,5 @@
 
-package models;
+package apiGetAndParse;
 
 import java.util.HashMap;
 import java.util.Map;
