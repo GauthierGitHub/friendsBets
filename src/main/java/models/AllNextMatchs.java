@@ -14,6 +14,10 @@ import org.json.simple.parser.ParseException;
 
 public class AllNextMatchs {
 
+	/**
+	 * one time by day, find json from api api.football and write json
+	 * in hard disk (Files.io ?)
+	 */
 	private List<FriendsBetsMatch> nextMatchs;
 
 	/**

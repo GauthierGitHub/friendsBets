@@ -18,6 +18,7 @@ public class FriendsBetsMatch {
     private String matchStartDate;
     private String matchEndDate;
     private Integer currentMatchday;
+    private String winner;
     //private Object winner; Object can't be use by hibernate
     @OneToMany(mappedBy = "match")
     private List<Bet> betList;
