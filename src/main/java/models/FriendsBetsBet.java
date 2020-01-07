@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class FriendsBetsBet {
 
 	@Id
-	private int id;
+	private long id;
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private FriendsBetsMatch match;
@@ -26,16 +26,17 @@ public class FriendsBetsBet {
 	@ManyToMany
 	private Set<FriendsBetsUser> followers;
 	// TODO bet selection WINNER DRAW SCORE
-	//private int[] score = new int[2]; // tinyblob in database
+	// private int[] score = new int[2]; // tinyblob in database
 	private String gain;
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private BetType betType;
-	
+
 	private enum BetType {
-		WINNER,
-		DRAW,
-		SCORE
+		WINNER, DRAW, SCORE
+	}
+
+	public FriendsBetsBet() {
 	}
 
 }

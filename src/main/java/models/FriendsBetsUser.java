@@ -28,7 +28,7 @@ public class FriendsBetsUser {
 
 	@Id
 	@GeneratedValue // Unique and nullable aren't necessary
-	private int id;
+	private long id;
 	@Column(unique = true, nullable = false)
 	private String nickname;
 	private String password;
@@ -91,7 +91,7 @@ public class FriendsBetsUser {
 		this.grpList = grpList;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
