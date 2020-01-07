@@ -14,8 +14,7 @@ public class FriendsBetsUserDao extends GenericDao<FriendsBetsUser> {
 
 	/**
 	 * Find an user with his mail and password (not hash now)
-	 * Can be Use for login ?
-	 * Launch and close a new session if there is no one.
+	 * Launch and close a new session if there is no one running.
 	 * @param email
 	 * @param password
 	 * @return FriendsBetsUser

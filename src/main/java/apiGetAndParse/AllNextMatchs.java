@@ -14,6 +14,11 @@ import org.json.simple.parser.ParseException;
 
 import models.FriendsBetsMatch;
 
+/**
+ * TODO : take just europeean match
+ * @author Gauthier Barbet
+ *
+ */
 public class AllNextMatchs {
 
 	/**
