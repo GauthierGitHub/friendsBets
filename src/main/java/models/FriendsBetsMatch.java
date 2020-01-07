@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class FriendsBetsMatch {
 	// TODO convert/parse API. Id need a bigInt cause json from api do ?
 	@Id
-    private long id;
+    private long id; // id set by API
     private String matchStartDate;
     private String matchEndDate;
     private Integer currentMatchday;

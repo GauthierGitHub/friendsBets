@@ -3,24 +3,36 @@ package services;
 import java.util.List;
 
 import dao.FriendsBetsMessageDao;
+import exceptions.EmptyMessageException;
 import models.FriendsBetsMessage;
 
+/**
+ * TODO Exceptions
+ * 
+ * All methods what return Messages
+ * @author gauthier
+ *
+ */
 public class MessageService {
 	private FriendsBetsMessageDao mDao = new FriendsBetsMessageDao();	
 	
-	public void createGroup(FriendsBetsMessage m) throws Exception {
-		mDao.save(m);
+	public void createMessage(FriendsBetsMessage m) throws EmptyMessageException {
+		try {
+			mDao.save(m);
+		} catch (Exception e) {
+			throw new EmptyMessageException();
+		}
 	}
 	
-	public void deleteGroup(FriendsBetsMessage m) throws Exception {
+	public void deleteMessage(FriendsBetsMessage m) throws Exception {
 		mDao.delete(m);
 	}
 	
-	public void updateGroup(FriendsBetsMessage m) throws Exception {
+	public void updateMessage(FriendsBetsMessage m) throws Exception {
 		mDao.update(m);
 	}
 	
-	public List<FriendsBetsMessage> findAllGroups() {
+	public List<FriendsBetsMessage> findAllGMessages() {
 		return mDao.findAll();
 	}
 }

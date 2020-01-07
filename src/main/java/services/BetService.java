@@ -2,9 +2,19 @@ package services;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
+
 import dao.FriendsBetsBetDao;
+import exceptions.BetNotFoundException;
 import models.FriendsBetsBet;
 
+/**
+ * TODO Exceptions
+ * 
+ * All methods what return Bets
+ * @author gauthier
+ *
+ */
 public class BetService {
 	private FriendsBetsBetDao bDao = new FriendsBetsBetDao();	
 	
@@ -13,14 +23,26 @@ public class BetService {
 	}
 	
 	public void deleteBet(FriendsBetsBet b) throws Exception {
-		bDao.delete(b);
+		try {
+			bDao.delete(b);
+		} catch (Exception e) {
+			throw new BetNotFoundException();
+		}
 	}
 	
 	public void updateBet(FriendsBetsBet b) throws Exception {
-		bDao.update(b);
-	}
+		try {
+			bDao.update(b);
+		} catch (Exception e) {
+			throw new BetNotFoundException();
+		}
+	}	
 	
 	public List<FriendsBetsBet> findAllBets() {
-		return bDao.findAll();
+		try {
+			return bDao.findAll();
+		} catch (HibernateException e) {
+			throw e; // TODO explain this exception
+		}
 	}
 }

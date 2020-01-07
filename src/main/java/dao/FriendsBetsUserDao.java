@@ -2,7 +2,7 @@ package dao;
 
 import org.hibernate.Session;
 
-import exceptions.UserNotFoudException;
+import exceptions.UserNotFoundException;
 import models.FriendsBetsUser;
 import utils.HibernateUtils;
 
@@ -13,22 +13,22 @@ public class FriendsBetsUserDao extends GenericDao<FriendsBetsUser> {
 	}
 
 	/**
-	 * Find an user with his mail and password (not hash now)
+	 * Find an user with his mail and password (not hashed now)
 	 * Launch and close a new session if there is no one running.
 	 * @param email
 	 * @param password
 	 * @return FriendsBetsUser
-	 * @throws UserNotFoudException
+	 * @throws UserNotFoundException
 	 */
-	public FriendsBetsUser findByEmailAndPassword(String email, String password) throws UserNotFoudException {
-		FriendsBetsUser fbu = null;
+	public FriendsBetsUser findByEmailAndPassword(String email, String password) throws UserNotFoundException {
+		FriendsBetsUser u = null;
 		// use try() close session automatically
 		try (Session s = HibernateUtils.getSessionfactory().openSession()) {
-			fbu = findByEmailAndPassword(s, email, password);
+			u = findByEmailAndPassword(s, email, password);
 		}catch (Exception e) {
-			throw new UserNotFoudException();
+			throw new UserNotFoundException();
 		}
-		return fbu;
+		return u;
 	}
 
 	/**
