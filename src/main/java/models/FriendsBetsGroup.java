@@ -24,7 +24,7 @@ import javax.persistence.OneToOne;
 public class FriendsBetsGroup {
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	@Column(nullable = true)
 	private String name;
 	@OneToOne
@@ -38,6 +38,8 @@ public class FriendsBetsGroup {
 	private Set<FriendsBetsUser> userList = new HashSet<FriendsBetsUser>();
 	@OneToMany(mappedBy = "group")
 	private List<FriendsBetsBet> betList = new ArrayList<FriendsBetsBet>();
+	@OneToMany(mappedBy = "group")
+	private List<FriendsBetsMessage> groupMessages;
 	
 	public FriendsBetsGroup() {}
 	
@@ -46,7 +48,7 @@ public class FriendsBetsGroup {
 		userList.add(adminGroup);
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

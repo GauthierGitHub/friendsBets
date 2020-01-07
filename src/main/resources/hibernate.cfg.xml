@@ -16,21 +16,6 @@
 		<mapping class="models.FriendsBetsGroup"></mapping>
 		<mapping class="models.FriendsBetsMatch"></mapping>
 		<mapping class="models.FriendsBetsBet"></mapping>
-		<!-- 
-		<mapping class="graze.models.Address"></mapping>
-		<mapping class="graze.models.Administrator"></mapping>
-		<mapping class="graze.models.Alternative"></mapping>
-		<mapping class="graze.models.Content"></mapping>
-		<mapping class="graze.models.Element"></mapping>
-		<mapping class="graze.models.ElementType"></mapping>
-		<mapping class="graze.models.Event"></mapping>
-		<mapping class="graze.models.EventType"></mapping>
-		<mapping class="graze.models.Impact"></mapping>
-		<mapping class="graze.models.Member"></mapping>
-		<mapping class="graze.models.Observation"></mapping>
-		<mapping class="graze.models.OsmElement"></mapping>
-		<mapping class="graze.models.Producer"></mapping>
-		<mapping class="graze.models.RoleType"></mapping>
-		<mapping class="graze.models.Strike"></mapping> -->
+		<mapping class="models.FriendsBetsMessage"></mapping>
 	</session-factory>
 </hibernate-configuration>

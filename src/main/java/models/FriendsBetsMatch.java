@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class FriendsBetsMatch {
 	// TODO convert/parse API. Id need a bigInt cause json from api do ?
 	@Id
-    private Long id;
+    private long id;
     private String matchStartDate;
     private String matchEndDate;
     private Integer currentMatchday;
@@ -22,4 +22,6 @@ public class FriendsBetsMatch {
     //private Object winner; Object can't be use by hibernate
     @OneToMany(mappedBy = "match")
     private List<FriendsBetsBet> betList;
+    
+    public FriendsBetsMatch() {}
 }
