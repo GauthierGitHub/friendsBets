@@ -32,11 +32,82 @@ public class FriendsBetsBet {
 	@Enumerated(EnumType.STRING)
 	private BetType betType;
 
-	private enum BetType {
+	/**
+	 * public ????
+	 * 
+	 * @author gauthier
+	 *
+	 */
+	public static enum BetType {
 		WINNER, DRAW, SCORE
 	}
 
 	public FriendsBetsBet() {
+	}
+
+	public FriendsBetsBet(FriendsBetsMatch match, FriendsBetsUser betInitialUser, FriendsBetsGroup group,
+			Set<FriendsBetsUser> followers, String gain, BetType betType) {
+		super();
+		this.match = match;
+		this.betInitialUser = betInitialUser;
+		this.group = group;
+		this.followers = followers;
+		this.gain = gain;
+		this.betType = betType;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public FriendsBetsMatch getMatch() {
+		return match;
+	}
+
+	public void setMatch(FriendsBetsMatch match) {
+		this.match = match;
+	}
+
+	public FriendsBetsUser getBetInitialUser() {
+		return betInitialUser;
+	}
+
+	public void setBetInitialUser(FriendsBetsUser betInitialUser) {
+		this.betInitialUser = betInitialUser;
+	}
+
+	public FriendsBetsGroup getGroup() {
+		return group;
+	}
+
+	public void setGroup(FriendsBetsGroup group) {
+		this.group = group;
+	}
+
+	public Set<FriendsBetsUser> getFollowers() {
+		return followers;
+	}
+
+	public void setFollowers(Set<FriendsBetsUser> followers) {
+		this.followers = followers;
+	}
+
+	public String getGain() {
+		return gain;
+	}
+
+	public void setGain(String gain) {
+		this.gain = gain;
+	}
+
+	@Override
+	public String toString() {
+		return "FriendsBetsBet [id=" + id + ", match=" + match + ", betInitialUser=" + betInitialUser + ", group="
+				+ group + ", followers=" + followers + ", gain=" + gain + ", betType=" + betType + "]";
 	}
 
 }
