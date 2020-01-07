@@ -5,6 +5,9 @@
 /.project
 /target
 
+###> Intelli J folders ###
+/idea
+
 # Compiled class file
 *.class
 
