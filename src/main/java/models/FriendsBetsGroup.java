@@ -52,8 +52,16 @@ public class FriendsBetsGroup {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public FriendsBetsUser getAdminGroup() {
@@ -78,6 +86,14 @@ public class FriendsBetsGroup {
 
 	public void setBetList(List<FriendsBetsBet> betList) {
 		this.betList = betList;
+	}
+
+	public List<FriendsBetsMessage> getGroupMessages() {
+		return groupMessages;
+	}
+
+	public void setGroupMessages(List<FriendsBetsMessage> groupMessages) {
+		this.groupMessages = groupMessages;
 	}
 
 	@Override

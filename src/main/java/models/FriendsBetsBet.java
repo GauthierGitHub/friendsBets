@@ -29,7 +29,7 @@ public class FriendsBetsBet {
 	// private int[] score = new int[2]; // tinyblob in database
 	private String gain;
 	@Column(nullable = false)
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING) // TODO String or int ?
 	private BetType betType;
 
 	/**

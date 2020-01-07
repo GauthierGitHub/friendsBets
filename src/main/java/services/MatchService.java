@@ -5,6 +5,13 @@ import java.util.List;
 import dao.FriendsBetsMatchDao;
 import models.FriendsBetsMatch;
 
+/**
+ * TODO Exceptions
+ * 
+ * All methods what return Matchs
+ * @author gauthier
+ *
+ */
 public class MatchService {
 	private FriendsBetsMatchDao mDao = new FriendsBetsMatchDao();	
 	

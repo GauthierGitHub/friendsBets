@@ -9,7 +9,7 @@ import models.FriendsBetsUser;
 /**
  * TODO Exceptions
  * 
- * All methods what return Group
+ * All methods what return Groups
  * @author gauthier
  *
  */

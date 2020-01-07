@@ -3,6 +3,7 @@ package models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,7 +31,15 @@ public class FriendsBetsMessage {
 	private FriendsBetsGroup group;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date messageDate;
-	private String content;
+	@Column(nullable = false)
+	private String content; // TODO limit to 255
 	
 	public FriendsBetsMessage(){}
+
+	public FriendsBetsMessage(FriendsBetsUser user, FriendsBetsGroup group, Date messageDate, String content) {
+		this.user = user;
+		this.group = group;
+		this.messageDate = messageDate;
+		this.content = content;
+	}
 }
