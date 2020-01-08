@@ -12,6 +12,7 @@ import models.FriendsBetsBet;
  * TODO Exceptions
  * 
  * All methods what return Bets
+ * or update bet database
  * @author gauthier
  *
  */

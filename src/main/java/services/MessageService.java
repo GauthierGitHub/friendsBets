@@ -10,6 +10,7 @@ import models.FriendsBetsMessage;
  * TODO Exceptions
  * 
  * All methods what return Messages
+ * or update Messages database
  * @author gauthier
  *
  */

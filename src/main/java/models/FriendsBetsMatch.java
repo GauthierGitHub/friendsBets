@@ -8,11 +8,11 @@ import javax.persistence.*;
 /**
  * @Entity
  * @author Gauthier Barbet
- *
+ * TODO keep match persistant or not like Graze.OsmElements ?
  */
 @Entity
 public class FriendsBetsMatch {
-	// TODO convert/parse API. Id need a bigInt cause json from api do ?
+	// TODO convert/parse API. 
 	@Id
     private long id; // id set by API
     private String matchStartDate;

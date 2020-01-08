@@ -10,6 +10,7 @@ import models.FriendsBetsUser;
  * TODO Exceptions
  * 
  * All methods what return Groups
+ * or update group database
  * @author gauthier
  *
  */
