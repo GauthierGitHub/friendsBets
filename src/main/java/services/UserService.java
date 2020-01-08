@@ -10,6 +10,7 @@ import models.FriendsBetsUser;
 
 /**
  * All methods what return Users
+ * or update user database
  * @author gauthier
  *
  */

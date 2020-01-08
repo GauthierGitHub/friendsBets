@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +22,8 @@ import javax.persistence.OneToMany;
  *         org.hibernate.LazyInitializationException: failed to lazily
  *         initialize a collection of role: models.FriendsBetsUser.betsFollowed,
  *         could not initialize proxy - no Session
- *  TODO see serializable id
+ *  TODO see serializable id FOR save personnal config
+ *  TODO CASCADE.TYPE
  */
 @Entity
 public class FriendsBetsUser {
@@ -36,7 +38,7 @@ public class FriendsBetsUser {
 	private String email;
 	// org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch
 	// multiple bags ?
-	@OneToMany(mappedBy = "betInitialUser")
+	@OneToMany(mappedBy = "betInitialUser", cascade = CascadeType.PERSIST) // TODO cascadeType
 	private List<FriendsBetsBet> betsInitialized;
 	@ManyToMany(mappedBy = "followers", fetch = FetchType.LAZY)
 	private Set<FriendsBetsBet> betsFollowed;

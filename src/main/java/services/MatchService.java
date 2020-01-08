@@ -9,6 +9,7 @@ import models.FriendsBetsMatch;
  * TODO Exceptions
  * 
  * All methods what return Matchs
+ * or update Matchs database
  * @author gauthier
  *
  */

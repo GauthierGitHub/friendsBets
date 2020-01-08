@@ -36,7 +36,7 @@ public class Main {
 //		}
 
 		/////////////////////////// HIBERNATE /////////////////////////////////////
-		try (Session session = HibernateUtils.getSessionfactory().openSession()) {
+		try (Session session = HibernateUtils.getSessionfactory().openSession()) { // why lazzy initialion ?
 			System.out.println("Session is running");
 
 			//// SERVICES
