@@ -3,7 +3,8 @@ package services;
 import java.util.List;
 
 import dao.FriendsBetsMessageDao;
-import exceptions.EmptyMessageException;
+import exceptions.FriendsBetsException;
+import exceptions.SqlNotFoundException;
 import models.FriendsBetsMessage;
 
 /**
@@ -17,20 +18,28 @@ import models.FriendsBetsMessage;
 public class MessageService {
 	private FriendsBetsMessageDao mDao = new FriendsBetsMessageDao();	
 	
-	public void createMessage(FriendsBetsMessage m) throws EmptyMessageException {
+	public void createMessage(FriendsBetsMessage m) throws FriendsBetsException {
 		try {
 			mDao.save(m);
-		} catch (Exception e) {
-			throw new EmptyMessageException();
+		} catch (Exception e) { //no unique contraint
+			throw new FriendsBetsException(m);
 		}
 	}
 	
-	public void deleteMessage(FriendsBetsMessage m) throws Exception {
-		mDao.delete(m);
+	public void deleteMessage(FriendsBetsMessage m) throws SqlNotFoundException {
+		try {
+			mDao.delete(m);
+		} catch (Exception e) {
+			throw new SqlNotFoundException(e, m);
+		}
 	}
 	
-	public void updateMessage(FriendsBetsMessage m) throws Exception {
-		mDao.update(m);
+	public void updateMessage(FriendsBetsMessage m) throws SqlNotFoundException {
+		try {
+			mDao.delete(m);
+		} catch (Exception e) {
+			throw new SqlNotFoundException(e, m);
+		}
 	}
 	
 	public List<FriendsBetsMessage> findAllGMessages() {

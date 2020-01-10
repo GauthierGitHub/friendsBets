@@ -2,10 +2,9 @@ package services;
 
 import java.util.List;
 
-import dao.FriendsBetsGroupDao;
 import dao.FriendsBetsUserDao;
-import exceptions.UserUniqueContraintException;
-import exceptions.UserNotFoundException;
+import exceptions.SqlNotFoundException;
+import exceptions.SqlUniqueContraintException;
 import models.FriendsBetsUser;
 
 /**
@@ -24,36 +23,41 @@ public class UserService {
 	 * @param u
 	 * @throws UserUniqueContraintException
 	 */
-	public void newUser(FriendsBetsUser u) throws UserUniqueContraintException {
+	public void newUser(FriendsBetsUser u) throws SqlUniqueContraintException {
 		try {
 			uDao.save(u);
 		} catch (Exception e) {
-			throw new UserUniqueContraintException();
+			throw new SqlUniqueContraintException(e, u);
 		}
 	}
 
-	public void deleteMember(FriendsBetsUser u) throws UserNotFoundException {
+	public void deleteMember(FriendsBetsUser u) throws SqlNotFoundException {
 		try {
 			uDao.delete(u);
 		} catch (Exception e) {
-			throw new UserNotFoundException();
+			throw new SqlNotFoundException(e, u);
 		}
 	}
 
-	public void updateMember(FriendsBetsUser u) throws UserNotFoundException {
+	public void updateMember(FriendsBetsUser u) throws SqlNotFoundException {
 		try {
 			uDao.update(u);
 		} catch (Exception e) {
-			throw new UserNotFoundException();
+			throw new SqlNotFoundException(e, u);
 		}
 	}
 
 	public List<FriendsBetsUser> findAllMembers() {
+		// TODO null pointer exception ? for all services ?
 		return uDao.findAll();
 	}
 
-	public FriendsBetsUser findByUserMailAndPassword(String email, String password) throws UserNotFoundException {
-		return uDao.findByEmailAndPassword(email, password);
+	public FriendsBetsUser findByUserMailAndPassword(String email, String password) throws SqlNotFoundException {
+		try {
+			return uDao.findByEmailAndPassword(email, password);
+		} catch (Exception e) {
+			throw new SqlNotFoundException(e, email);
+		}
 	}
 
 	public FriendsBetsUserDao getuDao() {

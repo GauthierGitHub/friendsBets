@@ -42,4 +42,44 @@ public class FriendsBetsMessage {
 		this.messageDate = messageDate;
 		this.content = content;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public FriendsBetsUser getUser() {
+		return user;
+	}
+
+	public void setUser(FriendsBetsUser user) {
+		this.user = user;
+	}
+
+	public FriendsBetsGroup getGroup() {
+		return group;
+	}
+
+	public void setGroup(FriendsBetsGroup group) {
+		this.group = group;
+	}
+
+	public Date getMessageDate() {
+		return messageDate;
+	}
+
+	public void setMessageDate(Date messageDate) {
+		this.messageDate = messageDate;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
 }
