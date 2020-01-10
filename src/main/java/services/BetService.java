@@ -5,7 +5,8 @@ import java.util.List;
 import org.hibernate.HibernateException;
 
 import dao.FriendsBetsBetDao;
-import exceptions.BetNotFoundException;
+import exceptions.SqlNotFoundException;
+import exceptions.SqlUniqueContraintException;
 import models.FriendsBetsBet;
 
 /**
@@ -19,23 +20,27 @@ import models.FriendsBetsBet;
 public class BetService {
 	private FriendsBetsBetDao bDao = new FriendsBetsBetDao();	
 	
-	public void createBet(FriendsBetsBet b) throws Exception {
-		bDao.save(b);
-	}
-	
-	public void deleteBet(FriendsBetsBet b) throws Exception {
+	public void createBet(FriendsBetsBet b) throws SqlUniqueContraintException {
 		try {
-			bDao.delete(b);
+			bDao.save(b);
 		} catch (Exception e) {
-			throw new BetNotFoundException();
+			throw new SqlUniqueContraintException(e, b);
 		}
 	}
 	
-	public void updateBet(FriendsBetsBet b) throws Exception {
+	public void deleteBet(FriendsBetsBet b) throws SqlNotFoundException {
+		try {
+			bDao.delete(b);
+		} catch (Exception e) {
+			throw new SqlNotFoundException(e, b);
+		}
+	}
+	
+	public void updateBet(FriendsBetsBet b) throws SqlNotFoundException {
 		try {
 			bDao.update(b);
 		} catch (Exception e) {
-			throw new BetNotFoundException();
+			throw new SqlNotFoundException(e, b);
 		}
 	}	
 	
