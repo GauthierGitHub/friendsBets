@@ -11,8 +11,10 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <!-- Perso css -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/actionMenu.css">
     <!-- Font Awesome File -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Template : https://bootsnipp.com/snippets/3X2mq-->
 </head>
 
 <body>
@@ -27,7 +29,7 @@
                                 <img src="images/avatar.png">
                             </div>
                         </div>
-                        <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
+                        <div id="action_menu_btn" class="col-sm-1 col-xs-1  heading-dot  pull-right">
                             <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
                         </div>
                         <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
@@ -46,11 +48,20 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Search Box End -->
+                    
+                    <!-- Action Bar -->
+                    <div class="action_menu">
+                        <ul>
+                            <li><i class="fa fa-user-circle"></i> View profile</li>
+                            <li><i class="fa fa-users"></i> Add to close friends</li>
+                            <li><i class="fa fa-plus"></i> Add to group</li>
+                            <li><i class="fa fa-ban"></i> Block</li>
+                        </ul>
+                    </div>
+                    <!-- Action Bar End-->
+
                     <!-- sideBar -->
-
-
                     <a href="messageBox.html">
                         <div class="row sideBar-body">
                             <div class="col-sm-3 col-xs-3 sideBar-avatar">
