@@ -1,16 +1,11 @@
 package main;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Session;
 
-import exceptions.UserNotFoundException;
-import models.FriendsBetsBet;
 import models.FriendsBetsGroup;
-import models.FriendsBetsMatch;
 import models.FriendsBetsMessage;
 import models.FriendsBetsUser;
 import services.BetService;
@@ -22,8 +17,13 @@ import utils.HibernateUtils;
 
 public class Main {
 
-	// TODO all cascade type (jpa&hibernate-persistence.pdf p.78)
-	// TODO configure logs
+	/**
+	 * // TODO all cascade type (jpa&hibernate-persistence.pdf p.78)
+	 * // TODO configure logs
+	 * 	private transient static final Logger logger = Logger.getLogger(Menu.class); // Menu is graze main method ...
+	 * import org.jboss.logging.Logger;
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		/////////////////////////// API DOWNLOAD & //////////////////////////////
