@@ -21,14 +21,13 @@ public class HibernateUtils {
 			Properties p = new Properties();
 			p.load(is);
 			SESSIONFACTORY = new Configuration().configure().addProperties(p).buildSessionFactory();
-			System.out.println("Initial SESSIONFACTORY creation succeed");
-		} catch (Exception e) {
-			System.out.println("Initial SESSIONFACTORY creation failled \n");
-			throw new ExceptionInInitializerError(e);
+		} catch (Throwable ex) {
+			System.err.println("Initial SessionFactory creation failed." + ex);
+			throw new ExceptionInInitializerError(ex);
 		}
 	}
 
-	public static SessionFactory getSessionfactory() {
+	public static SessionFactory getSessionFactory() {
 		return SESSIONFACTORY;
 	}
 	

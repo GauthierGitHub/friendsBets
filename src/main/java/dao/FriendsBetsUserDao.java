@@ -19,10 +19,10 @@ public class FriendsBetsUserDao extends GenericDao<FriendsBetsUser> {
 	 * @return FriendsBetsUser
 	 * @throws UserNotFoundException
 	 */
-	public FriendsBetsUser findByEmailAndPassword(String email, String password) throws Exception {
+	public FriendsBetsUser findByEmailAndPassword(String email, String password) {
 		FriendsBetsUser u = null;
 		// use try() close session automatically
-		try (Session s = HibernateUtils.getSessionfactory().openSession()) {
+		try (Session s = HibernateUtils.getSessionFactory().openSession()) {
 			u = findByEmailAndPassword(s, email, password);
 		}
 		return u;
