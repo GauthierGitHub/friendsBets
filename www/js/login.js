@@ -1,4 +1,4 @@
-console.log("helloWord.js loaded");
+console.log("login.js loaded");
 console.log(typeof ('$'))
 $('html').on("click", maFonction);
 function maFonction() {
