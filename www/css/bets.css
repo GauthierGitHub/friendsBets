@@ -1,0 +1,11 @@
+#betsWindow {
+    display: none;
+}
+
+.heading .fa {
+    color: #ffffff;
+}
+
+#bets_list * {
+    color: #000000;
+}

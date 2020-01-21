@@ -11,12 +11,36 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <!-- Perso css -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bets.css">
     <!-- Font Awesome File -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/beb57ad501.js" crossorigin="anonymous"></script>
     <!-- Template : https://bootsnipp.com/snippets/3X2mq-->
 </head>
 
 <body>
+    <!-- Bets App -->
+    <div id="betsWindow" class="container app">
+        <div class="row heading">
+            <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+                <div class="col-sm-8 col-xs-7 heading-name">
+                    <a class="heading-name-meta">Running Bets
+                </div>
+                <div class="col-sm-1 col-xs-1 heading-dot pull-right">
+                    <i id="friends_bets_btn_back" class="fa fa-undo fa-2x  pull-right" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <section id="bets_list">
+            <table>
+                <tr>
+                    <td>team 1</td>
+                    <td>team 2</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <!-- Bets App End -->
     <div class="container app">
         <div class="row app-one">
             <!-- New Message Sidebar End -->
@@ -34,8 +58,9 @@
                         </a>
                         <span class="heading-online">Online</span>
                     </div>
-                    <div class="col-sm-1 col-xs-1  heading-dot pull-right">
-                        <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+                    <div class="col-sm-1 col-xs-1 heading-dot pull-right">
+                        <i id="action_menu_btn" class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+                        <i id="friends_bets_btn" class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
                     </div>
                 </div>
                 <!-- Heading End -->
@@ -108,6 +133,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/sider.js"></script>
+    <script src="js/bets.js"></script>
 
     <!-- App End -->
 </body>
