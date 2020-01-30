@@ -37,7 +37,7 @@ public class FriendsBetsGroup {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<FriendsBetsUser> userList = new HashSet<FriendsBetsUser>();
 	@OneToMany(mappedBy = "group")
-	private List<FriendsBetsBet> betList = new ArrayList<FriendsBetsBet>();
+	private List<FriendsBetsBet> betList = new ArrayList<>();
 	@OneToMany(mappedBy = "group")
 	private List<FriendsBetsMessage> groupMessages;
 	
