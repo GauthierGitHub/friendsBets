@@ -1,9 +1,8 @@
 <!-- navbar -->
-<nav class="navbar d-flex bg-light justify-content-around align-items-center rounded border border-primary">
+<nav class="navbar d-flex bg-light justify-content-around align-items-center rounded border border-primary pt-0">
 	<div>
 		<a href="#">
-			<img
-			src="img/avatar.png" alt="User Avatar">
+			<img src="img/avatar.png" alt="User Avatar">
 		</a>
 	</div>
 	<div class="text-center">

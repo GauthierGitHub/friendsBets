@@ -23,6 +23,11 @@
                 <p class="invalid-feedback">${errors.email}</p>
             </div>
             <div class="input-group mt-3">
+                <input type="text" class="form-control rounded ${empty errors ? '' : (errors.containsKey('picture') ? 'is-invalid' : 'is-valid')}" name="picture" value="${editedMember.picture}" required>
+                <span class="floating-label">picture</span>
+                <p class="invalid-feedback">${errors.picture}</p>
+            </div>
+            <div class="input-group mt-3">
                 <input type="password" class="form-control rounded ${empty errors ? '' : (errors.containsKey('password') ? 'is-invalid' : 'is-valid')}" name="password" value="${editedMember.password}" required>
                 <span class="floating-label">Password</span>
                 <p class="invalid-feedback">${errors.password}</p>

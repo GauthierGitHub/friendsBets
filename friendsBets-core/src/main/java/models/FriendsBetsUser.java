@@ -38,7 +38,7 @@ public class FriendsBetsUser {
 	private String email;
 	// org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch
 	// multiple bags ?
-	private String picture;
+	private String picturePath;
 	@OneToMany(mappedBy = "betInitialUser", cascade = CascadeType.PERSIST) // TODO cascadeType
 	private List<FriendsBetsBet> betsInitialized;
 	@ManyToMany(mappedBy = "followers", fetch = FetchType.LAZY)

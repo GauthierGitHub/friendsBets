@@ -35,3 +35,7 @@ input:not(:focus):valid ~ .floating-label{
 .invalid-feedback {
 	color: tomato;
 }
+
+.signup-form {
+    display:none;
+}
