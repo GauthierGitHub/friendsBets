@@ -1,19 +1,14 @@
 // member removal with ajax
 $(document).ready(function() {
 	console.log("testAjax ready");
-	$('.signup').on("click", function(event){
-		console.log(this);
-		console.log($('.signup'));
-		$.ajax({
-			type: "GET",
-			url: "signup",
-			success: function () {
-				document.fadeOut(200, function() { $(this).remove() });
-			}
-		});
-		
-	})
+	$('.signup').on("click", toggleLoginSignup);
+	$('.backtologin').on("click", toggleLoginSignup);
 });
+function toggleLoginSignup(event) {
+	$('main *').slideToggle(1000);
+	$('.signup-form').slideToggle(1000);
+	//$('.signup-form').toggle(400,"swing");
+}
 
 /*
 //member removal with ajax

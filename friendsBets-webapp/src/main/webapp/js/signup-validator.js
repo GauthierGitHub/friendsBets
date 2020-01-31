@@ -72,22 +72,17 @@ class Validator {
 	
 }
 		
-		
-		
-		
-		
-
-
-
-
+	
 $(document).ready(function() {
 
 	$("form").on("submit", function (evt) {
 		var v = new Validator();
 		v.addRule("alias", "Alias \"Evan\" is not allowed !", e => e != "evan");
+		/*
 		v.addRule("alias", "Alias must be at least 6; characters long", e => e.length >= 6);
 		v.addRule("email", "Invalid email format", e => e.includes("@"));
 		v.addRule("password", "Password must be at least 8 characters long", e => e.length >= 8);
+		*/
 		if (!v.validate())
 			evt.preventDefault();
 	});

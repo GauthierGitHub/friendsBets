@@ -4,8 +4,18 @@ $( document ).ready(function() {
 });
 
 ///////// DOM CHANGING /////////
-$('nav').css("visibility", "hidden")
-
+$('nav').css("visibility", "hidden");
+$('.signup').css("visibility", "hidden");
+/*
+$('.signup *').toggle(0);
+$('.signup *').hide();
+$('.signup *').css("visibility", "hidden");
+$('.signup *').css("display", "none");
+$('.signup').toggle(0);
+$('.signup').hide();
+$('.signup').css("visibility", "hidden");
+$('.signup').css("display", "none");
+*/
 
 ///////// FUNCTION /////////////
 function animatedLogin() {

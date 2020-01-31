@@ -2,14 +2,14 @@
 function updateSubmitButton(form) {
 	// est-ce que tous les champs required sont remplis ??
 	var activate = true;
-	$(form).find("[required]").each(function() {
+	$('signup-form').find("[required]").each(function() {
 		activate = activate && ($(this).val() != "");
 	})
 	// on (des)active le boutton
 	if (activate)
-		$(form).find("[type='submit']").attr("disabled", false);
+		$('signup-form').find("[type='submit']").attr("disabled", false);
 	else
-		$(form).find("[type='submit']").attr("disabled", true);
+		$('signup-form').find("[type='submit']").attr("disabled", true);
 }
 
 
