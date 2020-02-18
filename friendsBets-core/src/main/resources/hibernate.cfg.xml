@@ -17,6 +17,5 @@
 		<mapping class="models.FbsMatch"></mapping>
 		<mapping class="models.FbsBet"></mapping>
 		<mapping class="models.FbsMessage"></mapping>
-		<mapping class="models.FbsGrAdmin"></mapping>
 	</session-factory>
 </hibernate-configuration>

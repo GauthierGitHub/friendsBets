@@ -35,6 +35,7 @@ public class Main {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		try (Session session = HibernateUtils.getSessionFactory().openSession()) { }
 
 		/////////////////////////// HIBERNATE /////////////////////////////////////
 		try (Session session = HibernateUtils.getSessionFactory().openSession()) { // why lazzy initialion ?
@@ -43,23 +44,37 @@ public class Main {
 			//// SERVICES
 			UserService userService = new UserService();
 			GroupService groupService = new GroupService();
-			MatchService matchService = new MatchService();
-			BetService betService = new BetService();
+//			MatchService matchService = new MatchService();
+//			BetService betService = new BetService();
 
-			//// FILLING DATABASE (step by step)
+			//// FILLING DATABASE (step by step for flushing entity before writte another entity what need the first)
+			
+			/////////// part1 ///////////
+//			FbsUser gillou = new FbsUser("gillou", "gillou@gmail.com", "gilloupassword");
+//			FbsUser jeanPaul = new FbsUser("Jean-paul", "jeanpaul@gmail.com", "password");
+//			FbsUser dede = new FbsUser("dédé", "dédé@gmail.com", "dédépassword");
+//			userService.newUser(jeanPaul);  // => DONE
+//			userService.newUser(gillou);  // => DONE
+//			userService.newUser(dede);  // => DONE
 
-			session.beginTransaction();
-			FbsUser gillou = new FbsUser("gillou", "gillou@gmail.com", "gilloupassword");
-			FbsUser jeanPaul = new FbsUser("Jean-paul", "jeanpaul@gmail.com", "password");
-			FbsUser dede = new FbsUser("dédé", "dédé@gmail.com", "dédépassword");
-			userService.newUser(jeanPaul);  // => DONE
-			userService.newUser(gillou);  // => DONE
-			userService.newUser(dede);  // => DONE
-			FbsGroup jeanPaulGroup = new FbsGroup(jeanPaul);
-			session.getTransaction().commit();
-			groupService.createGroup(jeanPaulGroup); // => DONE
-			groupService.addUserToGroup(jeanPaulGroup, gillou); // => DONE
-			groupService.addUserToGroup(jeanPaulGroup, dede); // => DONE	
+			/////////// common part ///////////
+			FbsUser gillou = userService.findByUserMailAndPassword("gillou@gmail.com", "gilloupassword");
+			FbsUser jeanPaul = userService.findByUserMailAndPassword("jeanpaul@gmail.com", "password");
+			FbsUser dede = userService.findByUserMailAndPassword("dédé@gmail.com", "dédépassword");
+			
+			/////////// part2 ///////////
+//			FbsGroup jeanPaulGroup = new FbsGroup(jeanPaul);
+//			groupService.createGroup(jeanPaulGroup); // => DONE
+//			groupService.addUserToGroup(jeanPaulGroup, gillou); // => DONE
+//			groupService.addUserToGroup(jeanPaulGroup, dede); // => DONE	
+//			
+			/////////// part3 ///////////
+//			FbsGroup jeanPaulGroup = groupService.findById(userService.findAllGroupForOneUser(jeanPaul)
+//										.stream()
+//										.findFirst()
+//										.get()
+//										.getId());  // not working
+			FbsGroup jeanPaulGroup = groupService.findById(4);
 			MessageService messageService = new MessageService();
 			FbsMessage messageDeJeanPaul = new FbsMessage(jeanPaul, jeanPaulGroup, new Date(),
 					"Trop bien cette app XD mdr lol !!!");

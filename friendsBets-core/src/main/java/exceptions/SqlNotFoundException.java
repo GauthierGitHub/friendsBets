@@ -8,6 +8,11 @@ import models.FbsUser;
 
 public class SqlNotFoundException extends FriendsBetsException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public SqlNotFoundException(Exception e, FbsBet b) {
 		System.out.println("Unknow bet.");
 	}
@@ -30,6 +35,10 @@ public class SqlNotFoundException extends FriendsBetsException {
 
 	public SqlNotFoundException(Exception e, FbsGroup g) {
 		System.out.println("Group not found.");
+	}
+
+	public SqlNotFoundException(Exception e, int id) {
+		System.out.println("Id not found :" + id);
 	}
 
 }

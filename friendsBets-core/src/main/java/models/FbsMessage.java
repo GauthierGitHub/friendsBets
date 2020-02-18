@@ -22,7 +22,7 @@ public class FbsMessage {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private int id;
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private FbsUser user;
@@ -43,11 +43,11 @@ public class FbsMessage {
 		this.content = content;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

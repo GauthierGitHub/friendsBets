@@ -25,6 +25,7 @@ public class SqlUniqueContraintException extends Exception {
 	}
 
 	public SqlUniqueContraintException(Exception e, FbsGroup g, FbsUser u) {
+		e.printStackTrace();
 		System.out.println("Group not found or user already in group");
 	}
 
