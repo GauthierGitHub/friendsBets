@@ -10,21 +10,21 @@ import javax.persistence.*;
  *
  */
 @Entity
-public class FriendsBetsBet {
+public class FbsBet {
 
 	@Id
 	private long id;
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private FriendsBetsMatch match;
+	private FbsMatch match;
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private FriendsBetsUser betInitialUser;
+	private FbsUser betInitialUser;
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private FriendsBetsGroup group;
+	private FbsGroup group;
 	@ManyToMany
-	private Set<FriendsBetsUser> followers;
+	private Set<FbsUser> followers;
 	// TODO bet selection WINNER DRAW SCORE
 	// private int[] score = new int[2]; // tinyblob in database
 	private String gain;
@@ -42,11 +42,11 @@ public class FriendsBetsBet {
 		WINNER, DRAW, SCORE
 	}
 
-	public FriendsBetsBet() {
+	public FbsBet() {
 	}
 
-	public FriendsBetsBet(FriendsBetsMatch match, FriendsBetsUser betInitialUser, FriendsBetsGroup group,
-			Set<FriendsBetsUser> followers, String gain, BetType betType) {
+	public FbsBet(FbsMatch match, FbsUser betInitialUser, FbsGroup group,
+			Set<FbsUser> followers, String gain, BetType betType) {
 		super();
 		this.match = match;
 		this.betInitialUser = betInitialUser;
@@ -64,35 +64,35 @@ public class FriendsBetsBet {
 		this.id = id;
 	}
 
-	public FriendsBetsMatch getMatch() {
+	public FbsMatch getMatch() {
 		return match;
 	}
 
-	public void setMatch(FriendsBetsMatch match) {
+	public void setMatch(FbsMatch match) {
 		this.match = match;
 	}
 
-	public FriendsBetsUser getBetInitialUser() {
+	public FbsUser getBetInitialUser() {
 		return betInitialUser;
 	}
 
-	public void setBetInitialUser(FriendsBetsUser betInitialUser) {
+	public void setBetInitialUser(FbsUser betInitialUser) {
 		this.betInitialUser = betInitialUser;
 	}
 
-	public FriendsBetsGroup getGroup() {
+	public FbsGroup getGroup() {
 		return group;
 	}
 
-	public void setGroup(FriendsBetsGroup group) {
+	public void setGroup(FbsGroup group) {
 		this.group = group;
 	}
 
-	public Set<FriendsBetsUser> getFollowers() {
+	public Set<FbsUser> getFollowers() {
 		return followers;
 	}
 
-	public void setFollowers(Set<FriendsBetsUser> followers) {
+	public void setFollowers(Set<FbsUser> followers) {
 		this.followers = followers;
 	}
 

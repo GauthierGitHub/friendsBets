@@ -2,11 +2,11 @@ package services;
 
 import java.util.List;
 
-import dao.FriendsBetsGroupDao;
+import dao.GroupDao;
 import exceptions.SqlNotFoundException;
 import exceptions.SqlUniqueContraintException;
-import models.FriendsBetsGroup;
-import models.FriendsBetsUser;
+import models.FbsGroup;
+import models.FbsUser;
 
 /**
  * TODO Exceptions
@@ -17,9 +17,9 @@ import models.FriendsBetsUser;
  *
  */
 public class GroupService {
-	private FriendsBetsGroupDao gDao = new FriendsBetsGroupDao();
+	private GroupDao gDao = new GroupDao();
 
-	public void createGroup(FriendsBetsGroup g) throws SqlUniqueContraintException {
+	public void createGroup(FbsGroup g) throws SqlUniqueContraintException {
 		try {
 			gDao.save(g);
 		} catch (Exception e) {
@@ -27,7 +27,7 @@ public class GroupService {
 		}
 	}
 
-	public void deleteGroup(FriendsBetsGroup g) throws SqlNotFoundException {
+	public void deleteGroup(FbsGroup g) throws SqlNotFoundException {
 		try {
 			gDao.delete(g);
 		} catch (Exception e) {
@@ -35,7 +35,7 @@ public class GroupService {
 		}
 	}
 
-	public void updateGroup(FriendsBetsGroup g) throws SqlNotFoundException {
+	public void updateGroup(FbsGroup g) throws SqlNotFoundException {
 		try {
 			gDao.delete(g);
 		} catch (Exception e) {
@@ -43,11 +43,11 @@ public class GroupService {
 		}
 	}
 
-	public List<FriendsBetsGroup> findAllGroups() {
+	public List<FbsGroup> findAllGroups() {
 		return gDao.findAll();
 	}
 
-	public void addUserToGroup(FriendsBetsGroup g, FriendsBetsUser u) throws Exception {
+	public void addUserToGroup(FbsGroup g, FbsUser u) throws Exception {
 		try {
 			g.getUserList().add(u);
 			updateGroup(g);

@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 
-import dao.FriendsBetsUserDao;
+import dao.UserDao;
 import exceptions.FriendsBetsException;
-import models.FriendsBetsUser;
+import models.FbsUser;
 import utils.HibernateExceptionEncapsulator;
 import utils.Validator;
 
@@ -30,9 +30,9 @@ public class UserService  implements Serializable {
 	/**
 	 * transient used for being ignored by serialization.
 	 */
-	private transient FriendsBetsUserDao uDao = new FriendsBetsUserDao();
+	private transient UserDao uDao = new UserDao();
 	
-	public static final transient Validator<FriendsBetsUser> VALIDATOR = new Validator<FriendsBetsUser>()
+	public static final transient Validator<FbsUser> VALIDATOR = new Validator<FbsUser>()
 			.addRule("alias", "Alias \"Pierre\" is not allowed !", 
 					me -> !me.getNickname().toLowerCase().equals("pierre"));
 		// TODO: Add rules and copy them in Validator.js
@@ -47,10 +47,10 @@ public class UserService  implements Serializable {
 	
 	public UserService() {
 		super();
-		uDao = new FriendsBetsUserDao();
+		uDao = new UserDao();
 	}
 
-	public UserService(FriendsBetsUserDao uDao) {
+	public UserService(UserDao uDao) {
 		super();
 		this.uDao = uDao;
 	}
@@ -62,7 +62,7 @@ public class UserService  implements Serializable {
 	 * @throws FriendsBetsException 
 	 * @throws UserUniqueContraintException
 	 */
-	public void newUser(FriendsBetsUser u) throws FriendsBetsException {
+	public void newUser(FbsUser u) throws FriendsBetsException{
 		try {
 			uDao.save(u);
 		} catch (HibernateException ex) {
@@ -70,7 +70,7 @@ public class UserService  implements Serializable {
 		}
 	}
 
-	public void deleteMember(FriendsBetsUser u) throws FriendsBetsException {
+	public void deleteUser(FbsUser u) throws FriendsBetsException {
 		try {
 			uDao.delete(u);
 		} catch (HibernateException ex) {
@@ -78,7 +78,7 @@ public class UserService  implements Serializable {
 		}
 	}
 
-	public void updateMember(FriendsBetsUser u) throws FriendsBetsException {
+	public void updateUser(FbsUser u) throws FriendsBetsException {
 		try {
 			uDao.update(u);
 		} catch (HibernateException ex) {
@@ -86,12 +86,16 @@ public class UserService  implements Serializable {
 		}
 	}
 
-	public List<FriendsBetsUser> findAllMembers() {
+	public List<FbsUser> findAll() {
 		// TODO null pointer exception ? for all services ?
 		return uDao.findAll();
 	}
 
-	public FriendsBetsUser findByUserMailAndPassword(String email, String password) throws FriendsBetsException {
+	public FbsUser findById(int id) {
+		return uDao.findById(id);
+	}
+	
+	public FbsUser findByUserMailAndPassword(String email, String password) throws FriendsBetsException {
 		try {
 			return uDao.findByEmailAndPassword(email, password);
 		} catch (HibernateException ex) {
@@ -99,7 +103,7 @@ public class UserService  implements Serializable {
 		}
 	}
 
-	public FriendsBetsUserDao getuDao() {
+	public UserDao getuDao() {
 		return uDao;
 	}
 	

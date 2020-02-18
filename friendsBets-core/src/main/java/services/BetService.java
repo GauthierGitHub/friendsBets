@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 
-import dao.FriendsBetsBetDao;
+import dao.BetDao;
 import exceptions.SqlNotFoundException;
 import exceptions.SqlUniqueContraintException;
-import models.FriendsBetsBet;
+import models.FbsBet;
 
 /**
  * TODO Exceptions
@@ -18,9 +18,9 @@ import models.FriendsBetsBet;
  *
  */
 public class BetService {
-	private FriendsBetsBetDao bDao = new FriendsBetsBetDao();	
+	private BetDao bDao = new BetDao();	
 	
-	public void createBet(FriendsBetsBet b) throws SqlUniqueContraintException {
+	public void createBet(FbsBet b) throws SqlUniqueContraintException {
 		try {
 			bDao.save(b);
 		} catch (Exception e) {
@@ -28,7 +28,7 @@ public class BetService {
 		}
 	}
 	
-	public void deleteBet(FriendsBetsBet b) throws SqlNotFoundException {
+	public void deleteBet(FbsBet b) throws SqlNotFoundException {
 		try {
 			bDao.delete(b);
 		} catch (Exception e) {
@@ -36,7 +36,7 @@ public class BetService {
 		}
 	}
 	
-	public void updateBet(FriendsBetsBet b) throws SqlNotFoundException {
+	public void updateBet(FbsBet b) throws SqlNotFoundException {
 		try {
 			bDao.update(b);
 		} catch (Exception e) {
@@ -44,7 +44,7 @@ public class BetService {
 		}
 	}	
 	
-	public List<FriendsBetsBet> findAllBets() {
+	public List<FbsBet> findAllBets() {
 		try {
 			return bDao.findAll();
 		} catch (HibernateException e) {

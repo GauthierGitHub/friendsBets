@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import exceptions.FriendsBetsException;
-import models.FriendsBetsUser;
+import models.FbsUser;
 import services.UserService;
 
 /**
@@ -35,7 +35,7 @@ public class SignupServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("ok");
-		FriendsBetsUser u = new FriendsBetsUser(
+		FbsUser u = new FbsUser(
 				request.getParameter("alias")
 				, request.getParameter("email")
 				, request.getParameter("password")

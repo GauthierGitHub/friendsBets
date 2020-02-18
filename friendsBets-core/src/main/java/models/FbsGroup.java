@@ -12,8 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  * @Entity
@@ -21,29 +21,31 @@ import javax.persistence.OneToOne;
  *
  */
 @Entity
-public class FriendsBetsGroup {
+public class FbsGroup {
 	@Id
 	@GeneratedValue
 	private long id;
 	@Column(nullable = true)
 	private String name;
-	@OneToOne
-	@JoinColumn(nullable = false) // @Column(s) not allowed on a @OneToOne property.
-	private FriendsBetsUser adminGroup;
+	@ManyToOne
+//	@JoinColumn(nullable = false) // @Column(s) not allowed on a @OneToOne property.
+	private FbsUser adminGroup;
 	/**
 	 * Set is better than arrayList. Jpa will not create both primary key in the
 	 * association Table with List ... Can be resolved buy @EmbeddedId ?
+	 * TODO: Better way to fetch type ? here user calls groups and not inverse
 	 */
-	@ManyToMany(fetch = FetchType.EAGER)
-	private Set<FriendsBetsUser> userList = new HashSet<FriendsBetsUser>();
+	@ManyToMany(fetch = FetchType.LAZY) 
+	private Set<FbsUser> userList = new HashSet<FbsUser>();
 	@OneToMany(mappedBy = "group")
-	private List<FriendsBetsBet> betList = new ArrayList<>();
+	private List<FbsBet> betList = new ArrayList<>();
 	@OneToMany(mappedBy = "group")
-	private List<FriendsBetsMessage> groupMessages;
+	private List<FbsMessage> groupMessages;
 	
-	public FriendsBetsGroup() {}
+	public FbsGroup() {}
 	
-	public FriendsBetsGroup(FriendsBetsUser adminGroup) {
+	public FbsGroup(FbsUser u) {
+		FbsGrAdmin adminGroup = new FbsGrAdmin(this, u);
 		this.adminGroup = adminGroup;
 		userList.add(adminGroup);
 	}
@@ -64,42 +66,42 @@ public class FriendsBetsGroup {
 		this.name = name;
 	}
 
-	public FriendsBetsUser getAdminGroup() {
+	public FbsUser getAdminGroup() {
 		return adminGroup;
 	}
 
-	public void setAdminGroup(FriendsBetsUser adminGroup) {
+	public void setAdminGroup(FbsGrAdmin adminGroup) {
 		this.adminGroup = adminGroup;
 	}
 
-	public Set<FriendsBetsUser> getUserList() {
+	public Set<FbsUser> getUserList() {
 		return userList;
 	}
 
-	public void setUserList(Set<FriendsBetsUser> userList) {
+	public void setUserList(Set<FbsUser> userList) {
 		this.userList = userList;
 	}
 
-	public List<FriendsBetsBet> getBetList() {
+	public List<FbsBet> getBetList() {
 		return betList;
 	}
 
-	public void setBetList(List<FriendsBetsBet> betList) {
+	public void setBetList(List<FbsBet> betList) {
 		this.betList = betList;
 	}
 
-	public List<FriendsBetsMessage> getGroupMessages() {
+	public List<FbsMessage> getGroupMessages() {
 		return groupMessages;
 	}
 
-	public void setGroupMessages(List<FriendsBetsMessage> groupMessages) {
+	public void setGroupMessages(List<FbsMessage> groupMessages) {
 		this.groupMessages = groupMessages;
 	}
 
 	@Override
 	public String toString() {
 		String users = "|";
-		for (FriendsBetsUser u : userList) {
+		for (FbsUser u : userList) {
 			users += u.getNickname() + "|";
 		}
 		return "Group " + id + "(admin = " + adminGroup.getNickname() + ")\n  " + users;

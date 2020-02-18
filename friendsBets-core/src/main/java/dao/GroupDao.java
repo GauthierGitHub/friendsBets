@@ -1,19 +1,19 @@
 package dao;
 
-import models.FriendsBetsGroup;
+import models.FbsGroup;
 
-public class FriendsBetsGroupDao extends GenericDao<FriendsBetsGroup>{
+public class GroupDao extends GenericDao<FbsGroup>{
 	
-	public FriendsBetsGroupDao() {
-		super(FriendsBetsGroup.class);
+	public GroupDao() {
+		super(FbsGroup.class);
 	}
 	
 
 	/**
 	 * not needed cause eager fetchType in user
 	 */
-//	public List<FriendsBetsGroup> findAllGroupForOneUser(FriendsBetsUser u) throws GroupNotFoudException{
-//		List<FriendsBetsGroup> listGroup = null;
+//	public List<FbsGroup> findAllGroupForOneUser(FbsUser u) throws GroupNotFoudException{
+//		List<FbsGroup> listGroup = null;
 //		// use try() close session automatically
 //		try (Session s = HibernateUtils.getSessionfactory().openSession()) {
 //			listGroup = findAllGroupForOneUser(s, u);
@@ -29,14 +29,14 @@ public class FriendsBetsGroupDao extends GenericDao<FriendsBetsGroup>{
 //	 * @param u
 //	 * @return
 //	 */
-//	public List<FriendsBetsGroup> findAllGroupForOneUser(Session s, FriendsBetsUser u){
+//	public List<FbsGroup> findAllGroupForOneUser(Session s, FbsUser u){
 //		// Java - 8 JDBC.pdf p.19
 //		return s.createQuery( // No SELECT ?
 //				"SELECT groups "
-//				+ "FROM FriendsBetsGroup g"
-//				+ "INNER JOIN FriendsBetsUser u "
+//				+ "FROM FbsGroup g"
+//				+ "INNER JOIN FbsUser u "
 //				+ "WHERE g IN :u ;"  // ????
-//				, FriendsBetsGroup.class)
+//				, FbsGroup.class)
 //				.setParameter("u", u.getId())
 //				.getResultList();
 //	}
