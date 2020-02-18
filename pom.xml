@@ -32,5 +32,6 @@
   <modules>
     <module>friendsBets-core</module>
     <module>friendsBets-webapp</module>
+    <module>friendsBets-webservice</module>
   </modules>
 </project>

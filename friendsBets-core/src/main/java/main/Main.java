@@ -5,9 +5,10 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import models.FriendsBetsGroup;
-import models.FriendsBetsMessage;
-import models.FriendsBetsUser;
+import models.FbsBet;
+import models.FbsGroup;
+import models.FbsMessage;
+import models.FbsUser;
 import services.BetService;
 import services.GroupService;
 import services.MatchService;
@@ -27,7 +28,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		/////////////////////////// API DOWNLOAD & //////////////////////////////
-		/////////////////////////////// PARSINT/////////////////////////////////////
+		/////////////////////////////// PARS/////////////////////////////////////
 //		try {
 //			AllNextMatchs allNextMatch = new AllNextMatchs();
 //		} catch (org.json.simple.parser.ParseException e) {
@@ -45,35 +46,34 @@ public class Main {
 			MatchService matchService = new MatchService();
 			BetService betService = new BetService();
 
-			//// FILLING DATABASE
-//			FriendsBetsUser gillou = new FriendsBetsUser("gillou", "gillou@gmail.com", "gilloupassword");
-//			FriendsBetsUser jeanPaul = new FriendsBetsUser("Jean-paul", "jeanpaul@gmail.com", "password");
-//			FriendsBetsUser dede = new FriendsBetsUser("dédé", "dédé@gmail.com", "dédépassword");
-//			userService.newUser(jeanPaul);  // => DONE
-//			userService.newUser(gillou);  // => DONE
-//			userService.newUser(dede);  // => DONE
-			FriendsBetsUser jeanPaulFromDB = userService.findByUserMailAndPassword("jeanpaul@gmail.com", "password");
-			FriendsBetsUser gilouFromDB = userService.findByUserMailAndPassword("gillou@gmail.com", "gilloupassword");
-			FriendsBetsUser dedeFromDB = userService.findByUserMailAndPassword("dédé@gmail.com", "dédépassword");
-			FriendsBetsGroup jeanPaulGroup = new FriendsBetsGroup(jeanPaulFromDB);
-//			groupService.createGroup(jeanPaulGroup); // => DONE
-//			groupService.addUserToGroup(jeanPaulGroup, gilouFromDB); // => DONE
-//			groupService.addUserToGroup(jeanPaulGroup, dedeFromDB); // => DONE
-			List<FriendsBetsGroup> jeanPaulGroupList = jeanPaulFromDB.getGrpList();
-			jeanPaulGroup = jeanPaulGroupList.stream().findFirst().orElseThrow();
+			//// FILLING DATABASE (step by step)
+
+			session.beginTransaction();
+			FbsUser gillou = new FbsUser("gillou", "gillou@gmail.com", "gilloupassword");
+			FbsUser jeanPaul = new FbsUser("Jean-paul", "jeanpaul@gmail.com", "password");
+			FbsUser dede = new FbsUser("dédé", "dédé@gmail.com", "dédépassword");
+			userService.newUser(jeanPaul);  // => DONE
+			userService.newUser(gillou);  // => DONE
+			userService.newUser(dede);  // => DONE
+			FbsGroup jeanPaulGroup = new FbsGroup(jeanPaul);
+			session.getTransaction().commit();
+			groupService.createGroup(jeanPaulGroup); // => DONE
+			groupService.addUserToGroup(jeanPaulGroup, gillou); // => DONE
+			groupService.addUserToGroup(jeanPaulGroup, dede); // => DONE	
 			MessageService messageService = new MessageService();
-			FriendsBetsMessage messageDeJeanPaul = new FriendsBetsMessage(jeanPaulFromDB, jeanPaulGroup, new Date(),
+			FbsMessage messageDeJeanPaul = new FbsMessage(jeanPaul, jeanPaulGroup, new Date(),
 					"Trop bien cette app XD mdr lol !!!");
-//			messageService.createMessage(messageDeJeanPaul); // => DONE
+			messageService.createMessage(messageDeJeanPaul); // => DONE
+			
 			
 			//// SOME ERROR
-			/* 
-			groupService.findAllGroups().stream().forEach(x -> System.out.println(x)); // id = 3 -> hibernate have only
+			
+//			groupService.findAllGroups().stream().forEach(x -> System.out.println(x)); // id = 3 -> hibernate have only
 																						// one auto increment for all
 																						// table
-			jeanPaulGroup.getBetList().add(betOmAuxerre); // can't be executed cause fetch.lazy don't fetch bets
+//			jeanPaulGroup.getBetList().add(new FriendsBetsBet()); // can't be executed cause fetch.lazy don't fetch bets
 															// (noservice)
-			 */
+			
 
 
 

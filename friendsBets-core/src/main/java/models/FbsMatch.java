@@ -11,7 +11,7 @@ import javax.persistence.*;
  * TODO keep match persistant or not like Graze.OsmElements ?
  */
 @Entity
-public class FriendsBetsMatch {
+public class FbsMatch {
 	// TODO convert/parse API. 
 	@Id
     private long id; // id set by API
@@ -21,7 +21,7 @@ public class FriendsBetsMatch {
     private String winner;
     //private Object winner; Object can't be use by hibernate
     @OneToMany(mappedBy = "match")
-    private List<FriendsBetsBet> betList;
+    private List<FbsBet> betList;
     
-    public FriendsBetsMatch() {}
+    public FbsMatch() {}
 }

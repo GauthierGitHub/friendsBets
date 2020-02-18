@@ -12,7 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import models.FriendsBetsMatch;
+import models.FbsMatch;
 
 /**
  * TODO : take just europeean match
@@ -25,7 +25,7 @@ public class AllNextMatchs {
 	 * one time by day, find json from api api.football and write json
 	 * in hard disk (Files.io ?)
 	 */
-	private List<FriendsBetsMatch> nextMatchs;
+	private List<FbsMatch> nextMatchs;
 
 	/**
 	 * TODO matched with time
@@ -34,7 +34,7 @@ public class AllNextMatchs {
 	 */
 	public AllNextMatchs() throws ParseException {
 		try {
-			URL url = new URL("http://api.football-data.org/v2/competitions");
+			URL url = new URL("http://api.football-data.org/v2/competitions"); // TODO: ask european match only
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestProperty("Authorization", "1292d83abc324519b807bafd9a3c4a84");
 			conn.setUseCaches(false);

@@ -1,16 +1,32 @@
 package exceptions;
 
-import models.FriendsBetsMessage;
+import models.FbsMessage;
 
-public class FriendsBetsException extends Exception {
+/**
+ * Root exception for all graze-defined ones. 
+ * @author andre / gauthier
+ */
+public class FriendsBetsException extends RuntimeException {
 
+	private static final long serialVersionUID = 1L;
 
 	public FriendsBetsException() {
-		System.out.println("General Error");
 	}
-	
-	public FriendsBetsException(FriendsBetsMessage m) {
-		System.out.println("Message not sent : "+ m.getContent());
+
+	public FriendsBetsException(String message) {
+		super(message);
+	}
+
+	public FriendsBetsException(Throwable cause) {
+		super(cause);
+	}
+
+	public FriendsBetsException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public FriendsBetsException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
 }

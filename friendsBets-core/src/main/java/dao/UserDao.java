@@ -2,13 +2,13 @@ package dao;
 
 import org.hibernate.Session;
 
-import models.FriendsBetsUser;
+import models.FbsUser;
 import utils.HibernateUtils;
 
-public class FriendsBetsUserDao extends GenericDao<FriendsBetsUser> {
+public class UserDao extends GenericDao<FbsUser> {
 
-	public FriendsBetsUserDao() {
-		super(FriendsBetsUser.class);
+	public UserDao() {
+		super(FbsUser.class);
 	}
 
 	/**
@@ -19,8 +19,8 @@ public class FriendsBetsUserDao extends GenericDao<FriendsBetsUser> {
 	 * @return FriendsBetsUser
 	 * @throws UserNotFoundException
 	 */
-	public FriendsBetsUser findByEmailAndPassword(String email, String password) {
-		FriendsBetsUser u = null;
+	public FbsUser findByEmailAndPassword(String email, String password) {
+		FbsUser u = null;
 		// use try() close session automatically
 		try (Session s = HibernateUtils.getSessionFactory().openSession()) {
 			u = findByEmailAndPassword(s, email, password);
@@ -35,12 +35,12 @@ public class FriendsBetsUserDao extends GenericDao<FriendsBetsUser> {
 	 * @param password
 	 * @return FriendsBetsUser
 	 */
-	public FriendsBetsUser findByEmailAndPassword(Session s, String email, String password) {
+	public FbsUser findByEmailAndPassword(Session s, String email, String password) {
 
 		// Java - 8 JDBC.pdf p.19
 		return s.createQuery( // No SELECT !
-				"FROM FriendsBetsUser f WHERE f.email = :email AND f.password = :password"
-				, FriendsBetsUser.class)
+				"FROM FbsUser f WHERE f.email = :email AND f.password = :password"
+				, FbsUser.class)
 			.setParameter("email", email)
 			.setParameter("password", password)
 			.getSingleResult();

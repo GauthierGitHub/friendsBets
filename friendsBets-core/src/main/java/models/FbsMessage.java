@@ -18,25 +18,25 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-public class FriendsBetsMessage {
+public class FbsMessage {
 
 	@Id
 	@GeneratedValue
 	private long id;
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private FriendsBetsUser user;
+	private FbsUser user;
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private FriendsBetsGroup group;
+	private FbsGroup group;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date messageDate;
 	@Column(nullable = false)
 	private String content; // TODO limit to 255
 	
-	public FriendsBetsMessage(){}
+	public FbsMessage(){}
 
-	public FriendsBetsMessage(FriendsBetsUser user, FriendsBetsGroup group, Date messageDate, String content) {
+	public FbsMessage(FbsUser user, FbsGroup group, Date messageDate, String content) {
 		this.user = user;
 		this.group = group;
 		this.messageDate = messageDate;
@@ -51,19 +51,19 @@ public class FriendsBetsMessage {
 		this.id = id;
 	}
 
-	public FriendsBetsUser getUser() {
+	public FbsUser getUser() {
 		return user;
 	}
 
-	public void setUser(FriendsBetsUser user) {
+	public void setUser(FbsUser user) {
 		this.user = user;
 	}
 
-	public FriendsBetsGroup getGroup() {
+	public FbsGroup getGroup() {
 		return group;
 	}
 
-	public void setGroup(FriendsBetsGroup group) {
+	public void setGroup(FbsGroup group) {
 		this.group = group;
 	}
 

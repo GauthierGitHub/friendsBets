@@ -2,10 +2,10 @@ package services;
 
 import java.util.List;
 
-import dao.FriendsBetsMatchDao;
+import dao.MatchDao;
 import exceptions.SqlNotFoundException;
 import exceptions.SqlUniqueContraintException;
-import models.FriendsBetsMatch;
+import models.FbsMatch;
 
 /**
  * TODO Exceptions
@@ -16,9 +16,9 @@ import models.FriendsBetsMatch;
  *
  */
 public class MatchService {
-	private FriendsBetsMatchDao mDao = new FriendsBetsMatchDao();	
+	private MatchDao mDao = new MatchDao();	
 	
-	public void createMatch(FriendsBetsMatch m) throws SqlUniqueContraintException {
+	public void createMatch(FbsMatch m) throws SqlUniqueContraintException {
 		try {
 			mDao.save(m);
 		} catch (Exception e) {
@@ -26,7 +26,7 @@ public class MatchService {
 		}
 	}
 	
-	public void deleteMatch(FriendsBetsMatch m) throws SqlNotFoundException {
+	public void deleteMatch(FbsMatch m) throws SqlNotFoundException {
 		try {
 			mDao.delete(m);
 		} catch (Exception e) {
@@ -34,7 +34,7 @@ public class MatchService {
 		}
 	}
 	
-	public void updateMatch(FriendsBetsMatch m) throws SqlNotFoundException {
+	public void updateMatch(FbsMatch m) throws SqlNotFoundException {
 		try {
 			mDao.update(m);
 		} catch (Exception e) {
@@ -42,7 +42,7 @@ public class MatchService {
 		}
 	}
 	
-	public List<FriendsBetsMatch> findAllMatchs() {
+	public List<FbsMatch> findAllMatchs() {
 		return mDao.findAll();
 	}
 }

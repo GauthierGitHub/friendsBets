@@ -8,14 +8,6 @@ import org.hibernate.Transaction;
 
 import utils.HibernateUtils;
 
-/**
- * DAO = just CRUD
- * exceptions like hibernateExceptions are caught in service layer so no Exception are thrown here
- * this class use constant SESSIONFACTORY build in our utils.HibernateUtils
- * instance variable clazz needed by hybernate query
- * @author Gauthier Barbet
- *
- */
 public abstract class GenericDao<T> {
 
 	private Class<T> clazz;
@@ -42,6 +34,20 @@ public abstract class GenericDao<T> {
 	public List<T> findAll() {
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		List<T> ps = findAll(s);
+		s.close();
+		return ps;
+	}
+
+	public List<T> findAllParam(Session s, int start, int nb) {
+		return s.createQuery("FROM " + clazz.getName(), clazz)
+				.setFirstResult(start)
+				.setMaxResults(nb)
+				.getResultList();
+	}
+
+	public List<T> findAllParam(int start, int nb) {
+		Session s = HibernateUtils.getSessionFactory().openSession();
+		List<T> ps = findAllParam(s, start, nb);
 		s.close();
 		return ps;
 	}
@@ -113,19 +119,3 @@ public abstract class GenericDao<T> {
 	}
 
 }
-
-	// TODO old version
-//	public List<T> findBy(Predicate<T> predicate) {
-//		List<T> lt = new ArrayList<T>(); 
-//		lt = database.stream()
-//				.filter(predicate)
-//				.collect(Collectors.toList());
-//		return lt;
-//	}
-//	public T findOne(Predicate<T> predicate) {
-//		T t = database.stream()
-//				.findFirst(predicate)
-//				.collect(Collectors.toList());
-//		return lt;
-//	}
-

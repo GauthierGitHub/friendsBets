@@ -12,10 +12,11 @@
 		</property>
 		<property name="show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<mapping class="models.FriendsBetsUser"></mapping>
-		<mapping class="models.FriendsBetsGroup"></mapping>
-		<mapping class="models.FriendsBetsMatch"></mapping>
-		<mapping class="models.FriendsBetsBet"></mapping>
-		<mapping class="models.FriendsBetsMessage"></mapping>
+		<mapping class="models.FbsUser"></mapping>
+		<mapping class="models.FbsGroup"></mapping>
+		<mapping class="models.FbsMatch"></mapping>
+		<mapping class="models.FbsBet"></mapping>
+		<mapping class="models.FbsMessage"></mapping>
+		<mapping class="models.FbsGrAdmin"></mapping>
 	</session-factory>
 </hibernate-configuration>
