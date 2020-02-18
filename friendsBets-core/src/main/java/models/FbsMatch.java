@@ -14,7 +14,8 @@ import javax.persistence.*;
 public class FbsMatch {
 	// TODO convert/parse API. 
 	@Id
-    private long id; // id set by API
+    private int
+    id; // id set by API
     private String matchStartDate;
     private String matchEndDate;
     private Integer currentMatchday;

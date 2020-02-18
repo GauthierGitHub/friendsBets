@@ -24,7 +24,7 @@ import javax.persistence.OneToMany;
 public class FbsGroup {
 	@Id
 	@GeneratedValue
-	private long id;
+	private int id;
 	@Column(nullable = true)
 	private String name;
 	@ManyToOne
@@ -35,7 +35,7 @@ public class FbsGroup {
 	 * association Table with List ... Can be resolved buy @EmbeddedId ?
 	 * TODO: Better way to fetch type ? here user calls groups and not inverse
 	 */
-	@ManyToMany(fetch = FetchType.LAZY) 
+	@ManyToMany(fetch = FetchType.EAGER) 
 	private Set<FbsUser> userList = new HashSet<FbsUser>();
 	@OneToMany(mappedBy = "group")
 	private List<FbsBet> betList = new ArrayList<>();
@@ -45,23 +45,20 @@ public class FbsGroup {
 	public FbsGroup() {}
 	
 	public FbsGroup(FbsUser u) {
-		FbsGrAdmin adminGroup = new FbsGrAdmin(this, u);
-		this.adminGroup = adminGroup;
+		this.adminGroup = u;
 		userList.add(adminGroup);
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -69,15 +66,13 @@ public class FbsGroup {
 	public FbsUser getAdminGroup() {
 		return adminGroup;
 	}
-
-	public void setAdminGroup(FbsGrAdmin adminGroup) {
+	public void setAdminGroup(FbsUser adminGroup) {
 		this.adminGroup = adminGroup;
 	}
 
 	public Set<FbsUser> getUserList() {
 		return userList;
 	}
-
 	public void setUserList(Set<FbsUser> userList) {
 		this.userList = userList;
 	}
@@ -85,7 +80,6 @@ public class FbsGroup {
 	public List<FbsBet> getBetList() {
 		return betList;
 	}
-
 	public void setBetList(List<FbsBet> betList) {
 		this.betList = betList;
 	}
@@ -93,7 +87,6 @@ public class FbsGroup {
 	public List<FbsMessage> getGroupMessages() {
 		return groupMessages;
 	}
-
 	public void setGroupMessages(List<FbsMessage> groupMessages) {
 		this.groupMessages = groupMessages;
 	}

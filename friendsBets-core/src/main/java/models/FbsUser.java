@@ -10,11 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * @Entity
@@ -29,19 +30,18 @@ import javax.persistence.Table;
  *  TODO CASCADE.TYPE
  */
 @Entity
-@Table(name="MyUser")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Table(name="MyUser") // for change name of table
 //@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 //@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jsonType")
-//@JsonSubTypes({
-//    @JsonSubTypes.Type(value = Member.class, name = "Member"),
+//@JsonSubTypes({ // for polymorphisme only ?
+//    @JsonSubTypes.Type(value = FbsUser.class, name = "User"),
 //    @JsonSubTypes.Type(value = Administrator.class, name = "Administrator")
 //})
 public class FbsUser {
 
 	@Id
 	@GeneratedValue // Unique and nullable aren't necessary
-	private long id;
+	private int id;
 	@Column(unique = true, nullable = false)
 	private String nickname;
 	private String password;
@@ -50,11 +50,11 @@ public class FbsUser {
 	// org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch
 	// multiple bags ?
 	private String picturePath;
-	@OneToMany(mappedBy = "betInitialUser", cascade = CascadeType.PERSIST) // TODO cascadeType
+	@OneToMany(mappedBy = "betInitialUser", cascade = CascadeType.PERSIST) // TODO cascadeType ?
 	private List<FbsBet> betsInitialized;
-	@ManyToMany(mappedBy = "followers", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "followers", fetch = FetchType.LAZY) // TODO eager ? !!!!!!!!!!!!!!!!!!!
 	private Set<FbsBet> betsFollowed;
-	@ManyToMany(mappedBy = "userList", fetch = FetchType.EAGER) //!!!!!!!!!!!!!!!!!!!
+	@ManyToMany(mappedBy = "userList", fetch = FetchType.EAGER) // TODO eager ? !!!!!!!!!!!!!!!!!!!
 	private List<FbsGroup> grpList;
 
 	/**
@@ -104,7 +104,7 @@ public class FbsUser {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

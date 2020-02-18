@@ -37,7 +37,7 @@ public class GroupService {
 
 	public void updateGroup(FbsGroup g) throws SqlNotFoundException {
 		try {
-			gDao.delete(g);
+			gDao.update(g);
 		} catch (Exception e) {
 			throw new SqlNotFoundException(e, g);
 		}
@@ -54,11 +54,18 @@ public class GroupService {
 		} catch (Exception e) {
 			throw new SqlUniqueContraintException(e, g, u);
 		}
-
+	}
+	
+	public FbsGroup findById(int id) {
+		try {
+			return gDao.findById(id);
+		} catch (Exception e) {
+			throw new SqlNotFoundException(e, id);
+		}
 	}
 
 	/**
-	 * not needed cause eager fetchType in user
+	 * not needed cause eager fetchType in user ?????
 	 */
 //	public List<FriendsBetsGroup> findAllGroupForOneUser(FriendsBetsUser u) throws GroupNotFoudException {
 //		return gDao.findAllGroupForOneUser(u);

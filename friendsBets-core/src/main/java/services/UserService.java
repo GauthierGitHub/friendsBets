@@ -7,6 +7,7 @@ import org.hibernate.HibernateException;
 
 import dao.UserDao;
 import exceptions.FriendsBetsException;
+import models.FbsGroup;
 import models.FbsUser;
 import utils.HibernateExceptionEncapsulator;
 import utils.Validator;
@@ -102,9 +103,15 @@ public class UserService  implements Serializable {
 			throw HibernateExceptionEncapsulator.encapsulate(ex);
 		}
 	}
-
-	public UserDao getuDao() {
-		return uDao;
+	
+	public List<FbsGroup> findAllGroupForOneUser(FbsUser u) throws FriendsBetsException {
+		try {
+			return uDao.findAllGroupForOneUser(u);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			throw HibernateExceptionEncapsulator.encapsulate(e);
+		}
 	}
+
 	
 }

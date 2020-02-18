@@ -44,7 +44,7 @@ public class UsersResource {
 
 	@GET
 	public Response findAll() {
-		System.out.println("ok");
+		System.out.println("find all get ws ok");
 		return Response
 			.ok()
 			.entity(new GenericEntity<List<FbsUser>>(ms.findAll()) {})
