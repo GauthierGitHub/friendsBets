@@ -2,7 +2,18 @@ package models;
 
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @Entity
@@ -13,6 +24,7 @@ import javax.persistence.*;
 public class FbsBet {
 
 	@Id
+	@GeneratedValue
 	private int id;
 	@ManyToOne
 	@JoinColumn(nullable = false)
@@ -55,6 +67,7 @@ public class FbsBet {
 		this.gain = gain;
 		this.betType = betType;
 	}
+
 
 	public int getId() {
 		return id;
@@ -104,10 +117,18 @@ public class FbsBet {
 		this.gain = gain;
 	}
 
-	@Override
-	public String toString() {
-		return "FriendsBetsBet [id=" + id + ", match=" + match + ", betInitialUser=" + betInitialUser + ", group="
-				+ group + ", followers=" + followers + ", gain=" + gain + ", betType=" + betType + "]";
+	public BetType getBetType() {
+		return betType;
 	}
+
+	public void setBetType(BetType betType) {
+		this.betType = betType;
+	}
+
+//	@Override JAMAIS DE TOUT TOSTRING AVEC HIBERNATE
+//	public String toString() {
+//		return "FriendsBetsBet [id=" + id + ", match=" + match + ", betInitialUser=" + betInitialUser + ", group="
+//				+ group + ", followers=" + followers + ", gain=" + gain + ", betType=" + betType + "]";
+//	}
 
 }

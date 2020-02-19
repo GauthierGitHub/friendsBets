@@ -7,8 +7,10 @@ import org.hibernate.Session;
 
 import models.FbsBet;
 import models.FbsGroup;
+import models.FbsMatch;
 import models.FbsMessage;
 import models.FbsUser;
+import models.FbsBet.BetType;
 import services.BetService;
 import services.GroupService;
 import services.MatchService;
@@ -44,8 +46,8 @@ public class Main {
 			//// SERVICES
 			UserService userService = new UserService();
 			GroupService groupService = new GroupService();
-//			MatchService matchService = new MatchService();
-//			BetService betService = new BetService();
+			BetService betService = new BetService();
+			MatchService matchService = new MatchService();
 
 			//// FILLING DATABASE (step by step for flushing entity before writte another entity what need the first)
 			
@@ -75,10 +77,10 @@ public class Main {
 //										.get()
 //										.getId());  // not working
 			FbsGroup jeanPaulGroup = groupService.findById(4);
-			MessageService messageService = new MessageService();
-			FbsMessage messageDeJeanPaul = new FbsMessage(jeanPaul, jeanPaulGroup, new Date(),
-					"Trop bien cette app XD mdr lol !!!");
-			messageService.createMessage(messageDeJeanPaul); // => DONE
+//			MessageService messageService = new MessageService();
+//			FbsMessage messageDeJeanPaul = new FbsMessage(jeanPaul, jeanPaulGroup, new Date(),
+//					"Trop bien cette app XD mdr lol !!!");
+//			messageService.createMessage(messageDeJeanPaul); // => DONE
 			
 			
 			//// SOME ERROR
@@ -86,8 +88,11 @@ public class Main {
 //			groupService.findAllGroups().stream().forEach(x -> System.out.println(x)); // id = 3 -> hibernate have only
 																						// one auto increment for all
 																						// table
-//			jeanPaulGroup.getBetList().add(new FriendsBetsBet()); // can't be executed cause fetch.lazy don't fetch bets
+			FbsMatch omAuxerre2 = new FbsMatch();
+			matchService.createMatch(omAuxerre2);
+			FbsBet jeanPaulBet = new FbsBet(omAuxerre2, gillou, jeanPaulGroup, null, null, BetType.DRAW); // can't be executed cause fetch.lazy don't fetch bets
 															// (noservice)
+			betService.createBet(jeanPaulBet);
 			
 
 

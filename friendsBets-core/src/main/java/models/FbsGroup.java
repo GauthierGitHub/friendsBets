@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @Entity
  * @author Gauthier Barbet
@@ -35,10 +37,13 @@ public class FbsGroup {
 	 * association Table with List ... Can be resolved buy @EmbeddedId ?
 	 * TODO: Better way to fetch type ? here user calls groups and not inverse
 	 */
-	@ManyToMany(fetch = FetchType.EAGER) 
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY) 
 	private Set<FbsUser> userList = new HashSet<FbsUser>();
+	@JsonIgnore
 	@OneToMany(mappedBy = "group")
 	private List<FbsBet> betList = new ArrayList<>();
+	@JsonIgnore
 	@OneToMany(mappedBy = "group")
 	private List<FbsMessage> groupMessages;
 	
@@ -91,13 +96,13 @@ public class FbsGroup {
 		this.groupMessages = groupMessages;
 	}
 
-	@Override
-	public String toString() {
-		String users = "|";
-		for (FbsUser u : userList) {
-			users += u.getNickname() + "|";
-		}
-		return "Group " + id + "(admin = " + adminGroup.getNickname() + ")\n  " + users;
-	}
+//	@Override
+//	public String toString() {
+//		String users = "|";
+//		for (FbsUser u : userList) {
+//			users += u.getNickname() + "|";
+//		}
+//		return "Group " + id + "(admin = " + adminGroup.getNickname() + ")\n  " + users;
+//	}
 
 }
