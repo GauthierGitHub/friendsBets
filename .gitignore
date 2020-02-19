@@ -36,4 +36,5 @@
 hs_err_pid*
 
 # Env Files #
-/src/main/resources/db.properties
+/friendsBets-core/src/main/resources/db.properties
+/friendsBets-core/src/main/resources/database.properties
