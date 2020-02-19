@@ -1,7 +1,5 @@
 package utils;
 
-import java.util.Properties;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -9,10 +7,8 @@ public class HibernateUtils {
 	private static final SessionFactory sessionFactory;
 
 	static {
-		try (var is = HibernateUtils.class.getClassLoader().getResourceAsStream("database.properties")) {
-			Properties p = new Properties();
-			p.load(is);
-			sessionFactory = new Configuration().configure().addProperties(p).buildSessionFactory();
+		try {
+			sessionFactory = new Configuration().configure().addProperties(ConfigurationUtil.getProperties()).buildSessionFactory();
 		} catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);

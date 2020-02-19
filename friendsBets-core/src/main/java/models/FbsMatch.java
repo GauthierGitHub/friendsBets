@@ -13,9 +13,10 @@ import javax.persistence.*;
 @Entity
 public class FbsMatch {
 	// TODO convert/parse API. 
+	
 	@Id
-    private int
-    id; // id set by API
+	@GeneratedValue // TODO: CHANGE FOR API ID ?
+    private int id; // id set by API
     private String matchStartDate;
     private String matchEndDate;
     private Integer currentMatchday;

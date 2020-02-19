@@ -12,9 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -31,7 +33,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 //@Table(name="MyUser") // for change name of table
-//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+@XmlRootElement
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 //@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jsonType")
 //@JsonSubTypes({ // for polymorphisme only ?
 //    @JsonSubTypes.Type(value = FbsUser.class, name = "User"),
@@ -50,8 +53,10 @@ public class FbsUser {
 	// org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch
 	// multiple bags ?
 	private String picturePath;
+	@JsonIgnore
 	@OneToMany(mappedBy = "betInitialUser", cascade = CascadeType.PERSIST) // TODO cascadeType ?
 	private List<FbsBet> betsInitialized;
+	@JsonIgnore
 	@ManyToMany(mappedBy = "followers", fetch = FetchType.LAZY) // TODO eager ? !!!!!!!!!!!!!!!!!!!
 	private Set<FbsBet> betsFollowed;
 	@ManyToMany(mappedBy = "userList", fetch = FetchType.EAGER) // TODO eager ? !!!!!!!!!!!!!!!!!!!
@@ -121,7 +126,9 @@ public class FbsUser {
 	public void setBetsInitialized(List<FbsBet> betsInitialized) {
 		this.betsInitialized = betsInitialized;
 	}
-
+	
+	@XmlTransient
+	@JsonIgnore
 	public Set<FbsBet> getBetsFollowed() {
 		return betsFollowed;
 	}
