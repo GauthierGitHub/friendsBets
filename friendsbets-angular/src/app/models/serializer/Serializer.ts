@@ -20,6 +20,8 @@ export class UserSerializer {
         return string;
     }
 
+    // TODO: static deserializer 
+
     // private static stringToObject(s: String): Object {
     //     switch (s) {
     //         case "User": return new User();

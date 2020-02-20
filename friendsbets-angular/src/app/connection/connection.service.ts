@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { UserSerializer } from '../models/serializer/Serializer';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 /**
  *
@@ -40,17 +41,20 @@ export class ConnectionService {
   private _cookieServ: CookieService;
   private url: string = "http://localhost:8080/friendsbets-webservice/";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
+  // TODO: take id from server ?
   public addUser(m: User): void {
     let u = UserSerializer.serializetoJSON(m);
-    this.httpClient.post(this.url + "user/", u).subscribe();
+    this.httpClient.post(this.url + "user/", u).subscribe(x => {
+      this._connectedUser=m;
+      this.router.navigateByUrl("main")});
   }
 
   public update(m: User): void {
     // TODO: Verify if serializer is needed
     let url2 = this.url + "user/" + m.id;
-    this.httpClient.put(url2, m).subscribe();
+    this.httpClient.put(url2, m).subscribe(x => this._connectedUser=m);
   }
 
   public delete(m: User): void {
@@ -68,8 +72,9 @@ export class ConnectionService {
         "password": password
       }
     }).subscribe(x => {
+      console.log(x);
       this.connectedUser = x;
-
+      this.router.navigateByUrl("main");
     });
   }
 
