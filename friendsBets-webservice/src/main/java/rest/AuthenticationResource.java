@@ -16,7 +16,7 @@ import models.FbsUser;
 import services.UserService;
 
 
-@Path("FriendsBetsUser")
+@Path("authentication")
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public class AuthenticationResource {
@@ -25,12 +25,13 @@ public class AuthenticationResource {
 	
 	@POST
 	@Path("login")
-	public Response signin(@QueryParam("email") String email, @QueryParam("password") String password) {
+	public Response login(@QueryParam("email") String email, @QueryParam("password") String password) {
+		System.out.println("login ressource");
 		try {
 //			FriendsBetsUser m = ms.findByEmailAndPassword(email, password);
 //			FriendsBetsUser m = ms.signIn(email, password);
 			FbsUser m;
-				m = ms.findByUserMailAndPassword(email, password);
+			m = ms.findByUserMailAndPassword(email, password);
 			return Response
 					.ok()
 					.entity(m)
