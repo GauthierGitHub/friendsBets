@@ -1,5 +1,6 @@
 package models;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -61,6 +62,9 @@ public class FbsUser {
 	private Set<FbsBet> betsFollowed;
 	@ManyToMany(mappedBy = "userList", fetch = FetchType.EAGER) // TODO eager ? !!!!!!!!!!!!!!!!!!!
 	private List<FbsGroup> grpList;
+
+	protected String token;
+	protected LocalDateTime tokenLastUsed;
 
 	/**
 	 * TODO: delete this constructor
@@ -136,12 +140,30 @@ public class FbsUser {
 		this.betsFollowed = betsFollowed;
 	}
 
-
-	@Override
-	public String toString() {
-		return "FriendsBetsUser [id=" + id + ", nickname=" + nickname + ", password=" + password + ", email=" + email
-				+ ", grpList=" + grpList + "]";
+	public String getToken() {
+		return token;
 	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public LocalDateTime getTokenLastUsed() {
+		return tokenLastUsed;
+	}
+
+	public void setTokenLastUsed(LocalDateTime tokenLastUsed) {
+		this.tokenLastUsed = tokenLastUsed;
+	}
+	
+	
+
+
+//	@Override
+//	public String toString() {
+//		return "FriendsBetsUser [id=" + id + ", nickname=" + nickname + ", password=" + password + ", email=" + email
+//				+ ", grpList=" + grpList + "]";
+//	}
 
 
 }

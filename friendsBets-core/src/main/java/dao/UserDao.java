@@ -80,4 +80,22 @@ public class UserDao extends GenericDao<FbsUser> {
 				.setParameter("u", u.getId())
 				.getResultList();
 	}
+
+	
+	
+	public FbsUser findByToken(Session s, String token) {
+		return s.createQuery("from FbsUser m where m.token = :token", FbsUser.class)
+				.setParameter("token", token)
+				.getSingleResult();
+	}
+	
+
+	public FbsUser findByToken(String token) {
+		FbsUser r = null;
+		try (Session s = HibernateUtils.getSessionFactory().openSession()) {
+			r = findByToken(s, token);
+		}
+		return r;
+	}
+	
 }

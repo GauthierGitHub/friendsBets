@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>friendsBets-webservice</name>
+	<name>friendsbets-webservice</name>
 	<comment></comment>
 	<projects>
-		<project>friendsBets-core</project>
+		<project>friendsbets-core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

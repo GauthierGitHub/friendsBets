@@ -16,15 +16,10 @@ export class LoginComponent implements OnInit {
   constructor(private cs: ConnectionService) { }
 
   ngOnInit(): void {
-    this.u.alias = "alias";
-    this.u.email = "email";
-    this.u.password = "";
+    this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
   }
 
-  onSubmit(uFromForm: User) {
+  logUser() {
     console.log(this.u);
-    console.log(uFromForm);
-    this.cs.update(uFromForm);
-    
   }
 }

@@ -1,36 +1,9 @@
-
-
-<p>login works!</p>
-
 <header class="row text-center d-flex justify-content-center">
     <img src="../../assets/img/logo.png" alt="Friend's Bets">
 </header>
 
-<app-user-form [title]="title" [label]="label" (submit)="onSubmit($event)"></app-user-form>
-<a routerLink="../register/">Register</a>
+<app-user-form [(u)]="u" [title]="title" [label]="label" (formSubmited)="logUser()"></app-user-form>
 
-<!-- <main class="row text-center d-flex justify-content-center">
-    <form class="form-signin text-center">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
-        <label for="email" class="sr-only">Email address</label>
-        <input type=text name=u.email [(ngModel)]=u.email class=form-control placeholder="Email address" required autofocus>
-        <p>{{ u.email }}</p>
-        
-        <label for="Password" class="sr-only">Password</label>
-        <input type="password" [(ngModel)]=u.password id="Password" class="form-control" placeholder="Password" required>
-        <p>{{ u.password }}</p>    
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <a routerLink="../register/">Register</a>
-        <p class="mt-5 mb-3 text-muted">&copy; 2019 - 2020</p>
-    </form>
-    <a class ="col-12" href="allGroups.html">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">MagicButton</button>
-    </a>
-</main> -->
+<div class="row text-center  d-flex justify-content-center">
+    <a class="" type="button" routerLink="../register/" class="col-3">Register</a>
+</div>

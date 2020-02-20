@@ -20,12 +20,10 @@ export class UserFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.u.alias = "defaultAlias";
-    this.u.email = "defaultEmail";
-    this.u.password = "defaultPassword";
+    // this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
   }
 
-  onSubmit() {
+  userSending() {
     this.submited.emit(this.u);
   }
 
