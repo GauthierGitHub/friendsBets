@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { ConnectionService } from '../connection.service';
 
@@ -16,12 +16,10 @@ export class RegisterComponent implements OnInit {
   constructor(private cs: ConnectionService) { }
 
   ngOnInit(): void {
-  }
+    this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
 
-  onSubmit(uFromForm: User) {
-    console.log(this.u);
-    console.log(uFromForm);
-    this.cs.addUser(uFromForm);
-    
+  }
+  registerUser() {
+    this.cs.addUser(this.u);
   }
 }

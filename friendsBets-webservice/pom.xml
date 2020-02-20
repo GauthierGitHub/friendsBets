@@ -49,10 +49,15 @@
 			<artifactId>friendsBets-core</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency> make problem with rest.DebugMapper because catch all exceptions
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
 			<version>2.29.1</version>
+		</dependency> -->
+		<dependency> <!-- replace  jersey-media-json-jackson -->
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>2.10.2.1</version>
 		</dependency>
 	</dependencies>
 

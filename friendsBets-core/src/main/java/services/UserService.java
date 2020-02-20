@@ -1,15 +1,25 @@
 package services;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAmount;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.apache.commons.lang3.RandomStringUtils;
+
 
 import dao.UserDao;
+import exceptions.AuthenticationException;
 import exceptions.FriendsBetsException;
 import models.FbsGroup;
 import models.FbsUser;
 import utils.HibernateExceptionEncapsulator;
+import utils.HibernateUtils;
 import utils.Validator;
 
 /**
@@ -113,5 +123,39 @@ public class UserService  implements Serializable {
 		}
 	}
 
+	public FbsUser login(String email, String password) throws FriendsBetsException, AuthenticationException {
+		Transaction t = null;
+		try (Session s = HibernateUtils.getSessionFactory().openSession()) {
+			t = s.beginTransaction();
+			FbsUser m = uDao.findByEmailAndPassword(s, email, password);
+			if (m == null)
+				throw new AuthenticationException("invalid email or password");
+			m.setToken(RandomStringUtils.randomAlphanumeric(30));
+			m.setTokenLastUsed(LocalDateTime.now());
+			t.commit();
+			return m;
+		} catch (NoResultException ex) {
+			if (t != null) t.rollback();
+			throw new AuthenticationException("invalid email or password", ex);
+		} catch (HibernateException ex) {
+			if (t != null) t.rollback();
+			throw HibernateExceptionEncapsulator.encapsulate(ex);
+		}
+	}
 	
+
+	public FbsUser findByToken(String token, TemporalAmount validDuration, boolean update) throws FriendsBetsException, AuthenticationException {
+		try {
+			FbsUser m = uDao.findByToken(token);
+			if (m == null)
+				throw new AuthenticationException("invalid token");
+			if (!m.getTokenLastUsed().isAfter(LocalDateTime.now().minus(validDuration)))
+				throw new AuthenticationException("expired token");
+			return m;
+		} catch (NoResultException ex) {
+			throw new AuthenticationException("invalid token", ex);
+		} catch (HibernateException ex) {
+			throw HibernateExceptionEncapsulator.encapsulate(ex);
+		}
+	}
 }
