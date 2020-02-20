@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './connection/login/login.component';
 import { RegisterComponent } from './connection/register/register.component';
 import { UserFormComponent } from './connection/user-form/user-form.component';
+import { MainComponent } from './main/main.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { UserFormComponent } from './connection/user-form/user-form.component';
     LoginComponent,
     RegisterComponent,
     UserFormComponent,
+    MainComponent,
   ],
   imports: [
     HttpClientModule,
