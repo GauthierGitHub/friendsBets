@@ -38,35 +38,38 @@ export class ConnectionService {
 
   private _connectedUser: User = null;
   private _cookieServ: CookieService;
-  private url: string = "http://localhost:8080/friendsbets-webservice/user/";
+  private url: string = "http://localhost:8080/friendsbets-webservice/";
 
   constructor(private httpClient: HttpClient) { }
 
   public addUser(m: User): void {
     let u = UserSerializer.serializetoJSON(m);
-    this.httpClient.post(this.url, u).subscribe();
+    this.httpClient.post(this.url + "user/", u).subscribe();
   }
 
   public update(m: User): void {
     // TODO: Verify if serializer is needed
-    let url2 = this.url + m.id;
+    let url2 = this.url + "user/" + m.id;
     this.httpClient.put(url2, m).subscribe();
   }
 
   public delete(m: User): void {
-    this.httpClient.delete<User>(this.url + m.id).subscribe(x => console.log("delete ok"));
+    this.httpClient.delete<User>(this.url + "user/" + m.id).subscribe(x => console.log("delete ok"));
   }
 
   public login(email: string, password: string) {
-    var m: User = new User(-1, "a", email, "a");
+    console.log("sending request");
+    console.log(this.url + "login");
+    // let token: string = this.cookieServ.get("token");
     // TODO: success and error
-    return this.httpClient.post<User>(this.url + "signin", {}, {
+    return this.httpClient.post<User>(this.url + "authentication/login", {}, {
       params: {
         "email": email,
         "password": password
       }
     }).subscribe(x => {
       this.connectedUser = x;
+
     });
   }
 
@@ -85,11 +88,11 @@ export class ConnectionService {
   // }
 
   public findAll(): Observable<User[]> {
-    return this.httpClient.get<User[]>(this.url);
+    return this.httpClient.get<User[]>(this.url + "user/");
   }
 
   public findById(id: number): Observable<User> {
-    let url = this.url + id;
+    let url = this.url + "user/" + id;
     return this.httpClient.get<User>(url);
   }
 
