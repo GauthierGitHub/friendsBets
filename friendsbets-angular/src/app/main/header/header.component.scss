@@ -1,0 +1,23 @@
+header {
+  width: 100%;
+  background-color: darkblue;
+  color: white;
+  display: inline-block;
+}
+
+header > img {
+  float: left;
+}
+
+header > h1 {
+  float: left;
+}
+
+header > .dropdown {
+  float: right;
+}
+
+img {
+  max-width: 2em;
+  max-height: 2em;
+}
