@@ -38,10 +38,10 @@ export class ConnectionService {
   // private _Users: User[] = [];
 
   private _connectedUser: User = null;
-  private _cookieServ: CookieService;
   private url: string = "http://localhost:8080/friendsbets-webservice/";
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router, private cookieServ: CookieService) {
+   }
 
   // TODO: take id from server ?
   public addUser(m: User): void {
@@ -62,8 +62,6 @@ export class ConnectionService {
   }
 
   public login(email: string, password: string) {
-    console.log("sending request");
-    console.log(this.url + "login");
     // let token: string = this.cookieServ.get("token");
     // TODO: success and error
     return this.httpClient.post<User>(this.url + "authentication/login", {}, {
@@ -72,8 +70,10 @@ export class ConnectionService {
         "password": password
       }
     }).subscribe(x => {
-      console.log(x);
       this.connectedUser = x;
+      this.cookieServ.set("token", x.token, 10);
+      console.log(x);
+      
       this.router.navigateByUrl("main");
     });
   }
@@ -111,13 +111,6 @@ export class ConnectionService {
   }
   public get connectedUser(): User {
     return this._connectedUser;
-  }
-
-  public set cookieServ(cookieServ: CookieService) {
-    this._cookieServ = cookieServ;
-  }
-  public get cookieServ(): CookieService {
-    return this._cookieServ;
   }
 
 
