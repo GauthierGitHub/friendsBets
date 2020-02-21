@@ -10,6 +10,7 @@ import { LoginComponent } from './connection/login/login.component';
 import { RegisterComponent } from './connection/register/register.component';
 import { UserFormComponent } from './connection/user-form/user-form.component';
 import { MainComponent } from './main/main.component';
+import { HeaderComponent } from './main/header/header.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MainComponent } from './main/main.component';
     RegisterComponent,
     UserFormComponent,
     MainComponent,
+    HeaderComponent,
   ],
   imports: [
     HttpClientModule,
