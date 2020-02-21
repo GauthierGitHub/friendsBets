@@ -11,6 +11,7 @@ import { RegisterComponent } from './connection/register/register.component';
 import { UserFormComponent } from './connection/user-form/user-form.component';
 import { MainComponent } from './main/main.component';
 import { HeaderComponent } from './main/header/header.component';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -28,7 +29,9 @@ import { HeaderComponent } from './main/header/header.component';
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   
   bootstrap: [AppComponent]
 })

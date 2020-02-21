@@ -26,12 +26,13 @@ public class AuthenticationResource {
 	@POST
 	@Path("login")
 	public Response login(@QueryParam("email") String email, @QueryParam("password") String password) {
-		System.out.println("login ressource");
 		try {
 //			FriendsBetsUser m = ms.findByEmailAndPassword(email, password);
 //			FriendsBetsUser m = ms.signIn(email, password);
 			FbsUser m;
-			m = ms.findByUserMailAndPassword(email, password);
+			m = ms.login(email, password);
+			System.out.println(m.getToken());
+			System.out.println(m.getTokenLastUsed());
 			return Response
 					.ok()
 					.entity(m)
