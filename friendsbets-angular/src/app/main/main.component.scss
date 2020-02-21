@@ -1,22 +1,23 @@
-* {
+section {
   width: 100%;
-  margin: 0;
-  padding: 0;
+  background-color: rgba(82, 82, 107, 0.164);
+  color: black;
+  display: inline-block;
+  // https://html-css-js.com/css/generator/border-outline/
+  border: 5px inset rgba(28,110,164,0.41);
+  border-radius: 24px;
 }
 
-html {
-  height: 100vh;
-  max-height: 100%;
+section > img {
+  float: left;
+  max-width: 2em;
+  max-height: 2em;
 }
 
-// .img_wrapper {
-//   height: 100%;
-// }
+section > h2 {
+  float: left;
+}
 
-// img {
-//   width: 100%;
-//   height: auto;
-//   color: transparent;
-//   margin-top: auto;
-//   margin-bottom: auto;
-// }
+section > .dropdown {
+  float: right;
+}

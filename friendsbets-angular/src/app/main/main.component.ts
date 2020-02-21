@@ -15,8 +15,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.u = this.cs.connectedUser == null ?
-         new User(-1, "fromMainCompo", "fromMainCompo", "fromMainCompo" ) : this.cs.connectedUser;
   }
 
 }

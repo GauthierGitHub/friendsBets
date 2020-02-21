@@ -1,0 +1,23 @@
+<app-header></app-header>
+<form class="form-signin text-center">
+  <input class="col-12" type=text name=g-name [(ngModel)]=g.name class=form-control placeholder="My Group" required
+    autofocus>
+  <p class="invalid-feedback"></p>
+  <div class="row">
+    <h2 class="col-8">Select your friends:</h2>
+    <button class="col-3" type="submit">Done!</button>
+  </div>
+
+  <!--
+  Checkbox Trickery with CSS:
+  http://codersblock.com/blog/checkbox-trickery-with-css/ 
+  TODO: Add friends pictures
+  <img src="../../assets/img/logo.png" alt="group picture">
+-->
+
+  <ng-container *ngFor="let friend of friends">
+    <input type="checkbox" [id]=friend.id [name]=friend.nickname [value]=friend.id>
+    <label for="{{friend.id}}">{{ friend.nickname }}</label>
+  </ng-container>
+
+</form>

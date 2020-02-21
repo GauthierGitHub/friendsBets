@@ -12,6 +12,7 @@ import { UserFormComponent } from './connection/user-form/user-form.component';
 import { MainComponent } from './main/main.component';
 import { HeaderComponent } from './main/header/header.component';
 import { CookieService } from 'ngx-cookie-service';
+import { CreateGroupComponent } from './main/create-group/create-group.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { CookieService } from 'ngx-cookie-service';
     UserFormComponent,
     MainComponent,
     HeaderComponent,
+    CreateGroupComponent,
   ],
   imports: [
     HttpClientModule,

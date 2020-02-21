@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './connection/register/register.component';
 import { LoginComponent } from './connection/login/login.component';
 import { MainComponent } from './main/main.component';
+import { CreateGroupComponent } from './main/create-group/create-group.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent},
   { path: "register", component: RegisterComponent},
   { path: "main", component: MainComponent},
+  { path: "create-group", component: CreateGroupComponent},
+
 ];
 
 @NgModule({

@@ -35,20 +35,23 @@ import { Router } from '@angular/router';
 })
 export class ConnectionService {
 
-  // private _Users: User[] = [];
-
-  private _connectedUser: User = null;
+  // TODO: private _connectedUser: User = null
+  //! filling artificialy
+  private _connectedUser: User = new User(-1, "madeAutoByServ", "madeAutoByServ", "madeAutoByServ");
   private url: string = "http://localhost:8080/friendsbets-webservice/";
 
-  constructor(private httpClient: HttpClient, private router: Router, private cookieServ: CookieService) {
-   }
+  constructor(private httpClient: HttpClient, private router: Router, private cookieServ: CookieService) { }
 
   // TODO: take id from server ?
-  public addUser(m: User): void {
+  public addUser(m: User): boolean {
+    // TODO: return boolean ?
     let u = UserSerializer.serializetoJSON(m);
     this.httpClient.post(this.url + "user/", u).subscribe(x => {
       this._connectedUser=m;
-      this.router.navigateByUrl("main")});
+      this.router.navigateByUrl("main");
+      return true;
+    });
+    return false;
   }
 
   public update(m: User): void {
