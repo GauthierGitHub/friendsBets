@@ -4,8 +4,8 @@
         <h1 class="h3 mb-3 font-weight-normal">{{title}}</h1>
 
         <ng-container *ngIf="title == 'Register'">
-            <label for="alias" class="sr-only">Alias</label>
-            <input type=text name=u.alias [(ngModel)]=u.alias class=form-control placeholder="Alias" required autofocus>
+            <label for="nickname" class="sr-only">Nickname</label>
+            <input type=text name=u.nickname [(ngModel)]=u.nickname class=form-control placeholder="Nickname" required autofocus>
             <p class="invalid-feedback"></p>
         </ng-container>
 
@@ -24,6 +24,6 @@
     </form>
     <br>
     <div class="col-12 row justify-content-center">
-        <button class="col-3 btn btn-lg btn-primary btn-block" type="submit">MagicButton</button>
+        <a class="col-3 btn btn-lg btn-primary btn-block" routerLink="/main/">MagicButton</a>
     </div>
 </main>

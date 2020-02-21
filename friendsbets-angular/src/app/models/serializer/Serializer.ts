@@ -10,7 +10,7 @@ export class UserSerializer {
         // TODO: add token ?
         let string =
         {
-            "nickname": u.alias,
+            "nickname": u.nickname,
             "password": u.password,
             "email": u.email,
             "picturePath": null,
