@@ -2,17 +2,17 @@
 export class User {
     
     private _id: number;
-    private _alias: string;
+    private _nickname: string;
     private _email: string;    
     private _password: string;
     private _token: string;
 
 
     constructor();
-    constructor(id: number, alias: string, email: string, password: string);
-    constructor(id?: number, alias?: string, email?: string, password?: string) {
+    constructor(id: number, nickname: string, email: string, password: string);
+    constructor(id?: number, nickname?: string, email?: string, password?: string) {
         this._id = id ? id : 0;
-        this._alias = alias ? alias : "";
+        this._nickname = nickname ? nickname : "";
         this._email = email ? email : "";
         this._password = password ? password : "";
     }
@@ -25,12 +25,12 @@ export class User {
         this._id = id;
     }
 
-    get alias(): string {
-        return this._alias;
+    get nickname(): string {
+        return this._nickname;
     }
 
-    set alias(alias: string) {
-        this._alias = alias;
+    set nickname(nickname: string) {
+        this._nickname = nickname;
     }
 
     get email(): string {
