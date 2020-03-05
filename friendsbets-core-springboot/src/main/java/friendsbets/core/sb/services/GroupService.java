@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsbets.core.repositories.GroupRepository;
 import friendsbets.core.sb.exceptions.SqlNotFoundException;
 import friendsbets.core.sb.exceptions.SqlUniqueContraintException;
 import friendsbets.core.sb.models.Group;
 import friendsbets.core.sb.models.User;
+import friendsbets.core.sb.repositories.GroupRepository;
 
 /**
  * TODO Exceptions

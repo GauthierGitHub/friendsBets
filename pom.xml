@@ -31,7 +31,9 @@
   </dependencies>
   <modules>
     <module>friendsBets-core</module>
+    <module>friendsBets-core-springboot</module>
     <module>friendsBets-webapp</module>
     <module>friendsBets-webservice</module>
+    <module>friendsBets-ws-sb</module>
   </modules>
 </project>

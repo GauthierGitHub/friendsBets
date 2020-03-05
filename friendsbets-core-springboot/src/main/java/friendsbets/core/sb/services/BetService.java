@@ -6,10 +6,10 @@ import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsbets.core.repositories.BetRepository;
 import friendsbets.core.sb.exceptions.SqlNotFoundException;
 import friendsbets.core.sb.exceptions.SqlUniqueContraintException;
 import friendsbets.core.sb.models.Bet;
+import friendsbets.core.sb.repositories.BetRepository;
 
 /**
  * TODO Exceptions

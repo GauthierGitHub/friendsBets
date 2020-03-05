@@ -7,6 +7,11 @@ import friendsbets.core.sb.models.User;
 
 public class SqlUniqueContraintException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public SqlUniqueContraintException(Exception e, Bet b) {
 		System.out.println("Bet already done !");
 	}

@@ -1,4 +1,4 @@
-package friendsbets.core.repositories;
+package friendsbets.core.sb.repositories;
 
 import friendsbets.core.sb.models.Group;
 import friendsbets.core.sb.models.User;

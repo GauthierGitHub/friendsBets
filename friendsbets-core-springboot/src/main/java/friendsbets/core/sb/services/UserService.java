@@ -5,10 +5,10 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import friendsbets.core.repositories.UserRepository;
 import friendsbets.core.sb.exceptions.FriendsBetsException;
 import friendsbets.core.sb.models.Group;
 import friendsbets.core.sb.models.User;
+import friendsbets.core.sb.repositories.UserRepository;
 import friendsbets.core.sb.utils.HibernateExceptionEncapsulator;
 
 /**
@@ -30,28 +30,16 @@ public class UserService {
 //			.addRule("alias", "Alias \"Pierre\" is not allowed !", 
 //					me -> !me.getNickname().toLowerCase().equals("pierre"));
 
-	public void newUser(User u) throws FriendsBetsException {
-		try {
-			ur.save(u);
-		} catch (HibernateException ex) {
-			throw HibernateExceptionEncapsulator.encapsulate(ex);
-		}
+	public void save(User u) throws FriendsBetsException {
+		ur.save(u);
 	}
 
 	public void deleteUser(User u) throws FriendsBetsException {
-		try {
-			ur.delete(u);
-		} catch (HibernateException ex) {
-			throw HibernateExceptionEncapsulator.encapsulate(ex);
-		}
+		ur.delete(u);
 	}
 
 	public void updateUser(User u) throws FriendsBetsException {
-		try {
-			ur.save(u);
-		} catch (HibernateException ex) {
-			throw HibernateExceptionEncapsulator.encapsulate(ex);
-		}
+		ur.save(u);
 	}
 
 	public List<User> findAll() {
