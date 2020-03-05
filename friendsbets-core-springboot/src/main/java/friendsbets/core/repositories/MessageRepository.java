@@ -2,8 +2,8 @@ package friendsbets.core.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import friendsbets.core.sb.models.FbsMessage;
+import friendsbets.core.sb.models.Message;
 
-public interface MessageRepository extends JpaRepository<FbsMessage, Integer> {
+public interface MessageRepository extends JpaRepository<Message, Integer> {
 
 }

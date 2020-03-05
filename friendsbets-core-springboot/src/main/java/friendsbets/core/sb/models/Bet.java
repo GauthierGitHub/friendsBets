@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.springframework.data.annotation.Id;
 
@@ -19,22 +20,23 @@ import org.springframework.data.annotation.Id;
  *
  */
 @Entity
-public class FbsBet {
+@Table(name="FbsBet")
+public class Bet {
 
 	@Id
 	@GeneratedValue
 	private int id;
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private FbsMatch match;
+	private Match match;
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private FbsUser betInitialUser;
+	private User betInitialUser;
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private FbsGroup group;
+	private Group group;
 	@ManyToMany
-	private Set<FbsUser> followers;
+	private Set<User> followers;
 	// TODO bet selection WINNER DRAW SCORE
 	// private int[] score = new int[2]; // tinyblob in database
 	private String gain;
@@ -52,11 +54,11 @@ public class FbsBet {
 		WINNER, DRAW, SCORE
 	}
 
-	public FbsBet() {
+	public Bet() {
 	}
 
-	public FbsBet(FbsMatch match, FbsUser betInitialUser, FbsGroup group,
-			Set<FbsUser> followers, String gain, BetType betType) {
+	public Bet(Match match, User betInitialUser, Group group,
+			Set<User> followers, String gain, BetType betType) {
 		super();
 		this.match = match;
 		this.betInitialUser = betInitialUser;
@@ -75,35 +77,35 @@ public class FbsBet {
 		this.id = id;
 	}
 
-	public FbsMatch getMatch() {
+	public Match getMatch() {
 		return match;
 	}
 
-	public void setMatch(FbsMatch match) {
+	public void setMatch(Match match) {
 		this.match = match;
 	}
 
-	public FbsUser getBetInitialUser() {
+	public User getBetInitialUser() {
 		return betInitialUser;
 	}
 
-	public void setBetInitialUser(FbsUser betInitialUser) {
+	public void setBetInitialUser(User betInitialUser) {
 		this.betInitialUser = betInitialUser;
 	}
 
-	public FbsGroup getGroup() {
+	public Group getGroup() {
 		return group;
 	}
 
-	public void setGroup(FbsGroup group) {
+	public void setGroup(Group group) {
 		this.group = group;
 	}
 
-	public Set<FbsUser> getFollowers() {
+	public Set<User> getFollowers() {
 		return followers;
 	}
 
-	public void setFollowers(Set<FbsUser> followers) {
+	public void setFollowers(Set<User> followers) {
 		this.followers = followers;
 	}
 

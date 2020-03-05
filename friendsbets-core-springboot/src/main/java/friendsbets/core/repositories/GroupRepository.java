@@ -2,8 +2,8 @@ package friendsbets.core.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import friendsbets.core.sb.models.FbsGroup;
+import friendsbets.core.sb.models.Group;
 
-public interface GroupRepository extends JpaRepository<FbsGroup, Integer> {
+public interface GroupRepository extends JpaRepository<Group, Integer> {
 
 }

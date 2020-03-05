@@ -2,47 +2,41 @@ package friendsbets.core.sb.services;
 
 import java.util.List;
 
-import dao.MatchDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import friendsbets.core.repositories.MatchRepository;
 import friendsbets.core.sb.exceptions.SqlNotFoundException;
 import friendsbets.core.sb.exceptions.SqlUniqueContraintException;
-import friendsbets.core.sb.models.FbsMatch;
+import friendsbets.core.sb.models.Match;
 
 /**
  * TODO Exceptions
  * 
- * All methods what return Matchs
- * or update Matchs database
+ * All methods what return Matchs or update Matchs database
+ * 
  * @author gauthier
  *
  */
+@Service
 public class MatchService {
-	private MatchDao mDao = new MatchDao();	
-	
-	public void createMatch(FbsMatch m) throws SqlUniqueContraintException {
-		try {
-			mDao.save(m);
-		} catch (Exception e) {
-			throw new SqlUniqueContraintException(e, m);
-		}
+
+	@Autowired
+	MatchRepository mr;
+
+	public void createMatch(Match m) throws SqlUniqueContraintException {
+		mr.save(m);
 	}
-	
-	public void deleteMatch(FbsMatch m) throws SqlNotFoundException {
-		try {
-			mDao.delete(m);
-		} catch (Exception e) {
-			throw new SqlNotFoundException(e, m);
-		}
+
+	public void deleteMatch(Match m) throws SqlNotFoundException {
+		mr.delete(m);
 	}
-	
-	public void updateMatch(FbsMatch m) throws SqlNotFoundException {
-		try {
-			mDao.update(m);
-		} catch (Exception e) {
-			throw new SqlNotFoundException(e, m);
-		}
+
+	public void updateMatch(Match m) throws SqlNotFoundException {
+		mr.save(m);
 	}
-	
-	public List<FbsMatch> findAllMatchs() {
-		return mDao.findAll();
+
+	public List<Match> findAllMatchs() {
+		return mr.findAll();
 	}
 }

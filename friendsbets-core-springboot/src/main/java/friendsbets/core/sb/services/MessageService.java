@@ -2,47 +2,38 @@ package friendsbets.core.sb.services;
 
 import java.util.List;
 
-import dao.MessageDao;
-import friendsbets.core.sb.exceptions.FriendsBetsException;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import friendsbets.core.repositories.MessageRepository;
 import friendsbets.core.sb.exceptions.SqlNotFoundException;
-import friendsbets.core.sb.models.FbsMessage;
+import friendsbets.core.sb.models.Message;
 
 /**
  * TODO Exceptions
  * 
- * All methods what return Messages
- * or update Messages database
+ * All methods what return Messages or update Messages database
+ * 
  * @author gauthier
  *
  */
 public class MessageService {
-	private MessageDao mDao = new MessageDao();	
-	
-	public void createMessage(FbsMessage m) {
-		try {
-			mDao.save(m);
-		} catch (Exception e) { //no unique contraint
-			e.printStackTrace();
-		}
+
+	@Autowired
+	MessageRepository mr;
+
+	public void createMessage(Message m) {
+		mr.save(m);
 	}
-	
-	public void deleteMessage(FbsMessage m) throws SqlNotFoundException {
-		try {
-			mDao.delete(m);
-		} catch (Exception e) {
-			throw new SqlNotFoundException(e, m);
-		}
+
+	public void deleteMessage(Message m) throws SqlNotFoundException {
+		mr.delete(m);
 	}
-	
-	public void updateMessage(FbsMessage m) throws SqlNotFoundException {
-		try {
-			mDao.delete(m);
-		} catch (Exception e) {
-			throw new SqlNotFoundException(e, m);
-		}
+
+	public void updateMessage(Message m) throws SqlNotFoundException {
+		mr.delete(m);
 	}
-	
-	public List<FbsMessage> findAllMessages() {
-		return mDao.findAll();
+
+	public List<Message> findAllMessages() {
+		return mr.findAll();
 	}
 }
