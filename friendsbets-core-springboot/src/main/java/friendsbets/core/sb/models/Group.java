@@ -10,10 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,7 +23,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
-public class FbsGroup {
+@Table(name="FbsGroup")
+public class Group {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -31,7 +32,7 @@ public class FbsGroup {
 	private String name;
 	@ManyToOne
 //	@JoinColumn(nullable = false) // @Column(s) not allowed on a @OneToOne property.
-	private FbsUser adminGroup;
+	private User adminGroup;
 	/**
 	 * Set is better than arrayList. Jpa will not create both primary key in the
 	 * association Table with List ... Can be resolved buy @EmbeddedId ?
@@ -39,17 +40,17 @@ public class FbsGroup {
 	 */
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY) 
-	private Set<FbsUser> userList = new HashSet<FbsUser>();
+	private Set<User> userList = new HashSet<User>();
 	@JsonIgnore
 	@OneToMany(mappedBy = "group")
-	private List<FbsBet> betList = new ArrayList<>();
+	private List<Bet> betList = new ArrayList<>();
 	@JsonIgnore
 	@OneToMany(mappedBy = "group")
-	private List<FbsMessage> groupMessages;
+	private List<Message> groupMessages;
 	
-	public FbsGroup() {}
+	public Group() {}
 	
-	public FbsGroup(FbsUser u) {
+	public Group(User u) {
 		this.adminGroup = u;
 		userList.add(adminGroup);
 	}
@@ -68,31 +69,31 @@ public class FbsGroup {
 		this.name = name;
 	}
 
-	public FbsUser getAdminGroup() {
+	public User getAdminGroup() {
 		return adminGroup;
 	}
-	public void setAdminGroup(FbsUser adminGroup) {
+	public void setAdminGroup(User adminGroup) {
 		this.adminGroup = adminGroup;
 	}
 
-	public Set<FbsUser> getUserList() {
+	public Set<User> getUserList() {
 		return userList;
 	}
-	public void setUserList(Set<FbsUser> userList) {
+	public void setUserList(Set<User> userList) {
 		this.userList = userList;
 	}
 
-	public List<FbsBet> getBetList() {
+	public List<Bet> getBetList() {
 		return betList;
 	}
-	public void setBetList(List<FbsBet> betList) {
+	public void setBetList(List<Bet> betList) {
 		this.betList = betList;
 	}
 
-	public List<FbsMessage> getGroupMessages() {
+	public List<Message> getGroupMessages() {
 		return groupMessages;
 	}
-	public void setGroupMessages(List<FbsMessage> groupMessages) {
+	public void setGroupMessages(List<Message> groupMessages) {
 		this.groupMessages = groupMessages;
 	}
 

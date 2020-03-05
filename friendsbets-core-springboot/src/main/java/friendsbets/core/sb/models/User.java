@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,16 +33,17 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  *  TODO see serializable id FOR save personnal config
  *  TODO CASCADE.TYPE
  */
-@Entity
 //@Table(name="MyUser") // for change name of table
-@XmlRootElement
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 //@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jsonType")
 //@JsonSubTypes({ // for polymorphisme only ?
 //    @JsonSubTypes.Type(value = FbsUser.class, name = "User"),
 //    @JsonSubTypes.Type(value = Administrator.class, name = "Administrator")
 //})
-public class FbsUser {
+@Entity
+//@XmlRootElement
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+@Table(name="FbsUser")
+public class User {
 
 	@Id
 	@GeneratedValue // Unique and nullable aren't necessary
@@ -56,12 +58,12 @@ public class FbsUser {
 	private String picturePath;
 	@JsonIgnore
 	@OneToMany(mappedBy = "betInitialUser", cascade = CascadeType.PERSIST) // TODO cascadeType ?
-	private List<FbsBet> betsInitialized;
+	private List<Bet> betsInitialized;
 	@JsonIgnore
 	@ManyToMany(mappedBy = "followers", fetch = FetchType.LAZY) // TODO eager ? !!!!!!!!!!!!!!!!!!!
-	private Set<FbsBet> betsFollowed;
+	private Set<Bet> betsFollowed;
 	@ManyToMany(mappedBy = "userList", fetch = FetchType.EAGER) // TODO eager ? !!!!!!!!!!!!!!!!!!!
-	private List<FbsGroup> grpList;
+	private List<Group> grpList;
 
 	protected String token;
 	protected LocalDateTime tokenLastUsed;
@@ -69,17 +71,17 @@ public class FbsUser {
 	/**
 	 * TODO: delete this constructor
 	 */
-	public FbsUser() {
+	public User() {
 		this.nickname = "defaultnickname";
 		this.email = "defaultemail";
 		this.password = "defaultpassword";
 	}
 
-	public FbsUser(String nickname, String email, String password) {
+	public User(String nickname, String email, String password) {
 		this.nickname = nickname;
 		this.email = email;
 		this.password = password;
-		this.grpList = new ArrayList<FbsGroup>();
+		this.grpList = new ArrayList<Group>();
 	}
 
 	public String getNickname() {
@@ -103,10 +105,10 @@ public class FbsUser {
 		this.email = email;
 	}
 
-	public List<FbsGroup> getGrpList() {
+	public List<Group> getGrpList() {
 		return grpList;
 	}
-	public void setGrpList(List<FbsGroup> grpList) {
+	public void setGrpList(List<Group> grpList) {
 		this.grpList = grpList;
 	}
 
@@ -124,19 +126,19 @@ public class FbsUser {
 		this.picturePath = picturePath;
 	}
 
-	public List<FbsBet> getBetsInitialized() {
+	public List<Bet> getBetsInitialized() {
 		return betsInitialized;
 	}
-	public void setBetsInitialized(List<FbsBet> betsInitialized) {
+	public void setBetsInitialized(List<Bet> betsInitialized) {
 		this.betsInitialized = betsInitialized;
 	}
 	
 	@XmlTransient
 	@JsonIgnore
-	public Set<FbsBet> getBetsFollowed() {
+	public Set<Bet> getBetsFollowed() {
 		return betsFollowed;
 	}
-	public void setBetsFollowed(Set<FbsBet> betsFollowed) {
+	public void setBetsFollowed(Set<Bet> betsFollowed) {
 		this.betsFollowed = betsFollowed;
 	}
 

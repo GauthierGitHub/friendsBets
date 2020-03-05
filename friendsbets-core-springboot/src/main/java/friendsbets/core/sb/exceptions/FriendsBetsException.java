@@ -1,6 +1,6 @@
 package friendsbets.core.sb.exceptions;
 
-import friendsbets.core.sb.models.FbsMessage;
+import friendsbets.core.sb.models.Message;
 
 /**
  * Root exception for all graze-defined ones. 

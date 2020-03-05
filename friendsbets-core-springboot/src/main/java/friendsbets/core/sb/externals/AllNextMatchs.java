@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
 
-import friendsbets.core.sb.models.FbsMatch;
+import friendsbets.core.sb.models.Match;
 
 /**
  * TODO : take just europeean match
@@ -20,7 +20,7 @@ public class AllNextMatchs {
 	 * one time by day, find json from api api.football and write json
 	 * in hard disk (Files.io ?)
 	 */
-	private List<FbsMatch> nextMatchs;
+	private List<Match> nextMatchs;
 
 	/**
 	 * TODO matched with time

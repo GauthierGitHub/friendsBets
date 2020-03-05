@@ -2,11 +2,14 @@ package friendsbets.core.sb.services;
 
 import java.util.List;
 
-import dao.GroupDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import friendsbets.core.repositories.GroupRepository;
 import friendsbets.core.sb.exceptions.SqlNotFoundException;
 import friendsbets.core.sb.exceptions.SqlUniqueContraintException;
-import friendsbets.core.sb.models.FbsGroup;
-import friendsbets.core.sb.models.FbsUser;
+import friendsbets.core.sb.models.Group;
+import friendsbets.core.sb.models.User;
 
 /**
  * TODO Exceptions
@@ -16,58 +19,41 @@ import friendsbets.core.sb.models.FbsUser;
  * @author gauthier
  *
  */
+@Service
 public class GroupService {
-	private GroupDao gDao = new GroupDao();
 
-	public void createGroup(FbsGroup g) throws SqlUniqueContraintException {
-		try {
-			gDao.save(g);
-		} catch (Exception e) {
-			throw new SqlUniqueContraintException(e, g);
-		}
+	@Autowired
+	GroupRepository gr;
+
+	public void createGroup(Group g) throws SqlUniqueContraintException {
+		gr.save(g);
 	}
 
-	public void deleteGroup(FbsGroup g) throws SqlNotFoundException {
-		try {
-			gDao.delete(g);
-		} catch (Exception e) {
-			throw new SqlNotFoundException(e, g);
-		}
+	public void deleteGroup(Group g) throws SqlNotFoundException {
+		gr.delete(g);
 	}
 
-	public void updateGroup(FbsGroup g) throws SqlNotFoundException {
-		try {
-			gDao.update(g);
-		} catch (Exception e) {
-			throw new SqlNotFoundException(e, g);
-		}
+	public void updateGroup(Group g) throws SqlNotFoundException {
+		gr.save(g);
 	}
 
-	public List<FbsGroup> findAllGroups() {
-		return gDao.findAll();
+	public List<Group> findAllGroups() {
+		return gr.findAll();
 	}
 
-	public void addUserToGroup(FbsGroup g, FbsUser u) throws Exception {
-		try {
-			g.getUserList().add(u);
-			updateGroup(g);
-		} catch (Exception e) {
-			throw new SqlUniqueContraintException(e, g, u);
-		}
+	public void addUserToGroup(Group g, User u) throws Exception {
+		g.getUserList().add(u);
+		updateGroup(g);
 	}
-	
-	public FbsGroup findById(int id) {
-		try {
-			return gDao.findById(id);
-		} catch (Exception e) {
-			throw new SqlNotFoundException(e, id);
-		}
+
+	public Group findById(int id) {
+		return gr.findById(id).orElseThrow();
 	}
 
 	/**
 	 * not needed cause eager fetchType in user ?????
 	 */
 //	public List<FriendsBetsGroup> findAllGroupForOneUser(FriendsBetsUser u) throws GroupNotFoudException {
-//		return gDao.findAllGroupForOneUser(u);
+//		return gr.findAllGroupForOneUser(u);
 //	}
 }
