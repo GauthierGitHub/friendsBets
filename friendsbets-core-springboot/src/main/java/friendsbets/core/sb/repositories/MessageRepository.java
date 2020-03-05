@@ -1,4 +1,4 @@
-package friendsbets.core.repositories;
+package friendsbets.core.sb.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

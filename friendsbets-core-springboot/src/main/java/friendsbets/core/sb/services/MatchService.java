@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsbets.core.repositories.MatchRepository;
 import friendsbets.core.sb.exceptions.SqlNotFoundException;
 import friendsbets.core.sb.exceptions.SqlUniqueContraintException;
 import friendsbets.core.sb.models.Match;
+import friendsbets.core.sb.repositories.MatchRepository;
 
 /**
  * TODO Exceptions

@@ -9,9 +9,9 @@ import org.hibernate.exception.JDBCConnectionException;
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Component;
 
+import friendsbets.core.sb.exceptions.DatabaseUnavailableException;
 import friendsbets.core.sb.exceptions.FriendsBetsException;
-import friendsbets.exceptions.DatabaseUnavailableException;
-import friendsbets.exceptions.JuniorDeveloperException;
+import friendsbets.core.sb.exceptions.JuniorDeveloperException;
 
 @Component
 @Aspect
