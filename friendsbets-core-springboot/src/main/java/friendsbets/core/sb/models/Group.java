@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
-@Table(name="FbsGroup")
+@Table(name="GroupFbs")
 public class Group {
 	@Id
 	@GeneratedValue

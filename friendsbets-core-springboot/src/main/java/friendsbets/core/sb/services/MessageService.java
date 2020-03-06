@@ -3,8 +3,8 @@ package friendsbets.core.sb.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import friendsbets.core.sb.exceptions.SqlNotFoundException;
 import friendsbets.core.sb.models.Message;
 import friendsbets.core.sb.repositories.MessageRepository;
 
@@ -16,6 +16,7 @@ import friendsbets.core.sb.repositories.MessageRepository;
  * @author gauthier
  *
  */
+@Service
 public class MessageService {
 
 	@Autowired

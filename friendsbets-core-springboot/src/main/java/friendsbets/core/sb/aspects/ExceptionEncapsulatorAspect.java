@@ -19,7 +19,7 @@ public class ExceptionEncapsulatorAspect {
 
 	private static final Logger logger = Logger.getLogger(ExceptionEncapsulatorAspect.class);
 
-	@Around("@annotation(graze.aspects.EncapsulateException)")
+	@Around("@annotation(friendsbets.core.sb.aspects.EncapsulateException)")
 	public Object exceptionEncapsulatorAdvice(ProceedingJoinPoint pjp) throws Throwable {
 		try {
 			return pjp.proceed();
@@ -30,11 +30,11 @@ public class ExceptionEncapsulatorAspect {
 		}
 	}
 
-	@AfterThrowing(pointcut = "execution(* graze.services.*.*(..))", throwing = "e")
+	@AfterThrowing(pointcut = "execution(* friendsbets.core.sb.services.*.*(..))", throwing = "e")
 	public void nonEncapsulatedExceptionAdvice(Exception e) {
 		if (!(e instanceof FriendsBetsException))
 			logger.warn("exception " + e.getClass().getName()
-					+ "should have been encapsulated in a GrazeException. Please fill a bug.");
+					+ "should have been encapsulated in a FriendsBetsException. Please fill a bug.");
 	}
 
 }

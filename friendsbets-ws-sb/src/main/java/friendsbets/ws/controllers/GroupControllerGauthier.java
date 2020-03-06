@@ -17,7 +17,7 @@ import friendsbets.core.sb.services.GroupService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/Group")
+@RequestMapping(value="/group", produces="application/json")
 public class GroupControllerGauthier {
 
 	@Autowired

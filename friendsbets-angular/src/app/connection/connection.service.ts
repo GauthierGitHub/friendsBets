@@ -38,7 +38,8 @@ export class ConnectionService {
   // TODO: private _connectedUser: User = null
   //! filling artificialy
   private _connectedUser: User = new User(-1, "madeAutoByServ", "madeAutoByServ", "madeAutoByServ");
-  private url: string = "http://localhost:8080/friendsbets-webservice/";
+  // private url: string = "http://localhost:8080/friendsbets-webservice/";
+  private url: string = "http://localhost:8080/"
 
   constructor(private httpClient: HttpClient, private router: Router, private cookieServ: CookieService) { }
 
