@@ -21,19 +21,19 @@ public class MessageService {
 	@Autowired
 	MessageRepository mr;
 
-	public void createMessage(Message m) {
+	public void save(Message m) {
 		mr.save(m);
 	}
 
-	public void deleteMessage(Message m) throws SqlNotFoundException {
+	public void delete(Message m) {
 		mr.delete(m);
 	}
 
-	public void updateMessage(Message m) throws SqlNotFoundException {
+	public void update(Message m) {
 		mr.delete(m);
 	}
 
-	public List<Message> findAllMessages() {
+	public List<Message> findAll() {
 		return mr.findAll();
 	}
 }

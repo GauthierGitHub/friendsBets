@@ -24,19 +24,19 @@ public class MatchService {
 	@Autowired
 	MatchRepository mr;
 
-	public void createMatch(Match m) throws SqlUniqueContraintException {
+	public void save(Match m) {
 		mr.save(m);
 	}
 
-	public void deleteMatch(Match m) throws SqlNotFoundException {
+	public void delete(Match m) {
 		mr.delete(m);
 	}
 
-	public void updateMatch(Match m) throws SqlNotFoundException {
+	public void update(Match m) {
 		mr.save(m);
 	}
 
-	public List<Match> findAllMatchs() {
+	public List<Match> findAll() {
 		return mr.findAll();
 	}
 }

@@ -12,7 +12,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	User findByEmailAndPassword(String email, String password);
 
-	// TODO: my Query
+	// TODO: my Query ?
 	List<Group> findAllGroupForOneUser(User u);
+
+	// TODO: my Query ?
+	List<User> findByNicknameOrEmailLike(String pattern);
 
 }

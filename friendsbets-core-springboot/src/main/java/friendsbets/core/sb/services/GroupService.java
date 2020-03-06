@@ -25,30 +25,31 @@ public class GroupService {
 	@Autowired
 	GroupRepository gr;
 
-	public void createGroup(Group g) throws SqlUniqueContraintException {
+	public void save(Group g) {
 		gr.save(g);
 	}
 
-	public void deleteGroup(Group g) throws SqlNotFoundException {
+	public void delete(Group g) {
 		gr.delete(g);
 	}
 
-	public void updateGroup(Group g) throws SqlNotFoundException {
+	public void update(Group g) {
 		gr.save(g);
 	}
 
-	public List<Group> findAllGroups() {
+	public List<Group> findAll() {
 		return gr.findAll();
 	}
 
-	public void addUserToGroup(Group g, User u) throws Exception {
+	public void addUserToGroup(Group g, User u) {
 		g.getUserList().add(u);
-		updateGroup(g);
+		update(g);
 	}
 
 	public Group findById(int id) {
 		return gr.findById(id).orElseThrow();
 	}
+
 
 	/**
 	 * not needed cause eager fetchType in user ?????

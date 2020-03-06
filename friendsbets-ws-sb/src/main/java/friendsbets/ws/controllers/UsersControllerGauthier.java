@@ -2,7 +2,6 @@ package friendsbets.ws.controllers;
 
 import java.util.List;
 
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,60 +13,55 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import graze.models.Member;
-import graze.services.MemberService;
+import friendsbets.core.sb.models.User;
+import friendsbets.core.sb.services.UserService;
 
 @RestController
-@RequestMapping("/member")
 @CrossOrigin // not needed, declared for all in Webappconfig
-public class MembersControllerGauthier {
+@RequestMapping("/User")
+public class UsersControllerGauthier {
 
 	@Autowired
-	MemberService ms;
-	
+	UserService ms;
+
 	@GetMapping("")
-	public List<Member> findAll() {
-		System.out.println("membersController findAll");
+	public List<User> findAll() {
+		System.out.println("UsersController findAll");
 		return ms.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
-	public Member findById(@PathVariable int id) {
+	public User findById(@PathVariable int id) {
 		return ms.findById(id);
 	}
-	
+
 	/**
 	 * 
-	 *     {"jsonType": "Member",
-		    "id": 39,
-		    "alias": "aa",
-		    "image": "undefinedimageUrl",
-		    "password": "aa",
-		    "email": "aa",
-		    "token": null,
-		    "tokenLastUsed": null}
+	 * {"jsonType": "User", "id": 39, "alias": "aa", "image": "undefinedimageUrl",
+	 * "password": "aa", "email": "aa", "token": null, "tokenLastUsed": null}
+	 * 
 	 * @param m
 	 */
 	@PostMapping("")
-	public void save(@RequestBody Member m) {
+	public void save(@RequestBody User m) {
 		ms.save(m);
 	}
-	
+
 	@PutMapping("/{id}")
-	public void update(@PathVariable int id, @RequestBody Member m) {
+	public void update(@PathVariable int id, @RequestBody User m) {
 		m.setId(id);
 		ms.update(m);
 	}
-	
+
 	@DeleteMapping("/{id}")
 //	@RolesAllowed({"Administrator"})
 	public void delete(@PathVariable int id) {
 		ms.delete(ms.findById(id));
 	}
 
-	@GetMapping({"/search", "/search/{pattern}"})
-	public List<Member> findByAliasOrEmailLike(@PathVariable(name="pattern", required=false) String pattern) {
+	@GetMapping({ "/search", "/search/{pattern}" })
+	public List<User> findByAliasOrEmailLike(@PathVariable(name = "pattern", required = false) String pattern) {
 //		Logger.getLogger(getClass()).info("//////////!!! search = " + pattern);
-		return ms.findByAliasOrEmailLike(pattern == null ? "" : pattern);
+		return ms.findByNicknameOrEmailLike(pattern == null ? "" : pattern);
 	}
 }

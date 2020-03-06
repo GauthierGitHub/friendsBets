@@ -12,40 +12,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import graze.models.Event;
-import graze.services.EventService;
+import friendsbets.core.sb.models.Group;
+import friendsbets.core.sb.services.GroupService;
 
 @RestController
-@RequestMapping("event")
 @CrossOrigin
-public class EventsControllerGauthier {
+@RequestMapping("/Group")
+public class GroupControllerGauthier {
 
 	@Autowired
-	EventService es;
-	
+	GroupService gs;
+
 	@GetMapping("")
-	public List<Event> findAll() {
-		return es.findAll();
+	public List<Group> findAll() {
+		return gs.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
-	public Event findById(@PathVariable int id) {
-		return es.findById(id);
+	public Group findById(@PathVariable int id) {
+		return gs.findById(id);
 	}
-	
+
 	@PostMapping("")
-	public void save(@RequestBody Event e) {
-		es.save(e);
+	public void save(@RequestBody Group e) {
+		gs.save(e);
 	}
-	
+
 	@PostMapping("/{id}")
-	public void update(@RequestBody Event e, @PathVariable int id) {
+	public void update(@RequestBody Group e, @PathVariable int id) {
 		e.setId(id);
-		es.save(e);
+		gs.save(e);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable int id) {
-		es.delete(es.findById(id));
+		gs.delete(gs.findById(id));
 	}
 }
