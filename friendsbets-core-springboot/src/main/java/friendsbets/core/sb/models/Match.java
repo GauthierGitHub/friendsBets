@@ -2,7 +2,12 @@ package friendsbets.core.sb.models;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 
 
 /**
@@ -11,7 +16,7 @@ import javax.persistence.*;
  * TODO keep match persistant or not like Graze.OsmElements ?
  */
 @Entity
-@Table(name="FbsMatch")
+@Table(name="MatchFbs")
 public class Match {
 	// TODO convert/parse API. 
 	

@@ -4,6 +4,9 @@ target/
 !**/src/main/**
 !**/src/test/**
 
+### Gauthier Barbet ###
+.attach*
+
 ### STS ###
 .apt_generated
 .classpath

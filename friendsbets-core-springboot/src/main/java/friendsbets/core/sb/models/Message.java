@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-@Table(name="FbsMessage")
+@Table(name="MessageFbs")
 public class Message {
 
 	@Id

@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 //@XmlRootElement
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-@Table(name="FbsUser")
+@Table(name="UserFbs")
 public class User {
 
 	@Id

@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class GroupsService {
 
-  private url: string = "http://localhost:8080/friendsbets-webservice/";
+  // private url: string = "http://localhost:8080/friendsbets-webservice/";
+  private url: string = "http://localhost:8080/"
 
   constructor(private httpClient: HttpClient) { }
 

@@ -18,7 +18,7 @@ import friendsbets.core.sb.services.UserService;
 
 @RestController
 @CrossOrigin // not needed, declared for all in Webappconfig
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UsersControllerGauthier {
 
 	@Autowired

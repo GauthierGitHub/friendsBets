@@ -2,14 +2,12 @@ package friendsbets.core.sb.services;
 
 import java.util.List;
 
-import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import friendsbets.core.sb.exceptions.FriendsBetsException;
 import friendsbets.core.sb.models.Group;
 import friendsbets.core.sb.models.User;
 import friendsbets.core.sb.repositories.UserRepository;
-import friendsbets.core.sb.utils.HibernateExceptionEncapsulator;
 
 /**
  * All methods what return Users or update user database Exception from dao are
@@ -20,6 +18,7 @@ import friendsbets.core.sb.utils.HibernateExceptionEncapsulator;
  * @author gauthier
  *
  */
+@Service
 public class UserService {
 
 	@Autowired
@@ -54,9 +53,9 @@ public class UserService {
 		return ur.findByEmailAndPassword(email, password);
 	}
 
-	public List<Group> findAllGroupForOneUser(User u) {
-		return ur.findAllGroupForOneUser(u);
-	}
+//	public List<Group> findAllGroupForOneUser(User u) {
+//		return ur.findAllGroupForOneUser(u);
+//	}
 
 	public List<User> findByNicknameOrEmailLike(String pattern) {
 		return ur.findByNicknameOrEmailLike(pattern);
