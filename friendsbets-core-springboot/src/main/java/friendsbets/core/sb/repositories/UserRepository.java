@@ -1,11 +1,10 @@
 package friendsbets.core.sb.repositories;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import friendsbets.core.sb.models.Group;
 import friendsbets.core.sb.models.User;
 
 
@@ -28,6 +27,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	// TODO: my Query ?
 	@Query("from User u where u.nickname like %?1% or u.email like %?1%")
-	List<User> findByNicknameOrEmailLike(String pattern);
+	Set<User> findByNicknameOrEmailLike(String pattern);
+
+	@Query("FROM User u where u = ?1")
+	Set<User> findFriends(User u);
 
 }

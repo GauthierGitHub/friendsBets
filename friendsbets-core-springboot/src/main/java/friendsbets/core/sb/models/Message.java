@@ -27,21 +27,21 @@ public class Message {
 	private int id;
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private User user;
+	private User author;
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Group group;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date messageDate;
+	private Date date;
 	@Column(nullable = false)
 	private String content; // TODO limit to 255
 	
 	public Message(){}
 
 	public Message(User user, Group group, Date messageDate, String content) {
-		this.user = user;
+		this.author = user;
 		this.group = group;
-		this.messageDate = messageDate;
+		this.date = messageDate;
 		this.content = content;
 	}
 
@@ -54,11 +54,11 @@ public class Message {
 	}
 
 	public User getUser() {
-		return user;
+		return author;
 	}
 
 	public void setUser(User user) {
-		this.user = user;
+		this.author = user;
 	}
 
 	public Group getGroup() {
@@ -70,11 +70,11 @@ public class Message {
 	}
 
 	public Date getMessageDate() {
-		return messageDate;
+		return date;
 	}
 
 	public void setMessageDate(Date messageDate) {
-		this.messageDate = messageDate;
+		this.date = messageDate;
 	}
 
 	public String getContent() {
