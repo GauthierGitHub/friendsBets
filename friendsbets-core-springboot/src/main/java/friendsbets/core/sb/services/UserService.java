@@ -30,15 +30,15 @@ public class UserService {
 //			.addRule("alias", "Alias \"Pierre\" is not allowed !", 
 //					me -> !me.getNickname().toLowerCase().equals("pierre"));
 
-	public void save(User u) throws FriendsBetsException {
+	public void save(User u) {
 		ur.save(u);
 	}
 
-	public void deleteUser(User u) throws FriendsBetsException {
+	public void delete(User u) {
 		ur.delete(u);
 	}
 
-	public void updateUser(User u) throws FriendsBetsException {
+	public void update(User u) {
 		ur.save(u);
 	}
 
@@ -50,12 +50,16 @@ public class UserService {
 		return ur.findById(id).orElseThrow();
 	}
 
-	public User findByUserMailAndPassword(String email, String password) throws FriendsBetsException {
+	public User findByUserMailAndPassword(String email, String password) {
 		return ur.findByEmailAndPassword(email, password);
 	}
 
-	public List<Group> findAllGroupForOneUser(User u) throws FriendsBetsException {
+	public List<Group> findAllGroupForOneUser(User u) {
 		return ur.findAllGroupForOneUser(u);
+	}
+
+	public List<User> findByNicknameOrEmailLike(String pattern) {
+		return ur.findByNicknameOrEmailLike(pattern);
 	}
 
 }

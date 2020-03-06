@@ -41,19 +41,19 @@ public class BetService {
 	 */
 
 	// TODO: ASPECTS
-	public void createBet(Bet b) throws SqlUniqueContraintException {
+	public void save(Bet b) {
 		br.save(b);
 	}
 
-	public void deleteBet(Bet b) throws SqlNotFoundException {
+	public void delete(Bet b) {
 		br.delete(b);
 	}
 
-	public void updateBet(Bet b) throws SqlNotFoundException {
+	public void update(Bet b) {
 		br.save(b);
 	}
 
-	public List<Bet> findAllBets() {
+	public List<Bet> findAll() {
 		return br.findAll();
 	}
 }
