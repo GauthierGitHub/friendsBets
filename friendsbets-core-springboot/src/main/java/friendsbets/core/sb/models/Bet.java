@@ -72,7 +72,6 @@ public class Bet {
 		this.betType = betType;
 	}
 
-
 	public int getId() {
 		return id;
 	}

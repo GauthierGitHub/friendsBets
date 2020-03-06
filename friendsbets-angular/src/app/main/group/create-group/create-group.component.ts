@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
-import { GroupsService } from '../services/groups.service';
+import { GroupsService } from '../groups.service';
 import { ConnectionService } from 'src/app/connection/connection.service';
 import { Group } from 'src/app/models/group.model';
 

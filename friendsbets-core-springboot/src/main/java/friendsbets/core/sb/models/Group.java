@@ -1,9 +1,9 @@
 package friendsbets.core.sb.models;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,6 +31,7 @@ public class Group {
 	@Column(nullable = true)
 	private String name;
 	@ManyToOne
+	// TODO: 
 //	@JoinColumn(nullable = false) // @Column(s) not allowed on a @OneToOne property.
 	private User adminGroup;
 	/**
@@ -40,10 +41,10 @@ public class Group {
 	 */
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY) 
-	private Set<User> userList = new HashSet<User>();
+	private Set<User> userList = new LinkedHashSet<User>();
 	@JsonIgnore
 	@OneToMany(mappedBy = "group")
-	private List<Bet> betList = new ArrayList<>();
+	private Set<Bet> betList = new TreeSet<>();
 	@JsonIgnore
 	@OneToMany(mappedBy = "group")
 	private List<Message> groupMessages;
@@ -83,10 +84,10 @@ public class Group {
 		this.userList = userList;
 	}
 
-	public List<Bet> getBetList() {
+	public Set<Bet> getBetList() {
 		return betList;
 	}
-	public void setBetList(List<Bet> betList) {
+	public void setBetList(Set<Bet> betList) {
 		this.betList = betList;
 	}
 

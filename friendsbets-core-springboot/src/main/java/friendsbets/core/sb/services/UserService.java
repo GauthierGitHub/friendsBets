@@ -1,11 +1,11 @@
 package friendsbets.core.sb.services;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsbets.core.sb.models.Group;
 import friendsbets.core.sb.models.User;
 import friendsbets.core.sb.repositories.UserRepository;
 
@@ -52,12 +52,29 @@ public class UserService {
 	public User findByUserMailAndPassword(String email, String password) {
 		return ur.findByEmailAndPassword(email, password);
 	}
+	
+	public Set<User> findFriends(User u) {
+		return ur.findFriends(u);
+	}
+	
+	public void addFriends(User u1, User u2) {
+		u1.getFriends().add(u2);
+		u2.getFriends().add(u1);
+	}
 
+	public List<User> findAllOthers(int id) {
+		// TODO: see difference; List or Set ?
+//		Set<User> result = new HashSet<>();
+//		ur.findAll().stream().distinct().filter(x -> x != u).forEach(y -> result.add(y));;
+		List<User> result = ur.findAll();
+		result.remove(id);
+		return result;
+	}
 //	public List<Group> findAllGroupForOneUser(User u) {
 //		return ur.findAllGroupForOneUser(u);
 //	}
 
-	public List<User> findByNicknameOrEmailLike(String pattern) {
+	public Set<User> findByNicknameOrEmailLike(String pattern) {
 		return ur.findByNicknameOrEmailLike(pattern);
 	}
 

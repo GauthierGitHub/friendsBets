@@ -14,10 +14,17 @@ import friendsbets.core.sb.services.UserService;
 @RestController
 @CrossOrigin
 @RequestMapping("/authentication")
-public class AuthenticationControllerGauthier {
+public class AuthenticationController {
 
 	@Autowired
 	private UserService ms;
+	
+	@PostMapping("/login")
+	public User login(String email, String password) {
+		System.out.println("loggin");
+		return ms.findByUserMailAndPassword(email, password);
+	}
+	
 //	@Autowired
 //	private Environment env;
 
@@ -47,6 +54,7 @@ public class AuthenticationControllerGauthier {
 	@PostMapping("/signup")
 	public void signup(@RequestBody User m) {
 		ms.save(m);
+		// TODO: return id !!!!
 	}
 
 	// TODO: make it works !

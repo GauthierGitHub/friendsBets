@@ -1,6 +1,7 @@
 package friendsbets.ws.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,7 +20,7 @@ import friendsbets.core.sb.services.UserService;
 @RestController
 @CrossOrigin // not needed, declared for all in Webappconfig
 @RequestMapping("/user")
-public class UsersControllerGauthier {
+public class UsersController {
 
 	@Autowired
 	UserService ms;
@@ -60,8 +61,13 @@ public class UsersControllerGauthier {
 	}
 
 	@GetMapping({ "/search", "/search/{pattern}" })
-	public List<User> findByAliasOrEmailLike(@PathVariable(name = "pattern", required = false) String pattern) {
+	public Set<User> findByAliasOrEmailLike(@PathVariable(name = "pattern", required = false) String pattern) {
 //		Logger.getLogger(getClass()).info("//////////!!! search = " + pattern);
 		return ms.findByNicknameOrEmailLike(pattern == null ? "" : pattern);
+	}
+	
+	@GetMapping("/friends/{id}")
+	public List<User> findAllOthers(@PathVariable int id) {
+		return ms.findAllOthers(id);
 	}
 }
