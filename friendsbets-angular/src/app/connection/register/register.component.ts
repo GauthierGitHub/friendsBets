@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { ConnectionService } from '../connection.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,13 +14,14 @@ export class RegisterComponent implements OnInit {
   title: string = "Register"
   label: string = "Register !"
 
-  constructor(private cs: ConnectionService) { }
+  constructor(private cs: ConnectionService, private router: Router) { }
 
   ngOnInit(): void {
-    this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
-
+    // this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
+    this.u = this.cs.connectedUser;
   }
   registerUser() {
-    this.cs.addUser(this.u);
+    this.cs.addUser(this.u, () => this.router.navigateByUrl("main"));
+    
   }
 }

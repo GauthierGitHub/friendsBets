@@ -1,5 +1,6 @@
 package friendsbets.core.sb.services;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -53,22 +54,23 @@ public class UserService {
 		return ur.findByEmailAndPassword(email, password);
 	}
 	
-	public Set<User> findFriends(User u) {
-		return ur.findFriends(u);
+	public Set<User> findFriends(int id) {
+		return ur.findFriends(id); // TODO: with user ? see repository
 	}
 	
-	public void addFriends(User u1, User u2) {
-		u1.getFriends().add(u2);
-		u2.getFriends().add(u1);
+	public void addFriends(int id, HashSet<User> friends) {
+		System.out.println(friends);
+		friends.stream().forEach(x -> ur.addFriends(id, x)); // TODO: Do with list ?
 	}
 
-	public List<User> findAllOthers(int id) {
+	public Set<User> findAllOthers(int id) {
 		// TODO: see difference; List or Set ?
 //		Set<User> result = new HashSet<>();
 //		ur.findAll().stream().distinct().filter(x -> x != u).forEach(y -> result.add(y));;
-		List<User> result = ur.findAll();
-		result.remove(id);
-		return result;
+//		List<User> result = ur.findAll();
+//		result.remove(id);
+//		return result;
+		return ur.findAllOthers(id);
 	}
 //	public List<Group> findAllGroupForOneUser(User u) {
 //		return ur.findAllGroupForOneUser(u);

@@ -1,5 +1,6 @@
 package friendsbets.ws.controllers;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -66,8 +67,27 @@ public class UsersController {
 		return ms.findByNicknameOrEmailLike(pattern == null ? "" : pattern);
 	}
 	
-	@GetMapping("/friends/{id}")
-	public List<User> findAllOthers(@PathVariable int id) {
+	@GetMapping("/find/{id}")
+	public Set<User> findAllOthers(@PathVariable int id) {
 		return ms.findAllOthers(id);
+	}
+	
+	/**
+	 * Find all friends for a user
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/friends/{id}")
+	public Set<User> findFriends(@PathVariable int id) {
+		return ms.findFriends(id);
+	}
+	
+	/**
+	 * Add several friends to a user
+	 */
+	@PostMapping("/friends/add/{id}")
+	public void addFriends(@PathVariable int id, @RequestBody HashSet<User> friends) {
+		System.out.println(friends.getClass());
+		ms.addFriends(id, friends);
 	}
 }

@@ -15,7 +15,7 @@ public class CoreApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CoreApplication.class, args);
-		Logger.getLogger("		CORE").info("		!! CORE IS RUNNING !!");
+		Logger.getLogger("		CORE APP").info("		!! CORE IS RUNNING !!");
 	}
 	
 	@Bean

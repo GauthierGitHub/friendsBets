@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { UserSerializer } from '../models/serializer/Serializer';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
 
 /**
  *
@@ -35,21 +34,22 @@ import { Router } from '@angular/router';
 })
 export class ConnectionService {
 
-  // TODO: private _connectedUser: User = null
+  // TODO: 
+  // private _connectedUser: User = null
   //! filling artificialy
-  private _connectedUser: User = new User(-1, "madeAutoByServ", "madeAutoByServ", "madeAutoByServ");
+  private _connectedUser: User = new User(-1, "madeByConnectionServ", "madeAutoByServ", "madeAutoByServ");
   // private url: string = "http://localhost:8080/friendsbets-webservice/";
   private url: string = "http://localhost:8080/"
 
-  constructor(private httpClient: HttpClient, private router: Router, private cookieServ: CookieService) { }
+  constructor(private httpClient: HttpClient, private cookieServ: CookieService) { }
 
   // TODO: take id from server ?
-  public addUser(m: User): boolean {
+  public addUser(m: User, success? :() => void): boolean {
     // TODO: return boolean ?
     let u = UserSerializer.serializetoJSON(m);
     this.httpClient.post(this.url + "user/", u).subscribe(x => {
-      this._connectedUser=m;
-      this.router.navigateByUrl("main");
+      this.login(m.email, m.password);
+      success();
       return true;
     });
     return false;
@@ -65,7 +65,7 @@ export class ConnectionService {
     this.httpClient.delete<User>(this.url + "user/" + m.id).subscribe(x => console.log("delete ok"));
   }
 
-  public login(email: string, password: string) {
+  public login(email: string, password: string, success?: () => void, error?: () => void) {
     // let token: string = this.cookieServ.get("token");
     // TODO: success and error
     return this.httpClient.post<User>(this.url + "authentication/login", {}, {
@@ -75,11 +75,11 @@ export class ConnectionService {
       }
     }).subscribe(x => {
       this.connectedUser = x;
-      this.cookieServ.set("token", x.token, 10);
       console.log(x);
       
-      this.router.navigateByUrl("main");
-    });
+      this.cookieServ.set("token", x.token, 10);
+      success();
+    }), error();
   }
 
   // public login(email: string, password: string, success?: (/*TypedObject*/) => void, error?: (any) => void) {
