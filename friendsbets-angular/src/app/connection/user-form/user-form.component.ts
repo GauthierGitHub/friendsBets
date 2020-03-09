@@ -21,6 +21,7 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     // this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
+    
   }
 
   userSending() {

@@ -67,6 +67,11 @@ public class UsersController {
 		return ms.findByNicknameOrEmailLike(pattern == null ? "" : pattern);
 	}
 	
+	/**
+	 * Find all user except param id
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/find/{id}")
 	public Set<User> findAllOthers(@PathVariable int id) {
 		return ms.findAllOthers(id);
@@ -87,7 +92,6 @@ public class UsersController {
 	 */
 	@PostMapping("/friends/add/{id}")
 	public void addFriends(@PathVariable int id, @RequestBody HashSet<User> friends) {
-		System.out.println(friends.getClass());
 		ms.addFriends(id, friends);
 	}
 }
