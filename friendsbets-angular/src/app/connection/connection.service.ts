@@ -76,10 +76,9 @@ export class ConnectionService {
     }).subscribe(x => {
       this.connectedUser = x;
       console.log(x);
-      
       this.cookieServ.set("token", x.token, 10);
-      success();
-    }), error();
+      if(success) success();
+    }, error); //TODO: verify error
   }
 
   // public login(email: string, password: string, success?: (/*TypedObject*/) => void, error?: (any) => void) {
@@ -109,7 +108,7 @@ export class ConnectionService {
     return this.httpClient.get<User[]>(this.url + "search/" + search);
   }
 
-
+  
   public set connectedUser(connectedUser: User) {
     this._connectedUser = connectedUser;
   }

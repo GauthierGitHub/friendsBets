@@ -19,4 +19,9 @@ export class FriendsService {
   public addFriends(friends: User[], u: User): Observable<User[]> {
     return this.httpClient.post<User[]>(this.url + "user/friends/add/" + u.id, friends);
   }
+
+  public findFriends(u: User): Observable<User[]> {
+    // TODO: Get all friends for one user
+    return this.httpClient.get<User[]>(this.url + "user/friends/" + u.id);
+  }
 }

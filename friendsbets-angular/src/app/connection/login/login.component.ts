@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
             console.log("redirect to main");
             this.router.navigateByUrl("main");
           }
+      , () => console.log("login error") //TODO: verify error
+      
     );      
   }
 }

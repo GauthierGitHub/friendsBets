@@ -33,9 +33,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	// native sql
 	@Query(value=
-			"SELECT friends_id "
-			+ "FROM UserFbs_friends "
-			+ "WHERE User.id = ?1" // ?1.get(id) OR ?1.id ??????
+			"SELECT * "
+			+ "FROM UserFbs "
+			+ "RIGHT JOIN UserFbs_friends ON UserFbs.id = UserFbs_friends.friends_id "
+			+ "WHERE UserFbs_friends.User_id = ?1" // ?1.get(id) OR ?1.id ??????
 			, nativeQuery = true)
 	Set<User> findFriends(int id);
 

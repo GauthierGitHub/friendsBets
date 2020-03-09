@@ -61,7 +61,7 @@ public class User {
 	private Set<Bet> betsFollowed = new TreeSet<Bet>();
 	@ManyToMany(mappedBy = "userList", fetch = FetchType.EAGER)
 	private Set<Group> grpList = new HashSet<Group>();
-	@OneToMany
+	@ManyToMany
 	private Set<User> friends = new HashSet<User>();
 	protected String token;
 	protected LocalDateTime tokenLastUsed;
