@@ -13,6 +13,10 @@ export class FriendsService {
   constructor(private httpClient: HttpClient) { }
 
   public findAllOthers(u: User): Observable<User[]> {
-    return this.httpClient.get<User[]>(this.url + "user/friends/" + u.id);
+    return this.httpClient.get<User[]>(this.url + "user/find/" + u.id);
+  }
+
+  public addFriends(friends: User[], u: User): Observable<User[]> {
+    return this.httpClient.post<User[]>(this.url + "user/friends/add/" + u.id, friends);
   }
 }

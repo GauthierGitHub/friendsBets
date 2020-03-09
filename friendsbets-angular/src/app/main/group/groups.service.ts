@@ -16,7 +16,7 @@ export class GroupsService {
 
   public findAllFriends(u: User): Observable<User[]> {
     // TODO: Get all friends for one user
-    return this.httpClient.get<User[]>(this.url + "user/");
+    return this.httpClient.get<User[]>(this.url + "friends/" + u.id);
   }
 
   public findAllGroup(u: User) {

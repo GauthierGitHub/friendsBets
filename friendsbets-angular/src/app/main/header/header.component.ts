@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private cs: ConnectionService) {
     this.u = this.cs.connectedUser == null ?
-         new User(-1, "fromMainCompo", "fromMainCompo", "fromMainCompo" ) : this.cs.connectedUser;
+         new User(-1, "createdByHeaderComponent", "fromMainCompo", "fromMainCompo" ) : this.cs.connectedUser;
    }
 
   ngOnInit(): void {

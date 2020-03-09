@@ -6,7 +6,7 @@ export class User {
     private _email: string;    
     private _password: string;
     private _token: string;
-
+    private _friends: User[];
 
     constructor();
     constructor(id: number, nickname: string, email: string, password: string);
@@ -55,5 +55,13 @@ export class User {
 
     set token(token: string) {
         this._token = token;
+    }
+
+    get friends(): User[] {
+        return this._friends;
+    }
+
+    set friends(_friends: User[]) {
+        this._friends = _friends;
     }
 }
