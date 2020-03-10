@@ -1,6 +1,5 @@
 package friendsbets.core.sb.repositories;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,18 +19,32 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	Set<User> findByNicknameOrEmailLike(String pattern);
 
 	// native sql
+	/**
+	 * Return all user who are not the connected user and his friends
+	 * @param id
+	 * @return Set<User>  
+	 */
 	@Query(value=
-			"SELECT * "
+//			"SELECT * FROM UserFbs LEFT JOIN UserFbs_friends ON UserFbs.id = UserFbs_friends.User_id WHERE UserFbs_friends.User_id != ?1 AND id != friends_id"
+			"SELECT DISTINCT * "
 			+ "FROM UserFbs "
-			+ "WHERE id != ?1"
+			+ "WHERE id != ?1 AND id NOT IN ("
+					+ "SELECT friends_id "
+					+ "FROM UserFbs_friends "
+					+ "WHERE UserFbs_friends.User_id = ?1)"
 			, nativeQuery = true)
+//	@Query("FROM User u WHERE u.id =?1 and u.id != u.friends.getid")
 	Set<User> findAllOthers(int id); // or User u ?
 	
 	// jpql & springboot
 //	@Query("FROM User u WHERE u != ?1")
 //	Set<User> findAllOthers(User u);
+	// SELECT * 
+	// FROM UserFbs 
+	// RIGHT JOIN UserFbs_friends ON UserFbs.id = UserFbs_friends.friends_id 
+	// WHERE UserFbs_friends.User_id = 2
 
-	// native sql
+	// native sql 
 	@Query(value=
 			"SELECT * "
 			+ "FROM UserFbs "

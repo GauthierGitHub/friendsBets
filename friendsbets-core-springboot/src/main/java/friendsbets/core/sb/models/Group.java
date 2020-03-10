@@ -31,12 +31,12 @@ public class Group {
 	@Column(nullable = true)
 	private String name;
 	@ManyToOne
-	// TODO: 
+	// TODO: DELETE ME ! first user is Admin ?
 //	@JoinColumn(nullable = false) // @Column(s) not allowed on a @OneToOne property.
 	private User adminGroup;
 	/**
 	 * Set is better than arrayList. Jpa will not create both primary key in the
-	 * association Table with List ... Can be resolved buy @EmbeddedId ?
+	 * association Table with List ... Can be resolved by @EmbeddedId ?
 	 * TODO: Better way to fetch type ? here user calls groups and not inverse
 	 */
 	@JsonIgnore

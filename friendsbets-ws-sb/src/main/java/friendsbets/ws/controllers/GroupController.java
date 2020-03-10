@@ -34,14 +34,17 @@ public class GroupController {
 	}
 
 	@PostMapping("")
-	public void save(@RequestBody Group e) {
-		gs.save(e);
+	public void save(@RequestBody Group g) {
+		System.out.println(g);
+		g.getUserList().forEach(x -> System.out.println(x.getNickname()));
+		System.out.println("-----");
+		gs.save(g);
 	}
 
 	@PostMapping("/{id}")
-	public void update(@RequestBody Group e, @PathVariable int id) {
-		e.setId(id);
-		gs.save(e);
+	public void update(@RequestBody Group g, @PathVariable int id) {
+		g.setId(id);
+		gs.save(g);
 	}
 
 	@DeleteMapping("/{id}")

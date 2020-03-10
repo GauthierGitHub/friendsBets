@@ -21,7 +21,6 @@ public class AuthenticationController {
 	
 	@PostMapping("/login")
 	public User login(String email, String password) {
-		System.out.println("loggin");
 		return ms.findByUserMailAndPassword(email, password);
 	}
 	

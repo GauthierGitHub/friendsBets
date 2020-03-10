@@ -10,6 +10,7 @@ import friendsbets.core.sb.exceptions.SqlUniqueContraintException;
 import friendsbets.core.sb.models.Group;
 import friendsbets.core.sb.models.User;
 import friendsbets.core.sb.repositories.GroupRepository;
+import friendsbets.core.sb.repositories.UserRepository;
 
 /**
  * TODO Exceptions
@@ -24,9 +25,15 @@ public class GroupService {
 
 	@Autowired
 	GroupRepository gr;
+	@Autowired
+	UserRepository ur;
 
 	public void save(Group g) {
 		gr.save(g);
+		g.getUserList().stream().forEach(user-> {
+			user.getGrpList().add(g);
+			ur.save(user);
+		});
 	}
 
 	public void delete(Group g) {
