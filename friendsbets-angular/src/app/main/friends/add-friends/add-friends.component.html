@@ -5,8 +5,8 @@
     <button class="col-3" type="submit">Done!</button>
   </div>
 
-  <ng-container *ngFor="let user of users">
-    <input type="checkbox" [id]=user.id [name]=user.nickname [value]=user.id>
+  <ng-container *ngFor="let user of allUsers">
+    <input type="checkbox" [id]=user.id [name]=user.nickname [value]=user.id (click)="onCheckboxClicked(user)">
     <label for="{{user.id}}">{{ user.nickname }}</label>
   </ng-container>
 

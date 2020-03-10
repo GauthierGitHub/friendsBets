@@ -36,9 +36,8 @@ export class ConnectionService {
 
   // TODO: 
   // private _connectedUser: User = null
-  //! filling artificialy
-  private _connectedUser: User = new User(-1, "madeByConnectionServ", "madeAutoByServ", "madeAutoByServ");
-  // private url: string = "http://localhost:8080/friendsbets-webservice/";
+  //! filling artificialy ? Hydratation ?
+  private _connectedUser: User = new User(-1, "DefaultUserMadeInService", "madeAutoByServ", "madeAutoByServ");
   private url: string = "http://localhost:8080/"
 
   constructor(private httpClient: HttpClient, private cookieServ: CookieService) { }
@@ -66,21 +65,28 @@ export class ConnectionService {
   }
 
   public login(email: string, password: string, success?: () => void, error?: () => void) {
+    // TODO: token
     // let token: string = this.cookieServ.get("token");
-    // TODO: success and error
     return this.httpClient.post<User>(this.url + "authentication/login", {}, {
       params: {
         "email": email,
         "password": password
       }
     }).subscribe(x => {
-      this.connectedUser = x;
-      console.log(x);
-      this.cookieServ.set("token", x.token, 10);
-      if(success) success();
-    }, error); //TODO: verify error
+      if(x) { // server found and return right user
+        this.connectedUser = x;
+        this.cookieServ.set("token", x.token, 10);
+        if(success) success();
+      }
+      else { // server has returned null
+        // TODO: error
+        console.log("server has returned null");
+        
+      }
+    }, error); // no server response
   }
 
+  // version André
   // public login(email: string, password: string, success?: (/*TypedObject*/) => void, error?: (any) => void) {
   //   var m: User = new User(-1, "a", email, "a");
   //   // TODO: success and error
@@ -109,6 +115,7 @@ export class ConnectionService {
   }
 
   
+
   public set connectedUser(connectedUser: User) {
     this._connectedUser = connectedUser;
   }
