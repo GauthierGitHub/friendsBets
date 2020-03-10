@@ -15,29 +15,29 @@ export class AddFriendsComponent implements OnInit {
   checkedUsers: User[];
 
   constructor(private fs: FriendsService
-      , private cs : ConnectionService
-      , private router: Router) { }
+    , private cs: ConnectionService
+    , private router: Router) { }
 
   ngOnInit(): void {
-    this.fs.findAllOthers(this.cs.connectedUser).subscribe( x => {
-      console.log(x);
-      this.allUsers = x;
-      });
+    this.fs.findAllOthers(this.cs.connectedUser).subscribe(x => this.allUsers = x);
     this.checkedUsers = [];
   }
 
-  onCheckboxClicked(u: User) : void {
-    console.log("onCheckboxClicked");
-    if(this.checkedUsers.includes(u)) {
+  /**
+   * Toggle checked user in checkedUsers array
+   * @param u
+   */
+  onCheckboxClicked(u: User): void {
+    if (this.checkedUsers.includes(u)) {
       let pos = this.checkedUsers.findIndex(x => x == u);
-      this.checkedUsers.splice(pos, 1);      
+      this.checkedUsers.splice(pos, 1);
     } else {
-      this.checkedUsers.push(u);      
+      this.checkedUsers.push(u);
     }
   }
 
-  onFormSubmit() : void {
-    this.fs.addFriends(this.checkedUsers, this.cs.connectedUser).subscribe( x => {
+  onFormSubmit(): void {
+    this.fs.addFriends(this.checkedUsers, this.cs.connectedUser).subscribe(x => {
       this.cs.connectedUser.friends = this.checkedUsers;
       this.router.navigateByUrl("main");
     }) //! TODO: ERROR & COMPLETE
