@@ -17,20 +17,14 @@ export class LoginComponent implements OnInit {
   constructor(private cs: ConnectionService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
     this.u = this.cs.connectedUser;
   }
 
   logUser() {
     this.cs.login(
-      this.u.email
-      , this.u.password
-      , () => {
-            console.log("redirect to main");
-            this.router.navigateByUrl("main");
-          }
-      , () => console.log("login error") //TODO: verify error
-      
+      this.u.email, this.u.password
+      , () => this.router.navigateByUrl("main") // success
+      , () => console.log("login error") // error //TODO: error
     );      
   }
 }

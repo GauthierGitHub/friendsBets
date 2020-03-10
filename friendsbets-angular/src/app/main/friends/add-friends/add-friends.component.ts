@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { FriendsService } from '../friends.service';
 import { User } from 'src/app/models/user.model';
 import { ConnectionService } from 'src/app/connection/connection.service';
@@ -11,21 +11,37 @@ import { Router } from '@angular/router';
 })
 export class AddFriendsComponent implements OnInit {
 
-  users: User[];
+  allUsers: User[];
+  checkedUsers: User[];
 
   constructor(private fs: FriendsService
       , private cs : ConnectionService
       , private router: Router) { }
 
   ngOnInit(): void {
-    this.fs.findAllOthers(this.cs.connectedUser).subscribe( x => this.users = x);
+    this.fs.findAllOthers(this.cs.connectedUser).subscribe( x => {
+      console.log(x);
+      this.allUsers = x;
+      });
+    this.checkedUsers = [];
   }
 
-  onFormSubmit() {
-    this.fs.addFriends(this.users, this.cs.connectedUser).subscribe( x => {
-      this.cs.connectedUser.friends = this.users;
+  onCheckboxClicked(u: User) : void {
+    console.log("onCheckboxClicked");
+    if(this.checkedUsers.includes(u)) {
+      let pos = this.checkedUsers.findIndex(x => x == u);
+      this.checkedUsers.splice(pos, 1);      
+    } else {
+      this.checkedUsers.push(u);      
+    }
+  }
+
+  onFormSubmit() : void {
+    this.fs.addFriends(this.checkedUsers, this.cs.connectedUser).subscribe( x => {
+      this.cs.connectedUser.friends = this.checkedUsers;
       this.router.navigateByUrl("main");
     }) //! TODO: ERROR & COMPLETE
   }
+
 
 }

@@ -14,10 +14,10 @@ export class GroupsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public findAllFriends(u: User): Observable<User[]> {
-    // TODO: Get all friends for one user
-    return this.httpClient.get<User[]>(this.url + "friends/" + u.id);
-  }
+  // public findAllFriends(u: User): Observable<User[]> {
+  //   // TODO: Get all friends for one user
+  //   return this.httpClient.get<User[]>(this.url + "friends/" + u.id);
+  // }
 
   public findAllGroup(u: User) {
     
