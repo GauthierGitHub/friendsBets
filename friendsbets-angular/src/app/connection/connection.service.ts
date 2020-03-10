@@ -34,13 +34,13 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ConnectionService {
 
-  // TODO: 
-  // private _connectedUser: User = null
-  //! filling artificialy ? Hydratation ?
-  private _connectedUser: User = new User(-1, "DefaultUserMadeInService", "madeAutoByServ", "madeAutoByServ");
+  private _connectedUser: User;
   private url: string = "http://localhost:8080/"
 
-  constructor(private httpClient: HttpClient, private cookieServ: CookieService) { }
+  constructor(private httpClient: HttpClient, private cookieServ: CookieService) {
+    // TODO: Remove me !
+    if(!this.connectedUser) this.login("j", "j");
+   }
 
   // TODO: take id from server ?
   public addUser(m: User, success? :() => void): boolean {

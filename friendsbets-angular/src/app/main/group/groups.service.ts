@@ -3,6 +3,7 @@ import { ConnectionService } from 'src/app/connection/connection.service';
 import { User } from 'src/app/models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Group } from 'src/app/models/group.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,13 @@ export class GroupsService {
   //   return this.httpClient.get<User[]>(this.url + "friends/" + u.id);
   // }
 
-  public findAllGroup(u: User) {
+  // public findAllGroup(u: User) {
     
-  }
+  // }
 
+  public createGroup(g: Group): Observable<Group> {
+    console.log(g);
+    return this.httpClient.post<Group>(this.url + "group", g);
+  }
 
 }

@@ -13,10 +13,6 @@ export class FriendsService {
   constructor(private httpClient: HttpClient) { }
 
   public findAllOthers(u: User): Observable<User[]> {
-    this.httpClient.get<User[]>(this.url + "user/find/" + u.id).subscribe(
-      x => console.log(x)
-      
-    )
     return this.httpClient.get<User[]>(this.url + "user/find/" + u.id);
   }
 

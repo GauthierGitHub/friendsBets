@@ -1,5 +1,5 @@
 <app-header></app-header>
-<form class="form-signin text-center">
+<form class="form-signin text-center" (ngSubmit)=onFormSubmit()>
   <input class="col-12" type=text name=g-name [(ngModel)]=g.name class=form-control placeholder="My Group" required autofocus>
   <p class="invalid-feedback"></p>
   <div class="row">
@@ -15,7 +15,7 @@
 -->
 
   <ng-container *ngFor="let friend of friends">
-    <input type="checkbox" [id]=friend.id [name]=friend.nickname [value]=friend.id>
+    <input type="checkbox" [id]=friend.id [name]=friend.nickname [value]=friend.id (click)="onCheckboxClicked(friend)">
     <label for="{{friend.id}}">{{ friend.nickname }}</label>
   </ng-container>
 
