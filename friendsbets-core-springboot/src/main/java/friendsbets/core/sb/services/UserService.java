@@ -59,6 +59,7 @@ public class UserService {
 	}
 	
 	public void addFriends(int id, HashSet<User> friends) {
+		System.out.println(friends);
 		friends.stream().forEach(x -> ur.addFriends(id, x)); // TODO: Do with list ?
 	}
 

@@ -28,7 +28,6 @@ public class UsersController {
 
 	@GetMapping("")
 	public List<User> findAll() {
-		System.out.println("UsersController findAll");
 		return ms.findAll();
 	}
 
