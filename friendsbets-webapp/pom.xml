@@ -2,16 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>friendsBets</artifactId>
-    <groupId>friendsBets</groupId>
+    <artifactId>friendsbets</artifactId>
+    <groupId>friendsbets</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>friendsBets-webapp</artifactId>
+  <artifactId>friendsbets-webapp</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>friendsBets-webapp Maven Webapp</name>
+  <name>friendsbets-webapp Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -44,14 +44,14 @@
 		<version>1.1.4</version>
 	</dependency>
     <dependency>
-    	<groupId>friendsBets</groupId>
-    	<artifactId>friendsBets-core</artifactId>
+    	<groupId>friendsbets</groupId>
+    	<artifactId>friendsbets-core</artifactId>
     	<version>1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
   <build>
-    <finalName>friendsBets-webapp</finalName>
+    <finalName>friendsbets-webapp</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>

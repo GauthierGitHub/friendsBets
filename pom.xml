@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>friendsBets</groupId>
-  <artifactId>friendsBets</artifactId>
+  <groupId>friendsbets</groupId>
+  <artifactId>friendsbets</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>friendsBets</name>
+  <name>friendsbets</name>
   <packaging>pom</packaging>
   <properties>
     <maven.compiler.source>11.0.5</maven.compiler.source>
@@ -30,10 +30,10 @@
     </dependency>
   </dependencies>
   <modules>
-    <module>friendsBets-core</module>
-    <module>friendsBets-core-springboot</module>
-    <module>friendsBets-webapp</module>
-    <module>friendsBets-webservice</module>
-    <module>friendsBets-ws-sb</module>
+    <module>friendsbets-core</module>
+    <module>friendsbets-core-springboot</module>
+    <module>friendsbets-webapp</module>
+    <module>friendsbets-webservice</module>
+    <module>friendsbets-ws-sb</module>
   </modules>
 </project>
