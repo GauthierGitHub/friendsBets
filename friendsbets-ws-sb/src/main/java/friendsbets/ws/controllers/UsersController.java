@@ -44,8 +44,8 @@ public class UsersController {
 	 * @param m
 	 */
 	@PostMapping("")
-	public void save(@RequestBody User m) {
-		ms.save(m);
+	public User save(@RequestBody User m) {
+		return ms.save(m);
 	}
 
 	@PutMapping("/{id}")

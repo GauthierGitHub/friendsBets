@@ -6,6 +6,7 @@ export class User {
     private _email: string;    
     private _password: string;
     private _token: string;
+    private _tokenLastUsed: Date;
     private _friends: User[];
 
     constructor();
@@ -20,7 +21,6 @@ export class User {
     get id(): number {
         return this._id;
     }
-
     set id(id: number) {
         this._id = id;
     }
@@ -28,7 +28,6 @@ export class User {
     get nickname(): string {
         return this._nickname;
     }
-
     set nickname(nickname: string) {
         this._nickname = nickname;
     }
@@ -36,7 +35,6 @@ export class User {
     get email(): string {
         return this._email;
     }
-
     set email(email: string) {
         this._email = email;
     }
@@ -44,7 +42,6 @@ export class User {
     get password(): string {
         return this._password;
     }
-
     set password(password: string) {
         this._password = password;
     }
@@ -52,15 +49,20 @@ export class User {
     get token(): string {
         return this._token;
     }
-
     set token(token: string) {
         this._token = token;
+    }
+
+    get tokenLastUsed(): Date {
+        return this._tokenLastUsed;
+    }
+    set tokenLastUsed(_tokenLastUsed: Date) {
+        this._tokenLastUsed = _tokenLastUsed;
     }
 
     get friends(): User[] {
         return this._friends;
     }
-
     set friends(_friends: User[]) {
         this._friends = _friends;
     }

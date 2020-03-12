@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
-import { UserSerializer } from '../models/serializer/Serializer';
+import { Serializer } from '../models/serializer/Serializer';
 import { CookieService } from 'ngx-cookie-service';
 
 /**
@@ -42,16 +42,18 @@ export class ConnectionService {
     if(!this.connectedUser) this.login("j", "j");
    }
 
-  // TODO: take id from server ?
-  public addUser(m: User, success? :() => void): boolean {
-    // TODO: return boolean ?
-    let u = UserSerializer.serializetoJSON(m);
-    this.httpClient.post(this.url + "user/", u).subscribe(x => {
-      this.login(m.email, m.password);
+   /**
+    * webservice return the user in database
+    * @param m 
+    * @param success 
+    */
+  public addUser(m: User, success? :() => void): void {
+    m.id = undefined;
+    let u = Serializer.serializeToJSON(m);
+    this.httpClient.post<User>(this.url + "user/", u).subscribe(x => {
+      this._connectedUser = x;
       success();
-      return true;
     });
-    return false;
   }
 
   public update(m: User): void {
@@ -81,7 +83,7 @@ export class ConnectionService {
       else { // server has returned null
         // TODO: error
         console.log("server has returned null");
-        
+        console.log("user not found");
       }
     }, error); // no server response
   }

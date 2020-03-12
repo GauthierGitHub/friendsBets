@@ -30,8 +30,9 @@ public class UserService {
 //			.addRule("alias", "Alias \"Pierre\" is not allowed !", 
 //					me -> !me.getNickname().toLowerCase().equals("pierre"));
 
-	public void save(User u) {
+	public User save(User u) {
 		ur.save(u);
+		return ur.findById(u.getId()).orElseThrow();
 	}
 
 	public void delete(User u) {

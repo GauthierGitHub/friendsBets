@@ -48,9 +48,7 @@ export class CreateGroupComponent implements OnInit {
   onFormSubmit(): void {
     this.g.userList = this.checkedFriends;
     this.gs.createGroup(this.g).subscribe(x=>{
-      console.log("request OK");
       this.router.navigateByUrl("main"); 
     });
-    console.log("form group submited");
   }
 }

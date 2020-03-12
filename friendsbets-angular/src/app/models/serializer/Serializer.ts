@@ -4,24 +4,32 @@ export interface TypedObject {
     jsonType: string;
 }
 
-export class UserSerializer {
+export class Serializer {
 
-    static serializetoJSON(u: User) {
-        // TODO: add token ?
-        let string =
-        {
-            "nickname": u.nickname,
-            "password": u.password,
-            "email": u.email,
-            "picturePath": null,
-            "token": null,
-            "tokenLastUsed": null
-        }
-        return string;
+    static serializeToJSON(o: Object) {
+        return JSON.parse(JSON.stringify(o).replace(/"_/g, '"'));
     }
 
 
     // TODO: static deserializer 
+
+    //! My version
+
+    // static serializeToJSON(o: Object) {
+    //     // TODO: add token ?
+    //     let stringJson =
+    //     {
+    //         "nickname": x.nickname,
+    //         "password": x.password,
+    //         "email": x.email,
+    //         "picturePath": null,
+    //         "token": null,
+    //         "tokenLastUsed": null
+    //     }
+    //     return stringJson;
+    // }
+
+    //! Andre's version
 
     // private static stringToObject(s: String): Object {
     //     switch (s) {
@@ -30,10 +38,10 @@ export class UserSerializer {
     //         default: return new Object();
     //     }
     // }
+
     // private static objectToString(o: Object): string {
     //     return o.constructor.name;
     // }
-
 
     // private static removeUnderscore(o: Object) {
     //     let n: Object = {};
