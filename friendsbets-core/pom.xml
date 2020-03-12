@@ -4,15 +4,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>friendsBets</artifactId>
-		<groupId>friendsBets</groupId>
+		<artifactId>friendsbets</artifactId>
+		<groupId>friendsbets</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>friendsBets-core</artifactId>
+	<artifactId>friendsbets-core</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
-	<name>friendsBets-core</name>
+	<name>friendsbets-core</name>
 	<!-- FIXME change it to the project's website -->
 	<url>http://www.example.com</url>
 

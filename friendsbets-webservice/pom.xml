@@ -3,16 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>friendsBets-webservice</artifactId>
+	<artifactId>friendsbets-webservice</artifactId>
 	<packaging>war</packaging>
 
 	<parent>
-		<groupId>friendsBets</groupId>
-		<artifactId>friendsBets</artifactId>
+		<groupId>friendsbets</groupId>
+		<artifactId>friendsbets</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<name>friendsBets-webservice</name>
+	<name>friendsbets-webservice</name>
 	<!-- FIXME change it to the project's website -->
 	<url>http://www.example.com</url>
 
@@ -45,8 +45,8 @@
 			<version>2.29.1</version>
 		</dependency>
 		<dependency>
-			<groupId>friendsBets</groupId>
-			<artifactId>friendsBets-core</artifactId>
+			<groupId>friendsbets</groupId>
+			<artifactId>friendsbets-core</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 <!-- 		<dependency> make problem with rest.DebugMapper because catch all exceptions
@@ -87,7 +87,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>friendsBets-webservice</finalName>
+		<finalName>friendsbets-webservice</finalName>
 		<plugins>
 		
 			<plugin>

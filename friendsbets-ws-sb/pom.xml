@@ -8,7 +8,7 @@
 		<version>2.2.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>friendsBets</groupId>
+	<groupId>friendsbets</groupId>
 	<artifactId>friendsbets-ws-sb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>friendsbets-ws-sb</name>
@@ -47,7 +47,7 @@
 		</dependency>
 		<!-- INTERN DEPENDANCIES -->
 		<dependency>
-			<groupId>friendsBets</groupId>
+			<groupId>friendsbets</groupId>
 			<artifactId>friendsbets-core-springboot</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
