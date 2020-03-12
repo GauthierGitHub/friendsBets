@@ -17,11 +17,11 @@ export class RegisterComponent implements OnInit {
   constructor(private cs: ConnectionService, private router: Router) { }
 
   ngOnInit(): void {
+    // hydrating object
     // this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
     this.u = this.cs.connectedUser;
   }
   registerUser() {
     this.cs.addUser(this.u, () => this.router.navigateByUrl("main"));
-    
   }
 }

@@ -35,9 +35,6 @@ public class GroupController {
 
 	@PostMapping("")
 	public void save(@RequestBody Group g) {
-		System.out.println(g);
-		g.getUserList().forEach(x -> System.out.println(x.getNickname()));
-		System.out.println("-----");
 		gs.save(g);
 	}
 

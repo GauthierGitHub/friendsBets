@@ -51,6 +51,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	/**
 	 * Native MySql
 	 * @Modfying & @Transactional both needed
+	 * TODO: Transactional annotations in service ?
+	 * Transactional actives automatic dirty checking
 	 * @param id
 	 * @param friend
 	 */

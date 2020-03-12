@@ -3,7 +3,9 @@ import { ConnectionService } from 'src/app/connection/connection.service';
 import { User } from 'src/app/models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 import { Group } from 'src/app/models/group.model';
+import { Serializer } from '../../models/serializer/Serializer'
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +28,7 @@ export class GroupsService {
 
   public createGroup(g: Group): Observable<Group> {
     console.log(g);
-    return this.httpClient.post<Group>(this.url + "group", g);
+    return this.httpClient.post<Group>(this.url + "group", Serializer.serializeToJSON(g));
   }
 
 }
