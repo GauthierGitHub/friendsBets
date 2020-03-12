@@ -14,50 +14,46 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	User findByEmailAndPassword(String email, String password);
 
-	// TODO: my Query ?
 	@Query("from User u where u.nickname like %?1% or u.email like %?1%")
 	Set<User> findByNicknameOrEmailLike(String pattern);
 
-	// native sql
 	/**
+	 * native mysql
 	 * Return all user who are not the connected user and his friends
+	 * TODO: find a way without NOT IN
+	 * //			"SELECT * FROM UserFbs LEFT JOIN UserFbs_friends ON UserFbs.id = UserFbs_friends.User_id WHERE UserFbs_friends.User_id != ?1 AND id != friends_id"
 	 * @param id
 	 * @return Set<User>  
 	 */
-	@Query(value=
-//			"SELECT * FROM UserFbs LEFT JOIN UserFbs_friends ON UserFbs.id = UserFbs_friends.User_id WHERE UserFbs_friends.User_id != ?1 AND id != friends_id"
-			"SELECT DISTINCT * "
-			+ "FROM UserFbs "
-			+ "WHERE id != ?1 AND id NOT IN ("
-					+ "SELECT friends_id "
-					+ "FROM UserFbs_friends "
-					+ "WHERE UserFbs_friends.User_id = ?1)"
+	@Query(value="SELECT * FROM UserFbs "
+				+ "WHERE id != ?1 AND id NOT IN ("
+						+ "SELECT friends_id "
+						+ "FROM UserFbs_friends "
+						+ "WHERE UserFbs_friends.User_id = ?1)"
 			, nativeQuery = true)
-//	@Query("FROM User u WHERE u.id =?1 and u.id != u.friends.getid")
 	Set<User> findAllOthers(int id); // or User u ?
-	
-	// jpql & springboot
-//	@Query("FROM User u WHERE u != ?1")
-//	Set<User> findAllOthers(User u);
-	// SELECT * 
-	// FROM UserFbs 
-	// RIGHT JOIN UserFbs_friends ON UserFbs.id = UserFbs_friends.friends_id 
-	// WHERE UserFbs_friends.User_id = 2
 
-	// native sql 
+	/**
+	 * native mysql 
+	 * Return all friends for one user
+	 *		//	@Query("FROM User.friends u where u = ?1")
+	 *		//	Set<User> findFriends(User u);
+	 * @param id
+	 * @return
+	 */
 	@Query(value=
-			"SELECT * "
-			+ "FROM UserFbs "
+			"SELECT * FROM UserFbs "
 			+ "RIGHT JOIN UserFbs_friends ON UserFbs.id = UserFbs_friends.friends_id "
 			+ "WHERE UserFbs_friends.User_id = ?1" // ?1.get(id) OR ?1.id ??????
 			, nativeQuery = true)
 	Set<User> findFriends(int id);
 
-	// JPQL
-//	@Query("UPDATE User u SET u.friends = ?2 WHERE u.id = ?1")
-//	void addFriends(int id, HashSet<User> friends);
-
-	// Native Sql
+	/**
+	 * Native MySql
+	 * @Modfying & @Transactional both needed
+	 * @param id
+	 * @param friend
+	 */
 	@Modifying
 	@Transactional
 	@Query(value=
@@ -66,12 +62,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 			nativeQuery = true)
 	void addFriends(int id, User friend);
 	
-//	Query q = em.createNativeQuery("SELECT a.firstname, a.lastname FROM Author a WHERE a.id = ?");
-//	q.setParameter(1, 1);
-//	Object[] author = (Object[]) q.getSingleResult();
-	
-//	@Query("FROM User.friends u where u = ?1")
-//	Set<User> findFriends(User u);
 
 	/**
 	 * @Query(
@@ -82,7 +72,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	 * @param u
 	 * @return
 	 */
-	// TODO: my Query ?
 //	@Query("FROM Group g WHERE g.User = ?1")
 //	List<Group> findAllGroupForOneUser(User u);
 	
