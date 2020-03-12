@@ -23,12 +23,19 @@ export class GroupsService {
   // }
 
   // public findAllGroup(u: User) {
-    
+
   // }
 
   public createGroup(g: Group): Observable<Group> {
+    g.id = undefined;
+    g = Serializer.serializeToJSON(g);
     console.log(g);
+    console.log(JSON.stringify(g));
     return this.httpClient.post<Group>(this.url + "group", Serializer.serializeToJSON(g));
+  }
+
+  public findAllForOneUser(u: User): Observable<Group[]> {
+    return this.httpClient.get<Group[]>(this.url + "group/mygroups/" + u.id);
   }
 
 }

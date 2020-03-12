@@ -1,6 +1,7 @@
 package friendsbets.ws.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -47,5 +48,10 @@ public class GroupController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable int id) {
 		gs.delete(gs.findById(id));
+	}
+	
+	@GetMapping("/mygroups/{id}")
+	public Set<Group> findAllForOneUser(@PathVariable int id) {
+		return gs.findAllForOneUser(id);
 	}
 }

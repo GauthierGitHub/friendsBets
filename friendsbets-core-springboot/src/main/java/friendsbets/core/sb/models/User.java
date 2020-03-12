@@ -59,6 +59,7 @@ public class User {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "followers", fetch = FetchType.LAZY)
 	private Set<Bet> betsFollowed = new TreeSet<Bet>();
+	@JsonIgnore
 	@ManyToMany(mappedBy = "userList", fetch = FetchType.EAGER)
 	private Set<Group> grpList = new HashSet<Group>();
 	@JsonIgnore
