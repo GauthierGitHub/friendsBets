@@ -1,11 +1,11 @@
 <app-header></app-header>
 <div class="row">
-    <section class="col-12">
-        <img src="../../assets/img/logo.png" alt="group picture">
-        <h2>Nom du Groupe</h2>
+    <section *ngFor="let group of groups" class="col-12">
+        <img src="../../assets/img/group.png" alt="{{group.name}} picture">
+        <h2>{{ group.name }}</h2>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown button
+              Dropdown
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="#">Action</a>
@@ -14,7 +14,7 @@
             </div>
         </div>
     </section>
-    <section class="col-12">
+    <!-- <section class="col-12">
         <img src="../../assets/img/logo.png" alt="group picture">
         <h2>Group 2</h2>
         <div class="dropdown">
@@ -27,18 +27,5 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
         </div>
-    </section>
-    <!-- 
-    <div class="col-12">
-        <div class="card card-block">I am Groot.</div>
-    </div>
-    <div class="col-12">
-        <div class="card card-block">hello 1</div>
-    </div>
-    <div class="col-12">
-        <div class="card card-block">hello {{ u.nickname }}</div>
-    </div>
-    <div class="col-12">
-        <div class="card card-block">hello 3</div>
-    </div> -->
+    </section> -->
 </div>

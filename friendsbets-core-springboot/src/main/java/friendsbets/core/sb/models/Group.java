@@ -30,16 +30,16 @@ public class Group {
 	private int id;
 	@Column(nullable = true)
 	private String name;
-	@ManyToOne
+//	@ManyToOne
 	// TODO: DELETE ME ! first user is Admin ?
 //	@JoinColumn(nullable = false) // @Column(s) not allowed on a @OneToOne property.
-	private User adminGroup;
+//	private User adminGroup;
 	/**
 	 * Set is better than arrayList. Jpa will not create both primary key in the
 	 * association Table with List ... Can be resolved by @EmbeddedId ?
 	 * TODO: Better way to fetch type ? here user calls groups and not inverse
 	 */
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY) 
 	private Set<User> userList = new LinkedHashSet<User>();
 	@JsonIgnore
@@ -51,10 +51,10 @@ public class Group {
 	
 	public Group() {}
 	
-	public Group(User u) {
-		this.adminGroup = u;
-		userList.add(adminGroup);
-	}
+//	public Group(User u) {
+//		this.adminGroup = u;
+//		userList.add(adminGroup);
+//	}
 
 	public int getId() {
 		return id;
@@ -70,12 +70,12 @@ public class Group {
 		this.name = name;
 	}
 
-	public User getAdminGroup() {
-		return adminGroup;
-	}
-	public void setAdminGroup(User adminGroup) {
-		this.adminGroup = adminGroup;
-	}
+//	public User getAdminGroup() {
+//		return adminGroup;
+//	}
+//	public void setAdminGroup(User adminGroup) {
+//		this.adminGroup = adminGroup;
+//	}
 
 	public Set<User> getUserList() {
 		return userList;

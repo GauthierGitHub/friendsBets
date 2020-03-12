@@ -26,7 +26,7 @@ export class CreateGroupComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.g = new Group(-1, this.cs.connectedUser.nickname + " Group", null)
+    this.g = new Group(-1, this.cs.connectedUser.nickname + " Group")
     this.checkedFriends = [this.cs.connectedUser];
     this.us.findFriends(this.cs.connectedUser).subscribe( x => this.friends = x);
   }

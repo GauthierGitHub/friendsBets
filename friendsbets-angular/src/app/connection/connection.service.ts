@@ -39,7 +39,7 @@ export class ConnectionService {
 
   constructor(private httpClient: HttpClient, private cookieServ: CookieService) {
     // TODO: Remove me !
-    if(!this.connectedUser) this.login("j", "j");
+    if(!this.connectedUser) this.login("Email8", "Password8");
    }
 
    /**

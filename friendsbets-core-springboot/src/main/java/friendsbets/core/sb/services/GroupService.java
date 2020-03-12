@@ -1,12 +1,11 @@
 package friendsbets.core.sb.services;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsbets.core.sb.exceptions.SqlNotFoundException;
-import friendsbets.core.sb.exceptions.SqlUniqueContraintException;
 import friendsbets.core.sb.models.Group;
 import friendsbets.core.sb.models.User;
 import friendsbets.core.sb.repositories.GroupRepository;
@@ -31,8 +30,7 @@ public class GroupService {
 	public void save(Group g) {
 		gr.save(g);
 		g.getUserList().stream().forEach(user-> {
-			user.getGrpList().add(g);
-			ur.save(user);
+			user.getGrpList().add(g); // automatic dirty checking save them in db
 		});
 	}
 
@@ -57,7 +55,10 @@ public class GroupService {
 		return gr.findById(id).orElseThrow();
 	}
 
-
+	public Set<Group> findAllForOneUser(int id){
+		return gr.findAllForOneUser(id);
+	}
+	
 	/**
 	 * not needed cause eager fetchType in user ?????
 	 */
