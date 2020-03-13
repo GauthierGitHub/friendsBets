@@ -1,9 +1,10 @@
 <app-header></app-header>
 <form class="form-signin text-center" (ngSubmit)=onFormSubmit()>
-  <input class="col-12" type=text name=g-name [(ngModel)]=g.name class=form-control placeholder="My Group" required autofocus>
-  <p class="invalid-feedback"></p>
   <div class="row">
     <h2 class="col-8">Select your friends:</h2>
+    <!-- name=g-name [(ngModel)]=g.name  -->
+    <input  class="col-8" type=text class=form-control name=g-name [(ngModel)]=g.name  placeholder="My Group">
+    <p class="invalid-feedback"></p>
     <button class="col-3" type="submit">Done!</button>
   </div>
 
@@ -15,7 +16,7 @@
 -->
 
   <ng-container *ngFor="let friend of friends">
-    <input type="checkbox" [id]=friend.id [name]=friend.nickname [value]=friend.id (click)="onCheckboxClicked(friend)">
+    <input class="user-selector" type="checkbox" [id]=friend.id [name]=friend.nickname [value]=friend.id (click)="onCheckboxClicked(friend)">
     <label for="{{friend.id}}">{{ friend.nickname }}</label>
   </ng-container>
 

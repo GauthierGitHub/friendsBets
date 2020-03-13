@@ -2,8 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { HttpClient } from '@angular/common/http';
 
+//anims
+// import { OpenCloseComponent } from './open-close.component';
+
+
+// normals imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './connection/login/login.component';
@@ -16,6 +22,8 @@ import { CreateGroupComponent } from './main/group/create-group/create-group.com
 import { ManageGroupComponent } from './main/group/manage-group/manage-group.component';
 import { AddFriendsComponent } from './main/friends/add-friends/add-friends.component';
 import { ManageFriendsComponent } from './main/friends/manage-friends/manage-friends.component';
+import { MessageComponent } from './main/message/message.component';
+import { RouterOutlet } from '@angular/router';
 
 
 @NgModule({
@@ -30,12 +38,15 @@ import { ManageFriendsComponent } from './main/friends/manage-friends/manage-fri
     ManageGroupComponent,
     AddFriendsComponent,
     ManageFriendsComponent,
+    MessageComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     CookieService
