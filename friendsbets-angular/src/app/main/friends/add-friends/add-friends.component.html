@@ -6,7 +6,7 @@
   </div>
 
   <ng-container *ngFor="let user of allUsers">
-    <input type="checkbox" [id]=user.id [name]=user.nickname [value]=user.id (click)="onCheckboxClicked(user)">
+    <input class="user-selector" type="checkbox" [id]=user.id [name]=user.nickname [value]=user.id (click)="onCheckboxClicked(user)">
     <label for="{{user.id}}">{{ user.nickname }}</label>
   </ng-container>
 

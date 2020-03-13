@@ -3,11 +3,13 @@ import { FriendsService } from '../friends.service';
 import { User } from 'src/app/models/user.model';
 import { ConnectionService } from 'src/app/connection/connection.service';
 import { Router } from '@angular/router';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-add-friends',
   templateUrl: './add-friends.component.html',
-  styleUrls: ['./add-friends.component.scss']
+  styleUrls: ['./add-friends.component.scss'],
+  
 })
 export class AddFriendsComponent implements OnInit {
 

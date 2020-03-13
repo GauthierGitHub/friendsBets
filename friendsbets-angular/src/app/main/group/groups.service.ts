@@ -38,4 +38,8 @@ export class GroupsService {
     return this.httpClient.get<Group[]>(this.url + "group/mygroups/" + u.id);
   }
 
+  public findById(id: string): Observable<Group> {
+    return this.httpClient.get<Group>(this.url + "group/" + id);
+  }
+
 }
