@@ -38,3 +38,6 @@ hs_err_pid*
 # Env Files #
 /friendsBets-core/src/main/resources/db.properties
 /friendsBets-core/src/main/resources/database.properties
+/friendsBets-core/src/main/resources/configuration.properties
+/friendsBets-core-springboot/src/main/resources/application-dev.properties
+/friendsBets-core-springboot/src/main/resources/application.properties
