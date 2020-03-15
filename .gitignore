@@ -42,3 +42,4 @@ hs_err_pid*
 /friendsbets-core-springboot/src/main/resources/application-dev.properties
 /friendsBets-core/src/main/resources/application.properties
 /friendsBets-core-springboot/src/main/resources/application.properties
+friendsbets-core-springboot/src/main/resources/application-dev.properties
