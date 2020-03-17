@@ -25,8 +25,7 @@ public class UsersController {
 
 	@Autowired
 	UserService ms;
-	
-	@CrossOrigin(origins = "http://localhost:4200")
+
 	@GetMapping("")
 	public List<User> findAll() {
 		return ms.findAll();

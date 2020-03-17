@@ -118,7 +118,6 @@ export class ConnectionService {
   }
 
 
-
   public set connectedUser(connectedUser: User) {
     this._connectedUser = connectedUser;
   }

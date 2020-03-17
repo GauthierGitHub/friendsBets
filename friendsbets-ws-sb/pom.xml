@@ -45,7 +45,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
 		<!-- INTERN DEPENDANCIES -->
 		<dependency>
 			<groupId>friendsbets</groupId>
@@ -64,7 +63,7 @@
 			<artifactId>httpclient</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
