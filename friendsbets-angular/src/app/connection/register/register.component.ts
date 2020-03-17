@@ -19,7 +19,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     // hydrating object
     // this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
-    this.u = this.cs.connectedUser;
+    // this.u = this.cs.connectedUser;
+    // TODO: Remove me !
+    this.u = this.cs.connectedUser == null ? new User(-1, "MADEBYREGISTER", "defaultEmail", "defautlPassword") : this.cs.connectedUser;
+
   }
   registerUser() {
     this.cs.addUser(this.u, () => this.router.navigateByUrl("main"));

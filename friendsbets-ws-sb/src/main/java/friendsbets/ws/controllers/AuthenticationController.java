@@ -1,11 +1,14 @@
 package friendsbets.ws.controllers;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import friendsbets.core.sb.models.User;
@@ -19,9 +22,11 @@ public class AuthenticationController {
 	@Autowired
 	private UserService ms;
 	
+//	@RequestMapping(value="/login", method = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
 	@PostMapping("/login")
-	public User login(String email, String password) {
-		return ms.findByUserMailAndPassword(email, password);
+	public User login(@RequestParam String email, @RequestParam String password) {
+		Logger.getLogger(getClass()).info("/authentication/login");
+		return ms.findByUserMailAndPassword(email, password);  
 	}
 	
 //	@Autowired
@@ -29,7 +34,7 @@ public class AuthenticationController {
 
 //	@RequestMapping(value="/signin", method=RequestMethod.OPTIONS, produces = "application/json")
 //	public User signin(@RequestParam String email, @RequestParam String password) {
-////	public User signin(@RequestBody String email, @RequestBody String password) {
+//	public User signin(@RequestBody String email, @RequestBody String password) {
 //		Logger.getLogger(getClass()).info("Signin running");
 //		return ms.signIn(email, password);
 //	}

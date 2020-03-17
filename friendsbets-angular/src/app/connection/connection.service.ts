@@ -39,15 +39,16 @@ export class ConnectionService {
 
   constructor(private httpClient: HttpClient, private cookieServ: CookieService) {
     // TODO: Remove me !
-    if(!this.connectedUser) this.login("Email8", "Password8");
-   }
+    if (!this.connectedUser) this.login("Email8", "Password8");
+    
+  }
 
-   /**
+  /**
     * webservice return the user in database
     * @param m 
     * @param success 
     */
-  public addUser(m: User, success? :() => void): void {
+  public addUser(m: User, success?: () => void): void {
     m.id = undefined;
     let u = Serializer.serializeToJSON(m);
     this.httpClient.post<User>(this.url + "user/", u).subscribe(x => {
@@ -59,7 +60,7 @@ export class ConnectionService {
   public update(m: User): void {
     // TODO: Verify if serializer is needed
     let url2 = this.url + "user/" + m.id;
-    this.httpClient.put(url2, m).subscribe(x => this._connectedUser=m);
+    this.httpClient.put(url2, m).subscribe(x => this._connectedUser = m);
   }
 
   public delete(m: User): void {
@@ -72,13 +73,13 @@ export class ConnectionService {
     return this.httpClient.post<User>(this.url + "authentication/login", {}, {
       params: {
         "email": email,
-        "password": password
+        "password": password,
       }
     }).subscribe(x => {
-      if(x) { // server found and return right user
+      if (x) { // server found and return right user
         this.connectedUser = x;
         this.cookieServ.set("token", x.token, 10);
-        if(success) success();
+        if (success) success();
       }
       else { // server has returned null
         // TODO: error
@@ -116,7 +117,7 @@ export class ConnectionService {
     return this.httpClient.get<User[]>(this.url + "search/" + search);
   }
 
-  
+
 
   public set connectedUser(connectedUser: User) {
     this._connectedUser = connectedUser;

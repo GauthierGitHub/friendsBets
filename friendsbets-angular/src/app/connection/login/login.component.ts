@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  
+
   u: User;
   title: string = "Login"
   label: string = "Go !"
@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(private cs: ConnectionService, private router: Router) { }
 
   ngOnInit(): void {
-    this.u = this.cs.connectedUser;
+    // TODO: Remove me !
+    this.u = this.cs.connectedUser == null ? new User(-1, "MADEBYLOGIN", "defaultEmail", "defautlPassword") : this.cs.connectedUser;
   }
 
   logUser() {
@@ -25,6 +26,6 @@ export class LoginComponent implements OnInit {
       this.u.email, this.u.password
       , () => this.router.navigateByUrl("main") // success
       , () => console.log("login error") // error //TODO: error
-    );      
+    );
   }
 }

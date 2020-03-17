@@ -45,17 +45,26 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
 		<!-- INTERN DEPENDANCIES -->
 		<dependency>
 			<groupId>friendsbets</groupId>
 			<artifactId>friendsbets-core-springboot</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+		</dependency> -->
+		<!-- spring boot webservice test -->
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
