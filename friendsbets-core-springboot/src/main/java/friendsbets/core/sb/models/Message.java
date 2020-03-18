@@ -13,12 +13,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**
  * @Entity
  * @author Gauthier Barbet
  *
  */
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name="MessageFbs")
 public class Message {
 
@@ -53,11 +57,11 @@ public class Message {
 		this.id = id;
 	}
 
-	public User getUser() {
+	public User getAuthor() {
 		return author;
 	}
 
-	public void setUser(User user) {
+	public void setAuthor(User user) {
 		this.author = user;
 	}
 
@@ -69,12 +73,12 @@ public class Message {
 		this.group = group;
 	}
 
-	public Date getMessageDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setMessageDate(Date messageDate) {
-		this.date = messageDate;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getContent() {
@@ -84,4 +88,6 @@ public class Message {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+
 }

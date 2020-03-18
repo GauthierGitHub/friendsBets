@@ -21,19 +21,19 @@ import friendsbets.core.sb.services.UserService;
 @RestController
 @CrossOrigin // not needed, declared for all in Webappconfig
 @RequestMapping("/user")
-public class UsersController {
+public class UserController {
 
 	@Autowired
-	UserService ms;
+	UserService us;
 
 	@GetMapping("")
 	public List<User> findAll() {
-		return ms.findAll();
+		return us.findAll();
 	}
 
 	@GetMapping("/{id}")
 	public User findById(@PathVariable int id) {
-		return ms.findById(id);
+		return us.findById(id);
 	}
 
 	/**
@@ -45,25 +45,25 @@ public class UsersController {
 	 */
 	@PostMapping("")
 	public User save(@RequestBody User m) {
-		return ms.save(m);
+		return us.save(m);
 	}
 
 	@PutMapping("/{id}")
 	public void update(@PathVariable int id, @RequestBody User m) {
 		m.setId(id);
-		ms.update(m);
+		us.update(m);
 	}
 
 	@DeleteMapping("/{id}")
 //	@RolesAllowed({"Administrator"})
 	public void delete(@PathVariable int id) {
-		ms.delete(ms.findById(id));
+		us.delete(us.findById(id));
 	}
 
 	@GetMapping({ "/search", "/search/{pattern}" })
 	public Set<User> findByAliasOrEmailLike(@PathVariable(name = "pattern", required = false) String pattern) {
 //		Logger.getLogger(getClass()).info("//////////!!! search = " + pattern);
-		return ms.findByNicknameOrEmailLike(pattern == null ? "" : pattern);
+		return us.findByNicknameOrEmailLike(pattern == null ? "" : pattern);
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class UsersController {
 	 */
 	@GetMapping("/find/{id}")
 	public Set<User> findAllOthers(@PathVariable int id) {
-		return ms.findAllOthers(id);
+		return us.findAllOthers(id);
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public class UsersController {
 	 */
 	@GetMapping("/friends/{id}")
 	public Set<User> findFriends(@PathVariable int id) {
-		return ms.findFriends(id);
+		return us.findFriends(id);
 	}
 	
 	/**
@@ -91,6 +91,6 @@ public class UsersController {
 	 */
 	@PostMapping("/friends/add/{id}")
 	public void addFriends(@PathVariable int id, @RequestBody HashSet<User> friends) {
-		ms.addFriends(id, friends);
+		us.addFriends(id, friends);
 	}
 }

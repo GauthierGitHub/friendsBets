@@ -18,26 +18,25 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * @Entity
- * @author Gauthier Barbet TODO fetchType ? Only User get fetchType ? :
- *         org.hibernate.loader.MultipleBagFetchException: cannot simultaneously
- *         fetch multiple bags error :
- *         org.hibernate.LazyInitializationException: failed to lazily
- *         initialize a collection of role: models.FriendsBetsUser.betsFollowed,
- *         could not initialize proxy - no Session TODO see serializable id FOR
- *         save personnal config TODO CASCADE.TYPE
+ * @author Gauthier Barbet 
+ *         TODO see serializable id FOR save personnal config 
+ *         TODO CASCADE.TYPE
  */
 //@Table(name="MyUser") // for change name of table
 //@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jsonType")
 //@JsonSubTypes({ // for polymorphisme only ?
+//@XmlRootElement for XML restApp
 //    @JsonSubTypes.Type(value = FbsUser.class, name = "User"),
 //    @JsonSubTypes.Type(value = Administrator.class, name = "Administrator")
 //})
 @Entity
-//@XmlRootElement
+// @JsonTypeInfo needed for add class name on JSON, needed for unserialiaze them on angular
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jsonType")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "UserFbs")
 public class User {
