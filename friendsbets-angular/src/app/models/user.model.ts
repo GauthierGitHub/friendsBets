@@ -11,6 +11,7 @@ export class User {
 
     constructor();
     constructor(id: number, nickname: string, email: string, password: string);
+    constructor(id?: number);
     constructor(id?: number, nickname?: string, email?: string, password?: string) {
         this._id = id ? id : 0;
         this._nickname = nickname ? nickname : "";

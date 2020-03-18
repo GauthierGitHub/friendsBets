@@ -45,17 +45,10 @@ export class MessageComponent implements OnInit {
     );
      */
   ngOnInit() {
+    this.group = new Group(-1, ""); // TODO: remove me ? Avoid log error
     let id = this.aRoute.snapshot.paramMap.get('group-id');
-    this.gs.findById(id).subscribe(x => {
-      console.log(Serializer.addUnderscore(x));
-      console.log(typeof Serializer.addUnderscore(x));
-      console.log(Serializer.toTypeScriptObject(x));
-      console.log(typeof Serializer.toTypeScriptObject(x));
-      console.log("putain");
-      
-
-      
-      this.group = x;
+    this.gs.findById(id).subscribe(x => {  
+      this.group = Serializer.toTypeScriptObject<Group>(x, Group);      
       this.message = new Message(-1, this.cs.connectedUser, this.group, ""); 
     });
   }

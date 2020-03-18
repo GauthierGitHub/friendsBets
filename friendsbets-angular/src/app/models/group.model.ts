@@ -19,6 +19,7 @@ export class Group {
 
     constructor();
     constructor(id: number, name: string);
+    constructor(id?: number);
     constructor(id?: number, name?: string) {
         this._id = id ? id : 0;
         this._name = name ? name : "";

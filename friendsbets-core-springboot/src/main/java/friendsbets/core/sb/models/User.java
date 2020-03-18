@@ -37,11 +37,12 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 // @JsonTypeInfo needed for add class name on JSON, needed for unserialiaze them on angular
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jsonType")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIdentityInfo(scope = User.class, generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "UserFbs")
 public class User {
 
 	@Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue
 	private int id;
 	@Column(unique = true, nullable = false)

@@ -28,6 +28,8 @@ export class GroupsService {
 
   public createGroup(g: Group): Observable<Group> {
     g.id = undefined;
+    // substract unecessary datas
+    g.userList.forEach(x => x=new User(x.id))
     g = Serializer.serializeToJSON(g);
     console.log(g);
     console.log(JSON.stringify(g));
