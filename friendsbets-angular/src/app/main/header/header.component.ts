@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/connection/connection.service';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/User.model';
 
 @Component({
   selector: 'app-header',

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/User.model';
 import { ConnectionService } from '../connection.service';
 
 @Component({

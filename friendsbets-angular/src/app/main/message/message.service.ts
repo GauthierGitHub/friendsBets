@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from 'src/app/models/message.model';
+import { Message } from 'src/app/models/Message.model';
 import { Serializer } from 'src/app/models/serializer/Serializer';
-import { User } from 'src/app/models/user.model';
-import { Group } from 'src/app/models/group.model';
+import { User } from 'src/app/models/User.model';
+import { Group } from 'src/app/models/Group.model';
 
 @Injectable({
   providedIn: 'root'

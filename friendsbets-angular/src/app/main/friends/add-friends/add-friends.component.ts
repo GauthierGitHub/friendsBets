@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FriendsService } from '../friends.service';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/User.model';
 import { ConnectionService } from 'src/app/connection/connection.service';
 import { Router } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';

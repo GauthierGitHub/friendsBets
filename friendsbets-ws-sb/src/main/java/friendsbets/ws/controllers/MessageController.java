@@ -29,6 +29,6 @@ public class MessageController {
 		System.out.println(m.getContent());
 		System.out.println("===== Date =====");
 		System.out.println(m.getDate());
-//		ms.save(m);
+		ms.save(m);
 	}
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/User.model';
 import { ConnectionService } from 'src/app/connection/connection.service';
-import { Group } from 'src/app/models/group.model';
+import { Group } from 'src/app/models/Group.model';
 import { FriendsService } from '../../friends/friends.service';
 import { GroupsService } from '../groups.service';
 import { Router } from '@angular/router';

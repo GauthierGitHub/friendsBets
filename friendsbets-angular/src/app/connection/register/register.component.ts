@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/User.model';
 import { ConnectionService } from '../connection.service';
 import { Router } from '@angular/router';
 
@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
     this.u = this.cs.connectedUser == null ? new User(-1, "MADEBYREGISTER", "defaultEmail", "defautlPassword") : this.cs.connectedUser;
 
   }
+  
   registerUser() {
     this.cs.addUser(this.u, () => this.router.navigateByUrl("main"));
   }

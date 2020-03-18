@@ -1,18 +1,13 @@
-import { User } from './user.model';
+import { User } from './User.model';
+import { IFriendsBetsModels } from './abstract class & interfaces/IFriendsBetsModels';
 
-export class Group {
-    /*
-	private int id;
-	private String name;
-	private FbsUser adminGroup;
-	private Set<FbsUser> userList = new HashSet<FbsUser>();
-	private List<FbsBet> betList = new ArrayList<>();
-	private List<FbsMessage> groupMessages;
-     */
+export class Group implements IFriendsBetsModels {
+    
+    readonly IS_MODEL: boolean = true;
     private _id: number;
     private _name: string;
     private _userList: User[];
-    // TODO: replace string by models
+    // TODO: replace string by models ?
     private _betList: string[];
     private _groupMessages: string[];
 
@@ -22,7 +17,7 @@ export class Group {
     constructor(id?: number);
     constructor(id?: number, name?: string) {
         this._id = id ? id : 0;
-        this._name = name ? name : "";
+        this._name = name ? name : undefined;
     }
 
     get id(): number {

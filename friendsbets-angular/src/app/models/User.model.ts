@@ -1,6 +1,8 @@
+import { IFriendsBetsModels } from './abstract class & interfaces/IFriendsBetsModels';
 
-export class User {
+export class User implements IFriendsBetsModels {
     
+    readonly IS_MODEL: boolean = true;
     private _id: number;
     private _nickname: string;
     private _email: string;    
@@ -14,9 +16,9 @@ export class User {
     constructor(id?: number);
     constructor(id?: number, nickname?: string, email?: string, password?: string) {
         this._id = id ? id : 0;
-        this._nickname = nickname ? nickname : "";
-        this._email = email ? email : "";
-        this._password = password ? password : "";
+        this._nickname = nickname ? nickname : undefined;
+        this._email = email ? email : undefined;
+        this._password = password ? password : undefined;
     }
 
     get id(): number {

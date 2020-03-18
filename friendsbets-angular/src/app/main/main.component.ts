@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user.model';
+import { User } from '../models/User.model';
 import { ConnectionService } from '../connection/connection.service';
-import { Group } from '../models/group.model';
+import { Group } from '../models/Group.model';
 import { GroupsService } from './group/groups.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { timer } from 'rxjs';

@@ -3,11 +3,11 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { GroupsService } from '../group/groups.service';
-import { Group } from 'src/app/models/group.model';
+import { Group } from 'src/app/models/Group.model';
 import { ConnectionService } from 'src/app/connection/connection.service';
-import { Message } from 'src/app/models/message.model';
+import { Message } from 'src/app/models/Message.model';
 import { MessageService } from './message.service';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/User.model';
 import { Serializer } from 'src/app/models/serializer/Serializer';
 
 @Component({
@@ -32,20 +32,16 @@ export class MessageComponent implements OnInit {
   message: Message;
   messages: Message[];
 
-  constructor(private router: Router
-    , private aRoute: ActivatedRoute
+
+  constructor(private aRoute: ActivatedRoute
     , private gs: GroupsService
     , private cs: ConnectionService
     , private ms: MessageService) { }
 
-    /**
-     *     this.group = this.aRoute.paramMap.pipe(
-            switchMap((params: ParamMap) =>
-            this.gs.findById(params.get('id')))
-    );
-     */
+
   ngOnInit() {
-    this.group = new Group(-1, ""); // TODO: remove me ? Avoid log error
+    this.group = new Group(-1); // TODO: remove me ? Avoid log error
+    this.message = new Message(-1); // TODO: remove me ? Avoid log error
     let id = this.aRoute.snapshot.paramMap.get('group-id');
     this.gs.findById(id).subscribe(x => {  
       this.group = Serializer.toTypeScriptObject<Group>(x, Group);      

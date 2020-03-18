@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ConnectionService } from 'src/app/connection/connection.service';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/User.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Group } from 'src/app/models/group.model';
+import { Group } from 'src/app/models/Group.model';
 import { Serializer } from '../../models/serializer/Serializer'
 
 @Injectable({

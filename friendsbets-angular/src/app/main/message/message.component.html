@@ -4,7 +4,7 @@
 </ng-container>
 
 <form (ngSubmit)=sendMessage()>
-  <textarea class="col-12" rows="2"  name=message.content (ngModel)=message.content></textarea>
+  <textarea class="col-12" rows="2"  name=message.content [(ngModel)]=message.content></textarea>
   <button class="col-12" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
   </button>
 </form>
