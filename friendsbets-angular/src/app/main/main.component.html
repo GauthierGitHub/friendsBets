@@ -2,7 +2,7 @@
 <a [@Grow]="stateGrow" routerLink="/create-group/">group</a>
 <div class="row">
   <section  [@Grow]="stateGrow" *ngFor="let group of groups" class="col-12">
-    <img src="../../assets/img/group.png" alt="{{group.name}} picture">
+    <img src="assets/img/group.png" alt="{{group.name}} picture">
     <a [routerLink]="['/message', group.id]">
       <h2>{{ group.name }}</h2>
     </a>
@@ -18,18 +18,4 @@
       </div>
     </div>
   </section>
-  <!-- <section class="col-12">
-        <img src="../../assets/img/logo.png" alt="group picture">
-        <h2>Group 2</h2>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div>
-    </section> -->
 </div>

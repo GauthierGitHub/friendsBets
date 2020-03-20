@@ -16,7 +16,7 @@ export class UserFormComponent implements OnInit {
   @Input()
   label: string;
   @Input()
-  u: User;
+  user: User;
   @Output("formSubmited")
   submited: EventEmitter<User> = new EventEmitter<User>();
   i: number = 1;
@@ -24,14 +24,14 @@ export class UserFormComponent implements OnInit {
   constructor(private cs: ConnectionService) { }
 
   ngOnInit(): void {
-    this.u = this.cs.connectedUser ?
+    this.user = this.cs.connectedUser ?
       this.cs.connectedUser :
       new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
     
   }
 
   userSending() {
-    this.submited.emit(this.u);
+    this.submited.emit(this.user);
   }
 
   fillingDb() {

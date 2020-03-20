@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  u: User;
+  user: User;
   title: string = "Register"
   label: string = "Register !"
 
@@ -21,11 +21,11 @@ export class RegisterComponent implements OnInit {
     // this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
     // this.u = this.cs.connectedUser;
     // TODO: Remove me !
-    this.u = this.cs.connectedUser == null ? new User(-1, "MADEBYREGISTER", "defaultEmail", "defautlPassword") : this.cs.connectedUser;
+    this.user = this.cs.connectedUser == null ? new User(-1, "MADEBYREGISTER", "defaultEmail", "defautlPassword") : this.cs.connectedUser;
 
   }
   
   registerUser() {
-    this.cs.addUser(this.u, () => this.router.navigateByUrl("main"));
+    this.cs.addUser(this.user, () => this.router.navigateByUrl("main"));
   }
 }

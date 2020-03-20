@@ -8,13 +8,6 @@
     <button class="col-3" type="submit">Done !</button>
   </div>
 
-  <!--
-  Checkbox Trickery with CSS:
-  http://codersblock.com/blog/checkbox-trickery-with-css/ 
-  TODO: Add friends pictures
-  <img src="../../assets/img/logo.png" alt="group picture">
--->
-
   <ng-container *ngFor="let friend of friends">
     <input class="user-selector" type="checkbox" [id]=friend.id [name]=friend.nickname [value]=friend.id (click)="onCheckboxClicked(friend)">
     <label for="{{friend.id}}">{{ friend.nickname }}</label>

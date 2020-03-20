@@ -9,11 +9,11 @@ import { User } from 'src/app/models/User.model';
 })
 export class HeaderComponent implements OnInit {
 
-  u: User;
+  user: User;
 
   constructor(private cs: ConnectionService) {
-    this.u = this.cs.connectedUser == null ?
-         new User(-1, "createdByHeaderComponent", "fromMainCompo", "fromMainCompo" ) : this.cs.connectedUser;
+    this.user = this.cs.connectedUser == null ?
+         new User(-1, "MadeByHeader", "fromMainCompo", "fromMainCompo" ) : this.cs.connectedUser;
    }
 
   ngOnInit(): void {

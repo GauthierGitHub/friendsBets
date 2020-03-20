@@ -1,9 +1,9 @@
 <header class="row text-center d-flex justify-content-center">
-    <img src="../../assets/img/logo.png" alt="Friend's Bets">
+    <img src="assets/img/logo.png" alt="Friend's Bets">
 </header>
 
-<app-user-form [(u)]="u" [title]="title" [label]="label" (formSubmited)="logUser()"></app-user-form>
+<app-user-form [(user)]="user" [title]="title" [label]="label" (formSubmited)="logUser()"></app-user-form>
 
 <div class="row text-center  d-flex justify-content-center">
-    <a class="" type="button" routerLink="../register/" class="col-3">Register</a>
+    <a class="" type="button" routerLink="/register" class="col-3">Register</a>
 </div>

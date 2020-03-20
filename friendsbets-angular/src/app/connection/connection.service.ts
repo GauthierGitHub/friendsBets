@@ -5,30 +5,6 @@ import { User } from '../models/User.model';
 import { Serializer } from '../models/serializer/Serializer';
 import { CookieService } from 'ngx-cookie-service';
 
-/**
- *
-!!!!!!!!!!!!!! httpClient.subscribe is Asynchrone !!!!!!!!!!!
- *
- *
- * lamda can avoid ?
- *********** json format for UserS in webService
-{
-    "nickname": "Jp",
-    "password": "password",
-    "email": "jp@gmail.com",
-    "picturePath": null
-}
- *********** json format for EVENT
-    { 
-      "producer": {
-        "id": 33
-      },
-      "title": "greve REST put update",
-      "description": "greve de la poste REST",
-      "score": 1.0,
-      "type": "STRIKE"
-      }
- */
 @Injectable({
   providedIn: 'root'
 })

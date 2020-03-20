@@ -4,17 +4,17 @@
 
         <ng-container *ngIf="title == 'Register'">
             <label for="nickname" class="sr-only">Nickname</label>
-            <input type=text name=u.nickname [(ngModel)]=u.nickname class=form-control placeholder="Nickname" required autofocus>
+            <input type=text name=user.nickname [(ngModel)]=user.nickname class=form-control placeholder="Nickname" required autofocus>
             <p class="invalid-feedback"></p>
         </ng-container>
 
         <label for="email" class="sr-only">Email address</label>
-        <input type=text name=u.email [(ngModel)]=u.email class=form-control placeholder="Email address" required
+        <input type=text name=user.email [(ngModel)]=user.email class=form-control placeholder="Email address" required
             autofocus>
         <p class="invalid-feedback"></p>
 
         <label for="Password" class="sr-only">Password</label>
-        <input type="password" name=u.password [(ngModel)]=u.password id="Password" class="form-control"
+        <input type="password" name=user.password [(ngModel)]=user.password id="Password" class="form-control"
             placeholder="Password" required>
         <p class="invalid-feedback"></p>
 

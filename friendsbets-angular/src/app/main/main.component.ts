@@ -12,7 +12,7 @@ import { timer } from 'rxjs';
   animations: [
     trigger('Grow', [
       state('inactive', style({
-        transform: 'scale(0.1)'
+        transform: 'scale(0.8)'
       })),
       state('active', style({
         transform: 'scale(1)'
@@ -23,7 +23,7 @@ import { timer } from 'rxjs';
 })
 export class MainComponent implements OnInit {
 
-  u: User;
+  user: User;
   groups: Group[];
   // anim
   stateGrow : string = "inactive"; 
@@ -31,8 +31,8 @@ export class MainComponent implements OnInit {
   constructor(private cs: ConnectionService, private gs: GroupsService) { }
 
   ngOnInit(): void {
-    this.u = this.cs.connectedUser;
-    this.gs.findAllForOneUser(this.u).subscribe(x => this.groups = x);
+    this.user = this.cs.connectedUser;
+    this.gs.findAllForOneUser(this.user).subscribe(x => this.groups = x);
 
     // anim
     let timer2 = timer(300);
