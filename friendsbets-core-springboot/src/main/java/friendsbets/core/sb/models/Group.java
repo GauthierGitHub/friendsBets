@@ -48,6 +48,7 @@ public class Group {
 	@JsonIgnore
 	@OneToMany(mappedBy = "group")
 	private List<Message> groupMessages;
+	private String picturePath;
 	
 	public Group() {}
 	
@@ -96,6 +97,13 @@ public class Group {
 	}
 	public void setGroupMessages(List<Message> groupMessages) {
 		this.groupMessages = groupMessages;
+	}
+
+	public String getPicturePath() {
+		return picturePath;
+	}
+	public void setPicturePath(String picturePath) {
+		this.picturePath = picturePath;
 	}
 
 //	@Override

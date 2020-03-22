@@ -38,7 +38,7 @@ export class UserFormComponent implements OnInit {
     if(this.i<15) {
       let user : User = new User(0, "User"+this.i, "Email"+this.i, "Password"+this.i);
       user.id = undefined;
-      this.cs.addUser(user, () => {
+      this.cs.register(user, () => {
         this.i++;
         this.fillingDb();
       });

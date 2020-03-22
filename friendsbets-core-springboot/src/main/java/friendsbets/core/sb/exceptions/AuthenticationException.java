@@ -1,7 +1,7 @@
 package friendsbets.core.sb.exceptions;
 
 /**
- * TODO: looks at other exceptions from graze and compare to it
+ * TODO: looks at other exceptions from friendsbets and compare to it
  * @author gauthier
  *
  */

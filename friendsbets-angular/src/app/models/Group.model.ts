@@ -10,6 +10,7 @@ export class Group implements IFriendsBetsModels {
     // TODO: replace string by models ?
     private _betList: string[];
     private _groupMessages: string[];
+    private _picturePath: string;
 
 
     constructor();
@@ -55,4 +56,10 @@ export class Group implements IFriendsBetsModels {
         this._groupMessages = _groupMessages;
     }
 
+    get picturePath(): string {
+        return this._picturePath;
+    }
+    set picturePath(_picturePath: string) {
+        this._picturePath = _picturePath;
+    }
 }

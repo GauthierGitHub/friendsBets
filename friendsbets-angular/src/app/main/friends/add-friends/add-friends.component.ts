@@ -4,6 +4,7 @@ import { User } from 'src/app/models/User.model';
 import { ConnectionService } from 'src/app/connection/connection.service';
 import { Router } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Serializer } from 'src/app/models/serializer/Serializer';
 
 @Component({
   selector: 'app-add-friends',
@@ -20,13 +21,20 @@ export class AddFriendsComponent implements OnInit {
     , private cs: ConnectionService
     , private router: Router) { }
 
+  /**
+   * Find all users who are not the user or his friends.
+   * Transfom them to typeScript objects.
+   */
   ngOnInit(): void {
-    this.fs.findAllOthers(this.cs.connectedUser).subscribe(x => this.allUsers = x);
+    this.fs.findAllOthers(this.cs.connectedUser).subscribe(x => {
+      x.forEach(y => Serializer.toTypeScriptObject(y, User));  
+      this.allUsers = x;
+    });
     this.checkedUsers = [];
   }
 
   /**
-   * Toggle checked user in checkedUsers array
+   * Toggle checked user in checkedUsers array.
    * @param u
    */
   onCheckboxClicked(u: User): void {
@@ -38,6 +46,9 @@ export class AddFriendsComponent implements OnInit {
     }
   }
 
+  /**
+   * Send to db.
+   */
   onFormSubmit(): void {
     this.fs.addFriends(this.checkedUsers, this.cs.connectedUser).subscribe(x => {
       this.cs.connectedUser.friends = this.checkedUsers;

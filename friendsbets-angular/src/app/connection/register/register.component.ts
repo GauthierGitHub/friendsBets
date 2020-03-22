@@ -26,6 +26,6 @@ export class RegisterComponent implements OnInit {
   }
   
   registerUser() {
-    this.cs.addUser(this.user, () => this.router.navigateByUrl("main"));
+    this.cs.register(this.user, () => this.router.navigateByUrl("main"));
   }
 }

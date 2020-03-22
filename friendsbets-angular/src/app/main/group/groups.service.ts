@@ -12,34 +12,35 @@ import { Serializer } from '../../models/serializer/Serializer'
 })
 export class GroupsService {
 
-  // private url: string = "http://localhost:8080/friendsbets-webservice/";
   private url: string = "http://localhost:8080/";
 
   constructor(private httpClient: HttpClient) { }
 
-  // public findAllFriends(u: User): Observable<User[]> {
-  //   // TODO: Get all friends for one user
-  //   return this.httpClient.get<User[]>(this.url + "friends/" + u.id);
-  // }
-
-  // public findAllGroup(u: User) {
-
-  // }
-
+  /**
+   * Create a new Group.
+   * Connected User will be the first of the set, so the admin.
+   * @param g 
+   */
   public createGroup(g: Group): Observable<Group> {
     g.id = undefined;
     // substract unecessary datas
     g.userList.forEach(x => x=new User(x.id))
     g = Serializer.serializeToJSON(g);
-    console.log(g);
-    console.log(JSON.stringify(g));
     return this.httpClient.post<Group>(this.url + "group", Serializer.serializeToJSON(g));
   }
 
+  /**
+   * Find all group where the user is in the userList.
+   * @param u 
+   */
   public findAllForOneUser(u: User): Observable<Group[]> {
     return this.httpClient.get<Group[]>(this.url + "group/mygroups/" + u.id);
   }
 
+  /**
+   * Find a group with an id;
+   * @param id 
+   */
   public findById(id: string): Observable<Group> {
     return this.httpClient.get<Group>(this.url + "group/" + id);
   }

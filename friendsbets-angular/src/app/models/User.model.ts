@@ -1,15 +1,16 @@
 import { IFriendsBetsModels } from './abstract class & interfaces/IFriendsBetsModels';
 
 export class User implements IFriendsBetsModels {
-    
+
     readonly IS_MODEL: boolean = true;
     private _id: number;
     private _nickname: string;
-    private _email: string;    
+    private _email: string;
     private _password: string;
     private _token: string;
     private _tokenLastUsed: Date;
     private _friends: User[];
+    private _picturePath: string;
 
     constructor();
     constructor(id: number, nickname: string, email: string, password: string);
@@ -68,5 +69,12 @@ export class User implements IFriendsBetsModels {
     }
     set friends(_friends: User[]) {
         this._friends = _friends;
+    }
+
+    get picturePath(): string {
+        return this._picturePath;
+    }
+    set picturePath(_picturePath: string) {
+        this._picturePath = _picturePath;
     }
 }

@@ -33,13 +33,54 @@ export class Serializer {
      * Needed for transform json to the right TypeScript Object.
      * performance : https://itnext.io/can-json-parse-be-performance-improvement-ba1069951839
      * @param o 
-     * @param type TypeScript Class that 
+     * @param type TypeScript Class that neede
      */
     static toTypeScriptObject<T>(o: Object, type: (new () => T)): T {
         o = JSON.parse(JSON.stringify(o).replace(/,\\"|{\\"/g, x=> x+"_")); //regEx: ," or {"
+        if("picturePath" in o) // TODO: ask where store img
+            this.addPicturePath(o);
+        console.log(o);
+        
         let entity = new type();
         entity = Object.assign(entity, o);
+        // add picture pathntity["_picturePath"]){
+        //     console.log(entity);
+            
+        //     console.log("picture path present");
+        // }else{
+        //     console.log(entity);
+        //     console.log("picture path not present");
+        // }   
+            
         return entity;
+    }
+
+    private static addPicturePath(o: Object) {
+        // TODO: ask where store img + organize picture
+        console.log("picture path");
+        console.log(o);
+        
+        switch (o["jsonType"]) {
+            case "User":
+                if(o["picturePath"])
+                    o["picturePath"] = "assets/img/" + o["picturePath"];
+                else
+                    o["picturePath"] = "assets/img/avatar.png";
+                break;
+            case "Group":
+                if(o["picturePath"])
+                    o["picturePath"] = "assets/img/" + o["picturePath"];
+                else
+                    o["picturePath"] = "assets/img/group.png";
+                break;
+            default:
+                break;
+        }
+        console.log(o);        
+        // if("picturePath" in o) { // TODO: ask where store img
+        //     o["picturePath"] = o["picturePath"] == null ? 
+        //         "assets/img/avatar.png" : "assets/img/" + o["picturePath"];   
+        // }
     }
 
     /**

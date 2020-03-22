@@ -1,10 +1,11 @@
-<p>{{group.name}}</p>
-<ng-container *ngFor="let user of group.userList">
-  <h3>{{ user.nickname }}</h3>
-</ng-container>
-
+<header>
+  <img src="{{ group.picturePath}}" alt="{{ group.name }}">
+  <ng-container *ngFor="let user of group.userList">
+    <img src="{{ user.picturePath }}" alt="{{ user.nickname }}">
+  </ng-container>
+</header>
 <form (ngSubmit)=sendMessage()>
-  <textarea class="col-12" rows="2"  name=message.content [(ngModel)]=message.content></textarea>
+  <textarea class="col-12" rows="2" name=message.content [(ngModel)]=message.content></textarea>
   <button class="col-12" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
   </button>
 </form>
