@@ -25,7 +25,7 @@ public class AuthenticationController {
 //	@RequestMapping(value="/login", method = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
 	@PostMapping("/login")
 	public User login(@RequestParam String email, @RequestParam String password) {
-		Logger.getLogger(getClass()).info("/authentication/login");
+//		Logger.getLogger(getClass()).info("/authentication/login");
 		return ms.findByUserMailAndPassword(email, password);  
 	}
 	

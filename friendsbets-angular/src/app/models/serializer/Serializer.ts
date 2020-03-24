@@ -36,8 +36,6 @@ export class Serializer {
         // merge o and T as new T
         let entity = new type();
         entity = Object.assign(entity, o);
-        console.log(entity);
-        
         return entity;
     }
 

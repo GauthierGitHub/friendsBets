@@ -4,8 +4,18 @@
     <img src="{{ user.picturePath }}" alt="{{ user.nickname }}">
   </ng-container>
 </header>
+
+<ng-container *ngFor="let message of messages"><!-- TODO: verify if trackBy can improve perf-->
+  <p [ngClass]="{'text-right' : message.author.id === cs.connectedUser.id}">{{message.content}}</p>
+  <p>{{message.author.id}}   {{message.author.nickname}}</p>
+
+  <p>{{cs.connectedUser.id}}   {{cs.connectedUser.nickname}}</p>
+
+</ng-container>
+
+
 <form (ngSubmit)=sendMessage()>
-  <textarea class="col-12" rows="2" name=message.content [(ngModel)]=message.content></textarea>
+  <textarea class="col-12" rows="2" name=messageToSend.content [(ngModel)]=messageToSend.content></textarea>
   <button class="col-12" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
   </button>
 </form>

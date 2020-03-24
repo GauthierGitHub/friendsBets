@@ -37,4 +37,8 @@ public class MessageService {
 	public List<Message> findAll() {
 		return mr.findAll();
 	}
+
+	public List<Message> findTwenty(String id, int offset) {
+		return mr.findTwenty(id, offset);
+	}
 }

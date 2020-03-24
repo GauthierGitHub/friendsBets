@@ -4,33 +4,33 @@ import { Message } from 'src/app/models/Message.model';
 import { Serializer } from 'src/app/models/serializer/Serializer';
 import { User } from 'src/app/models/User.model';
 import { Group } from 'src/app/models/Group.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
-  
-  private url: string = "http://localhost:8080/message";
+
+  private url: string = "http://localhost:8080/message/";
 
   constructor(private httpClient: HttpClient) { }
 
-  public saveMessage(m: Message) {
+  public saveMessage(m: Message, success?: () => void) {
     m.id = undefined;
-    // simplify author
+    // Simplify author.
     m.author = new User(m.author.id);
-    // simplify group
+    // Simplify group.
     m.group = new Group(m.group.id);
-    m.date= new Date();
-    console.log(m);
-    
+    // Date stamp.
+    m.date = new Date();
     m = Serializer.serializeToJSON(m);
-    console.log(m);
-    console.log(JSON.stringify(m));
-    
-    this.httpClient.post(this.url, m).subscribe();
+    return this.httpClient.post(this.url, m).subscribe(() => success());
+  }
+
+  findMessageForOneGroup(id: string, offset?: string): Observable<Message[]> {
+    if (offset)
+      return this.httpClient.get<Message[]>(this.url + id + "/" + offset);
+    else
+      return this.httpClient.get<Message[]>(this.url + id);
   }
 }
-// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idDistrito")     
-// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idEntidade")  
-// @JsonIdentityInfo(scope = Distritos.class, generator = ObjectIdGenerators.PropertyGenerator.class, property = "idDistrito")
-// @JsonIdentityInfo(scope = Entidades.class, generator = ObjectIdGenerators.PropertyGenerator.class, property = "idEntidade")

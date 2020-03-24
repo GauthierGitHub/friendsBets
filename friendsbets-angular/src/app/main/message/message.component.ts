@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { GroupsService } from '../group/groups.service';
 import { Group } from 'src/app/models/Group.model';
 import { ConnectionService } from 'src/app/connection/connection.service';
 import { Message } from 'src/app/models/Message.model';
 import { MessageService } from './message.service';
-import { User } from 'src/app/models/User.model';
 import { Serializer } from 'src/app/models/serializer/Serializer';
 
 @Component({
@@ -18,27 +15,50 @@ import { Serializer } from 'src/app/models/serializer/Serializer';
 export class MessageComponent implements OnInit {
 
   group: Group;
-  message: Message;
+  @Input() messageToSend: Message;
   messages: Message[];
 
 
   constructor(private aRoute: ActivatedRoute
     , private gs: GroupsService
-    , private cs: ConnectionService
+    , public cs: ConnectionService
     , private ms: MessageService) { }
 
 
   ngOnInit() {
     this.group = new Group(-1); // TODO: remove me ? Avoid log error
-    this.message = new Message(-1); // TODO: remove me ? Avoid log error
+    this.messageToSend = new Message(-1); // TODO: remove me ? Avoid log error
     let id = this.aRoute.snapshot.paramMap.get('group-id');
+    // Find group.
     this.gs.findById(id).subscribe(x => {  
       this.group = Serializer.toTypeScriptObject<Group>(x, Group);      
-      this.message = new Message(-1, this.cs.connectedUser, this.group, ""); 
+      this.messageToSend = new Message(-1, this.cs.connectedUser, this.group, ""); 
     });
+    // Find messages.
+    this.ms.findMessageForOneGroup(id).subscribe(x => {
+      // Serialize all messages.
+      if(x) {
+        x.forEach(mess => { Serializer.toTypeScriptObject<Message>(mess, Message);});
+        this.messages = x;
+      }
+      else {
+        console.log("No messages for this group");
+        
+        // TODO: else
+      }
+    })
   }
 
+  /**
+   * Writte message in database.
+   * If writting is succeed push the sended message to displayed messages then
+   * create a new empty message.
+   */
   sendMessage() {
-    this.ms.saveMessage(this.message);
+    // this.ms.saveMessage(this.messageToSend, () => this.messages.push(this.messageToSend));
+    this.ms.saveMessage(this.messageToSend, () => {
+      this.messages.push(this.messageToSend);
+      this.messageToSend = new Message(-1, this.cs.connectedUser, this.group, ""); 
+    });
   }
 }
