@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
  * @Entity
@@ -23,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jsonType")
 @Table(name="GroupFbs")
 public class Group {
 	@Id

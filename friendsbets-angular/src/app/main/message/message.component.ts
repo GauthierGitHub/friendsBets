@@ -14,17 +14,6 @@ import { Serializer } from 'src/app/models/serializer/Serializer';
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss'],
-  animations: [
-    trigger('Grow', [
-      state('inactive', style({
-        transform: 'scale(0.1)'
-      })),
-      state('active', style({
-        transform: 'scale(1)'
-      })),
-      transition('inactive => active', animate('800ms ease-in')),
-    ])
-  ]
 })
 export class MessageComponent implements OnInit {
 

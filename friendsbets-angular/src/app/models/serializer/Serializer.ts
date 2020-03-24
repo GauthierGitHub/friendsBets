@@ -1,9 +1,3 @@
-import { User } from '../User.model';
-import { Group } from '../Group.model';
-import { Message } from '../Message.model';
-import { ConstructorProvider } from '@angular/core';
-import { log } from 'util';
-
 /**
  * Needed for "add" attribute to an instance.
  */
@@ -26,7 +20,6 @@ export class Serializer {
         return JSON.parse(JSON.stringify(o).replace(/"_/g, '"'));
     }
 
-
     /**
      * Convert un object class to the right TypeScript class (add underscore).
      * Can't be separate in two functions: T would be read as a value.
@@ -37,29 +30,23 @@ export class Serializer {
      */
     static toTypeScriptObject<T>(o: Object, type: (new () => T)): T {
         o = JSON.parse(JSON.stringify(o).replace(/,\\"|{\\"/g, x=> x+"_")); //regEx: ," or {"
+        // add pictures or defaults pictures
         if("picturePath" in o) // TODO: ask where store img
             this.addPicturePath(o);
-        console.log(o);
-        
+        // merge o and T as new T
         let entity = new type();
         entity = Object.assign(entity, o);
-        // add picture pathntity["_picturePath"]){
-        //     console.log(entity);
-            
-        //     console.log("picture path present");
-        // }else{
-        //     console.log(entity);
-        //     console.log("picture path not present");
-        // }   
-            
+        console.log(entity);
+        
         return entity;
     }
 
+    /**
+     * Add picture path or default picture path depending to model.
+     * @param o : a model with attributes picturePath and jsonType in JSON format.
+     */
     private static addPicturePath(o: Object) {
         // TODO: ask where store img + organize picture
-        console.log("picture path");
-        console.log(o);
-        
         switch (o["jsonType"]) {
             case "User":
                 if(o["picturePath"])
@@ -72,23 +59,19 @@ export class Serializer {
                     o["picturePath"] = "assets/img/" + o["picturePath"];
                 else
                     o["picturePath"] = "assets/img/group.png";
+                o["userList"].forEach(user => this.addPicturePath(user));
                 break;
             default:
                 break;
         }
-        console.log(o);        
-        // if("picturePath" in o) { // TODO: ask where store img
-        //     o["picturePath"] = o["picturePath"] == null ? 
-        //         "assets/img/avatar.png" : "assets/img/" + o["picturePath"];   
-        // }
     }
 
     /**
      * Prepare object for webservice.
      * add jsonType k-v, required for jackson deserializer.
      * Can modifie just two level models clusters.
-     * TODO: make it more generalist
      * https://stackoverflow.com/questions/12710905/how-do-i-dynamically-assign-properties-to-an-object-in-typescript/54445030#54445030
+     * TODO: make it more generalist ?
      * @param o 
      */
     private static addJsonType(o: Object): Object {
