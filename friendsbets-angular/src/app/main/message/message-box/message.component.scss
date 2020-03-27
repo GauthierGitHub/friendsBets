@@ -2,10 +2,14 @@
 
 /* Add styles to the form container */
 /* Sticky fixed by fixed-bottom bootstrap class */
-form {
-  padding: 0;
-  margin: 0;
+form { // Send message box
   background-color: white;
+  height: 15vh;
+}
+
+/* Keep space for form */
+.footerstamp{
+  height: 18vh; // same as form's height + margin/padding
 }
 
 /* Full-width textarea */
@@ -31,11 +35,6 @@ button {
   border: none;
   cursor: pointer;
   opacity: 0.8;
-}
-
-/* Needed for keep space for sticky bottom sendbox */
-#chatbox{
-  margin-bottom: 65%;
 }
 
 /* USER BOX */

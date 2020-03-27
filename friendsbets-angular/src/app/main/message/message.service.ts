@@ -45,7 +45,7 @@ export class MessageService {
       return this.httpClient.get<Message[]>(this.url + id);
   }
 
-  public rebuildMessagesUsers(lm: Message[]): void {
+  public rebuildMessagesUsers(lm: Message[], success?: () => void): void {
     let users: User[] = new Array();
     // Push all user in array.
     lm.forEach(x => {
@@ -64,5 +64,6 @@ export class MessageService {
         }
       }
     })
+    if(success) success();
   }
 }

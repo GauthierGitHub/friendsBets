@@ -1,36 +1,38 @@
-<div class="headerstamp"></div>
+  <div class="headerstamp"></div>
 
-<header class="fixed-top">
-  <img src="{{ group.picturePath}}" alt="{{ group.name }}">
-  <ng-container *ngFor="let user of group.userList">
-    <img src="{{ user.picturePath }}" alt="{{ user.nickname }}">
-  </ng-container>
-  <div class="dropdown">
-    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false">
-      <i class="fa fa-ellipsis-v"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" routerLink="/create-group/">Create Group</a>
-      <a class="dropdown-item" routerLink="/add-friends">Add friends</a>
-      <a class="dropdown-item" routerLink="/login">Login</a>
-      <a class="dropdown-item" routerLink="/register">Register</a>
+  <header class="fixed-top">
+    <img src="{{ group.picturePath}}" alt="{{ group.name }}">
+    <ng-container *ngFor="let user of group.userList">
+      <img src="{{ user.picturePath }}" alt="{{ user.nickname }}">
+    </ng-container>
+    <div class="dropdown">
+      <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <i class="fa fa-ellipsis-v"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" routerLink="/create-group/">Create Group</a>
+        <a class="dropdown-item" routerLink="/add-friends">Add friends</a>
+        <a class="dropdown-item" routerLink="/login">Login</a>
+        <a class="dropdown-item" routerLink="/register">Register</a>
+      </div>
     </div>
+  </header>
+
+  <div id="chatbox">
+    <ng-container *ngFor="let message of messages">
+      <!-- TODO: verify if trackBy can improve perf-->
+      <section [ngClass]="message.author.id === cs.connectedUser.id ? 'userc': 'friend'">
+        <p>{{ message.content }}</p>
+        <p class="user-name">{{ message.author.id === cs.connectedUser.id ? 'You': message.author.nickname }}</p>
+      </section>
+    </ng-container>
   </div>
-</header>
 
-<div id="chatbox">
-  <ng-container *ngFor="let message of messages">
-    <!-- TODO: verify if trackBy can improve perf-->
-    <section [ngClass]="message.author.id === cs.connectedUser.id ? 'userc': 'friend'">
-      <p>{{ message.content }}</p>
-      <p class="user-name">{{ message.author.id === cs.connectedUser.id ? 'You': message.author.nickname }}</p>
-    </section>
-  </ng-container>
-</div>
+  <form class="fixed-bottom" (ngSubmit)=sendMessage()>
+    <textarea class="col-12" rows="2" name=messageToSend.content [(ngModel)]=messageToSend.content></textarea>
+    <button class="col-12" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+    </button>
+  </form>
 
-<form class="fixed-bottom" (ngSubmit)=sendMessage()>
-  <textarea class="col-12" rows="2" name=messageToSend.content [(ngModel)]=messageToSend.content></textarea>
-  <button class="col-12" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
-  </button>
-</form>
+  <div id="bottom" class="footerstamp"></div>
