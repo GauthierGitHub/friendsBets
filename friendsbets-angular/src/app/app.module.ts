@@ -16,14 +16,15 @@ import { LoginComponent } from './connection/login/login.component';
 import { RegisterComponent } from './connection/register/register.component';
 import { UserFormComponent } from './connection/user-form/user-form.component';
 import { MainComponent } from './main/main.component';
-import { HeaderComponent } from './main/header/header.component';
+import { HeaderComponent } from './structure/header/header.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CreateGroupComponent } from './main/group/create-group/create-group.component';
 import { ManageGroupComponent } from './main/group/manage-group/manage-group.component';
 import { AddFriendsComponent } from './main/friends/add-friends/add-friends.component';
 import { ManageFriendsComponent } from './main/friends/manage-friends/manage-friends.component';
-import { MessageComponent } from './main/message/message.component';
+import { MessageComponent } from './main/message/message-box/message.component';
 import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from './structure/footer/footer.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { RouterOutlet } from '@angular/router';
     AddFriendsComponent,
     ManageFriendsComponent,
     MessageComponent,
+    FooterComponent,
   ],
   imports: [
     HttpClientModule,

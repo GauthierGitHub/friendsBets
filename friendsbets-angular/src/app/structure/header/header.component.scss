@@ -1,0 +1,36 @@
+/* Sticky header fixed by fixed-top bootstrap class */
+header {
+  width: 100vw; // vw = % of window width size
+  height: 5vh; // vh = % of window heigt size
+  background-color: darkblue;
+  color: white;
+  display: inline-block;
+}
+
+header > img {
+  float: left;
+  max-width: 2em;
+  max-height: 2em;
+}
+
+header > h1 {
+  float: left;
+}
+
+header > .dropdown {
+  float: right;
+  width: 10%;
+}
+
+/* Keep button in header */
+.dropdown-toggle {
+  padding: 10%;
+  width: 100%;
+  /* Need to declare parent's height */
+  height: 100%;
+}
+
+/* Delete arrow from dropdown */
+.dropdown-toggle::after {
+  display: none;
+}

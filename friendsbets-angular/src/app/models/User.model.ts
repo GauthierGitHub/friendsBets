@@ -1,4 +1,4 @@
-import { IFriendsBetsModels } from './abstract class & interfaces/IFriendsBetsModels';
+import { IFriendsBetsModels } from './models-interfaces/IFriendsBetsModels';
 
 export class User implements IFriendsBetsModels {
 

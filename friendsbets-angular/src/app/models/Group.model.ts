@@ -1,5 +1,5 @@
 import { User } from './User.model';
-import { IFriendsBetsModels } from './abstract class & interfaces/IFriendsBetsModels';
+import { IFriendsBetsModels } from './models-interfaces/IFriendsBetsModels';
 
 export class Group implements IFriendsBetsModels {
     

@@ -1,8 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
 
-* {
-    margin: 0, auto;
-    padding: 0;
-  }
+/*||||||||||||||||||||||||||||||||
+||||||||||||| GLOBAL |||||||||||||
+||||||||||||||||||||||||||||||||*/
+
+* { margin: 0, auto; padding: 0;}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Disable scrollbar but still able to scroll */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/*||||||||||||||||||||||||||||||||
+||||||||||||| HEADERS ||||||||||||
+||||||||||||||||||||||||||||||||*/
+
+/* Sticky header fixe by fixed-top bootstrap class */
+header {
+  width: 100vw; // vw = % of window width size
+  height: 5vh; // vh = % of window heigt size
+  background-color: darkblue;
+  color: white;
+  display: inline-block;
+}
+
+/* Keep space for header */
+.headerstamp{
+  height: 5vh; // same as header's height
+}
+
+/* Users or Groups img */
+header > img {
+  float: left;
+  max-width: 2em;
+  max-height: 2em;
+}
+
+header > h1 {
+  float: left;
+}
+
+header > .dropdown {
+  float: right;
+  width: 10%;
+}
+
+/* Keep button in header */
+.dropdown-toggle {
+  padding: 10%;
+  width: 100%;
+  /* Need to declare parent's height */
+  height: 100%;
+}
+
+/* Delete arrow from dropdown */
+.dropdown-toggle::after {
+  display: none;
+}
+
+
+/*||||||||||||||||||||||||||||||||
+|||||||| FOOTER / CHATBOX ||||||||
+||||||||||||||||||||||||||||||||*/

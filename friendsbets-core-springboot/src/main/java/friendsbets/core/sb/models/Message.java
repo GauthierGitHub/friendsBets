@@ -1,6 +1,5 @@
 package friendsbets.core.sb.models;
 
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,7 +13,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 /**
  * @Entity
@@ -22,8 +23,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  *
  */
 @Entity
+// id generator for repeated objects
 @JsonIdentityInfo(scope = Message.class, generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@Table(name="MessageFbs")
+@Table(name = "MessageFbs")
 public class Message {
 
 	@Id
@@ -34,13 +36,15 @@ public class Message {
 	private User author;
 	@ManyToOne
 	@JoinColumn(nullable = false)
+	@JsonIdentityReference(alwaysAsId = true) // only id in json
 	private Group group;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP) // TODO: verify beetwen angular date or database timestamp
 	private Date date;
 	@Column(nullable = false)
 	private String content; // TODO limit to 255
-	
-	public Message(){}
+
+	public Message() {
+	}
 
 	public Message(User user, Group group, Date messageDate, String content) {
 		this.author = user;
@@ -88,6 +92,5 @@ public class Message {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
 
 }

@@ -4,7 +4,7 @@ import { RegisterComponent } from './connection/register/register.component';
 import { LoginComponent } from './connection/login/login.component';
 import { MainComponent } from './main/main.component';
 import { CreateGroupComponent } from './main/group/create-group/create-group.component';
-import { MessageComponent } from './main/message/message.component'
+import { MessageComponent } from './main/message/message-box/message.component'
 import { AddFriendsComponent } from './main/friends/add-friends/add-friends.component';
 
 const routes: Routes = [

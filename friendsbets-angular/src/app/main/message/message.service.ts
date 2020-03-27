@@ -15,6 +15,11 @@ export class MessageService {
 
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * Lighten a message and writte it in db.
+   * @param m 
+   * @param success function if subscribe succeed
+   */
   public saveMessage(m: Message, success?: () => void) {
     m.id = undefined;
     // Simplify author.
@@ -27,10 +32,37 @@ export class MessageService {
     return this.httpClient.post(this.url, m).subscribe(() => success());
   }
 
-  findMessageForOneGroup(id: string, offset?: string): Observable<Message[]> {
+  /**
+   * Find twenty messages, with an offset or not.
+   * 
+   * @param id Group id.
+   * @param offset 
+   */
+  public findTwenty(id: string, offset?: string): Observable<Message[]> {
     if (offset)
       return this.httpClient.get<Message[]>(this.url + id + "/" + offset);
     else
       return this.httpClient.get<Message[]>(this.url + id);
+  }
+
+  public rebuildMessagesUsers(lm: Message[]): void {
+    let users: User[] = new Array();
+    // Push all user in array.
+    lm.forEach(x => {
+      if (typeof(x.author) == "object")
+        users.push(x.author);
+    })
+    // Then fill the message array.
+    lm.forEach( x => {
+      if (typeof(x.author) == "number") {
+        for (let i = 0; i < users.length; i++) {
+          let a: any = x.author; // needed for comparaison
+          if ( users[i].id == a) {
+            x.author = users[i];
+            continue;
+          }
+        }
+      }
+    })
   }
 }

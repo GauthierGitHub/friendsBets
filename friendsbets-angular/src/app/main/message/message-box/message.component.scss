@@ -1,0 +1,80 @@
+@import '../../../structure/header/header.component.scss';
+
+/* Add styles to the form container */
+/* Sticky fixed by fixed-bottom bootstrap class */
+form {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+}
+
+/* Full-width textarea */
+textarea {
+  padding: 15px;
+  margin: 5px 0 1px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+}
+
+/* When the textarea gets focus, do something */
+textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/send button */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* Needed for keep space for sticky bottom sendbox */
+#chatbox{
+  margin-bottom: 65%;
+}
+
+/* USER BOX */
+
+.userc {
+  margin-top: 5px;
+  width: auto;
+  background-color: rgba(98, 105, 98, 0.459);
+  border: 2px groove rgba(28,110,164,0.5);
+  border-radius: 40px 0px 0px 40px;
+}
+
+.userc *{
+  padding: 3px 10px 0 0px;
+  text-align: right;
+}
+
+.userc .user-name {
+  text-align: right;
+  font-size: 70%;
+  font-style: italic;
+}
+
+
+/* FRIENDS BOX */
+
+.friend {
+  margin-top: 5px;
+  width: auto;
+  background-color: rgba(68, 88, 107, 0.459);
+  border: 2px groove rgba(28,110,164,0.5);
+  border-radius: 0 40px 40px 0;
+}
+
+.friend *{
+  padding: 3px 0 0 10px;
+}
+
+.friend .user-name {
+  font-size: 70%;
+  font-style: italic;
+}

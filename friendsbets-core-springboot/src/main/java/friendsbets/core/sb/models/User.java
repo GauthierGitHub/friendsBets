@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 //    @JsonSubTypes.Type(value = FbsUser.class, name = "User"),
 //    @JsonSubTypes.Type(value = Administrator.class, name = "Administrator")
 //})
+
 @Entity
 // @JsonTypeInfo needed for add class name on JSON, needed for unserialiaze them on angular
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jsonType")
@@ -48,6 +49,7 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String nickname;
 	@Column(nullable = false)
+	@JsonIgnore
 	private String password;
 	@Column(unique = true, nullable = false)
 	private String email;

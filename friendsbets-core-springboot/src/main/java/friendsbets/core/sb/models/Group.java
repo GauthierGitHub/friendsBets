@@ -15,8 +15,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * @Entity
@@ -24,7 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
  *
  */
 @Entity
+// Add jsonType property.
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jsonType")
+// Serialize to just an id in graph cluster.
+@JsonIdentityInfo(scope = User.class, generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name="GroupFbs")
 public class Group {
 	@Id

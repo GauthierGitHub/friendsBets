@@ -57,7 +57,7 @@ export class Serializer {
                     o["picturePath"] = "assets/img/" + o["picturePath"];
                 else
                     o["picturePath"] = "assets/img/group.png";
-                o["userList"].forEach(user => this.addPicturePath(user));
+                    o["userList"].forEach(user => this.addPicturePath(user));
                 break;
             default:
                 break;

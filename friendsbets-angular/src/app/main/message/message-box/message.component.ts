@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { GroupsService } from '../group/groups.service';
+import { GroupsService } from '../../group/groups.service';
 import { Group } from 'src/app/models/Group.model';
 import { ConnectionService } from 'src/app/connection/connection.service';
 import { Message } from 'src/app/models/Message.model';
-import { MessageService } from './message.service';
+import { MessageService } from '../message.service';
 import { Serializer } from 'src/app/models/serializer/Serializer';
 
 @Component({
@@ -15,7 +15,7 @@ import { Serializer } from 'src/app/models/serializer/Serializer';
 export class MessageComponent implements OnInit {
 
   group: Group;
-  @Input() messageToSend: Message;
+  messageToSend: Message;
   messages: Message[];
 
 
@@ -35,18 +35,19 @@ export class MessageComponent implements OnInit {
       this.messageToSend = new Message(-1, this.cs.connectedUser, this.group, ""); 
     });
     // Find messages.
-    this.ms.findMessageForOneGroup(id).subscribe(x => {
-      // Serialize all messages.
+    this.ms.findTwenty(id).subscribe(x => {
+      // Serialize all messages if they exist.
       if(x) {
         x.forEach(mess => { Serializer.toTypeScriptObject<Message>(mess, Message);});
-        this.messages = x;
+        this.messages = x.reverse();
+        // Reconstruct users.
+        this.ms.rebuildMessagesUsers(this.messages);
       }
-      else {
+      else {// TODO: else
         console.log("No messages for this group");
-        
-        // TODO: else
       }
-    })
+    });
+    window.scrollTo(0,document.body.scrollHeight);
   }
 
   /**
@@ -59,6 +60,7 @@ export class MessageComponent implements OnInit {
     this.ms.saveMessage(this.messageToSend, () => {
       this.messages.push(this.messageToSend);
       this.messageToSend = new Message(-1, this.cs.connectedUser, this.group, ""); 
+      
     });
   }
 }

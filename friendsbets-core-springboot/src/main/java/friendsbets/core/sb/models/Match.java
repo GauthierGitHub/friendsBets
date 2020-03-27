@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 
 /**
@@ -16,6 +19,7 @@ import javax.persistence.Table;
  * TODO keep match persistant or not like Graze.OsmElements ?
  */
 @Entity
+@JsonIdentityInfo(scope = Message.class, generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name="MatchFbs")
 public class Match {
 	// TODO convert/parse API. 
