@@ -9,18 +9,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
   user: User;
   title: string = "Login"
   label: string = "Go !"
 
   constructor(private cs: ConnectionService, private router: Router) { }
 
-  ngOnInit(): void {
-    // TODO: Remove me !
-    this.user = this.cs.connectedUser == null ? new User(-1, "MADEBYLOGIN", "defaultEmail", "defautlPassword") : this.cs.connectedUser;
+  ngOnInit() {
+    // Needed by user-form component
+    this.user = new User(-1);
   }
 
-  logUser() {
+  logUser() { 
     this.cs.login(
       this.user.email, this.user.password
       , () => this.router.navigateByUrl("main") // success

@@ -19,14 +19,13 @@ export class UserFormComponent implements OnInit {
   user: User;
   @Output("formSubmited")
   submited: EventEmitter<User> = new EventEmitter<User>();
+  //! TODO: remove me !
   i: number = 1;
 
   constructor(private cs: ConnectionService) { }
 
   ngOnInit(): void {
-    this.user = this.cs.connectedUser ?
-      this.cs.connectedUser :
-      new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
+    // this.user = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
     
   }
 
@@ -34,6 +33,10 @@ export class UserFormComponent implements OnInit {
     this.submited.emit(this.user);
   }
 
+  /**
+   * ! TODO: remove me !
+   * Recursivity for keep order in asynchrone register.
+   */
   fillingDb() {
     if(this.i<15) {
       let user : User = new User(0, "User"+this.i, "Email"+this.i, "Password"+this.i);

@@ -27,8 +27,10 @@ export class ConnectionService {
     m.id = undefined;
     let u = Serializer.serializeToJSON(m);
     this.httpClient.post<User>(this.url + "register", u).subscribe(x => {
-      this._connectedUser = Serializer.toTypeScriptObject(x, User);
-      console.log(this._connectedUser); 
+      // Delete password
+      x.password = undefined;
+      // Connect use
+      this._connectedUser = Serializer.toTypeScriptObject(x, User); 
       success();
     });
   }
@@ -56,7 +58,7 @@ export class ConnectionService {
    * @param error 
    */
   public login(email: string, password: string, success?: () => void, error?: () => void) {
-    // TODO: token
+    // TODO: token    
     // let token: string = this.cookieServ.get("token");
     return this.httpClient.post<User>(this.url + "login", {}, {
       params: {
@@ -68,6 +70,10 @@ export class ConnectionService {
         this.connectedUser = Serializer.toTypeScriptObject(x, User);
         this.cookieServ.set("token", x.token, 10);
         if (success) success();
+        //! Remove me !
+        console.log("connectedUser = "); 
+        console.log(this.connectedUser);
+      
       }
       else { // server has returned null
         // TODO: error

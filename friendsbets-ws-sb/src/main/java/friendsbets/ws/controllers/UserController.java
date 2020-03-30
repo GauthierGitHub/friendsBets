@@ -36,12 +36,6 @@ public class UserController {
 		return us.findById(id);
 	}
 
-	@DeleteMapping("/{id}")
-//	@RolesAllowed({"Administrator"}) ?
-	public void delete(@PathVariable int id) {
-		us.delete(us.findById(id));
-	}
-
 	@GetMapping({ "/search", "/search/{pattern}" })
 	public Set<User> findByAliasOrEmailLike(@PathVariable(name = "pattern", required = false) String pattern) {
 //		Logger.getLogger(getClass()).info("//////////!!! search = " + pattern);

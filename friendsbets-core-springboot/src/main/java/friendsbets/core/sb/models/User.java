@@ -48,8 +48,7 @@ public class User {
 	private int id;
 	@Column(unique = true, nullable = false)
 	private String nickname;
-	@Column(nullable = false)
-	@JsonIgnore
+	@Column(nullable = false, columnDefinition = "BINARY (60)") // Better for BCryptPasswordEncoder
 	private String password;
 	@Column(unique = true, nullable = false)
 	private String email;
@@ -73,11 +72,7 @@ public class User {
 	/**
 	 * TODO: delete this constructor
 	 */
-	public User() {
-		this.nickname = "defaultnickname";
-		this.email = "defaultemail";
-		this.password = "defaultpassword";
-	}
+	public User() {	}
 
 	public User(String nickname, String email, String password) {
 		this.nickname = nickname;
@@ -175,10 +170,9 @@ public class User {
 		this.tokenLastUsed = tokenLastUsed;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "FriendsBetsUser [id=" + id + ", nickname=" + nickname + ", password=" + password + ", email=" + email
-//				+ ", grpList=" + grpList + "]";
-//	}
+	@Override
+	public String toString() {
+		return "FriendsBetsUser [id=" + id + ", nickname=" + nickname + ", password=" + password + ", email=" + email;
+	}
 
 }

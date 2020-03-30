@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   user: User;
 
   constructor(private cs: ConnectionService) {
+    //! remove me !
     this.user = this.cs.connectedUser == null ?
          new User(-1, "MadeByHeader", "fromMainCompo", "fromMainCompo" ) : this.cs.connectedUser;
    }

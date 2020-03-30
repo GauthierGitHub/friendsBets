@@ -1,11 +1,9 @@
 package friendsbets.ws.controllers;
 
-import java.time.Duration;
-
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import friendsbets.core.sb.models.User;
+import friendsbets.core.sb.services.AuthenticationService;
 import friendsbets.core.sb.services.UserService;
 
 @RestController
@@ -23,31 +22,38 @@ import friendsbets.core.sb.services.UserService;
 public class AuthenticationController {
 
 	@Autowired
+	private AuthenticationService as;
+	
+	@Autowired
 	private UserService us;
 
-//	@RequestMapping(value="/login", method = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
+	@PostMapping("/register")
+	public User register(@RequestBody User u) {
+		return as.register(u);
+	}
+	
 	@PostMapping("/login")
 	public User login(@RequestParam String email, @RequestParam String password) {
-//		Logger.getLogger(getClass()).info("/authentication/login");
-		return us.findByUserMailAndPassword(email, password);
-	}
-
-	@PostMapping("/register")
-	public User register(@RequestBody User m) {
-		return us.save(m);
+		return as.login(email, password);
 	}
 
 	@PutMapping("update")
-	public void update(@RequestBody User m) {
-		us.update(m);
+	public void update(@RequestBody User u) {
+		as.update(u);
 	}
 
+	@DeleteMapping("/{id}")
+//	@RolesAllowed({"Administrator"}) ?
+	public void delete(@PathVariable int id) {
+		as.delete(us.findById(id));
+	}
+	
 //	@GetMapping("/logout") public void logout(@RequestParam String email) { 
-//		us.logout(email); // TODO: must get connected Users from the request 	
+//		as.logout(email); // TODO: must get connected Users from the request 	
 //	}
 //	
 //	@PostMapping("/byToken") public void byToken(@RequestParam String token) {
-//		 us.findByToken(token, Duration.ofMinutes(30), true);
+//		 as.findByToken(token, Duration.ofMinutes(30), true);
 //	}
 
 	
@@ -57,6 +63,9 @@ public class AuthenticationController {
 	
 //	@Autowired
 //	private Environment env;
+	
+//	@RequestMapping(value="/login", method = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
+
 
 //	@RequestMapping(value="/signin", method=RequestMethod.OPTIONS, produces = "application/json")
 //	public User signin(@RequestParam String email, @RequestParam String password) {

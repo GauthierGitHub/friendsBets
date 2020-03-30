@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import friendsbets.core.sb.services.UserService;
 
@@ -18,6 +19,8 @@ public class CoreApplication {
 		Logger.getLogger("		CORE APP").info("		!! CORE IS RUNNING !!");
 	}
 	
+	///// PERSONAL BEANS /////
+	
 	@Bean
 	public CommandLineRunner test(UserService ms) {
 		return (args2) -> {
@@ -26,4 +29,9 @@ public class CoreApplication {
 			Logger.getLogger(getClass()).info("		!! CORE IS RUNNING !!");
 		};
 	}
+	
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

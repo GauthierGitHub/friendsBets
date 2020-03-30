@@ -17,9 +17,8 @@ export class RegisterComponent implements OnInit {
   constructor(private cs: ConnectionService, private router: Router) { }
 
   ngOnInit(): void {
-    // TODO: Remove me !
-    this.user = this.cs.connectedUser == null ? new User(-1, "MADEBYREGISTER", "defaultEmail", "defautlPassword") : this.cs.connectedUser;
-
+    // Needed by user-form component
+    this.user = new User(-1);
   }
 
   registerUser() {

@@ -7,6 +7,8 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import friendsbets.core.sb.aspects.deletepasswords.DeletePassword;
+import friendsbets.core.sb.aspects.deletepasswords.DeletePasswords;
 import friendsbets.core.sb.models.User;
 import friendsbets.core.sb.repositories.UserRepository;
 
@@ -30,31 +32,33 @@ public class UserService {
 //			.addRule("alias", "Alias \"Pierre\" is not allowed !", 
 //					me -> !me.getNickname().toLowerCase().equals("pierre"));
 
+	@DeletePassword
 	public User save(User u) {
 		ur.save(u);
 		return ur.findById(u.getId()).orElseThrow();
 	}
 
-	public void delete(User u) {
-		ur.delete(u);
-	}
-
-	public void update(User u) {
-		ur.save(u);
-	}
-
+	@DeletePasswords
 	public List<User> findAll() {
 		return ur.findAll();
 	}
 
+	@DeletePassword
 	public User findById(int id) {
 		return ur.findById(id).orElseThrow();
 	}
 
+	@DeletePassword
+	public User findByEmail(String email) {
+		return ur.findByEmail(email);
+	}
+
+	@DeletePassword
 	public User findByUserMailAndPassword(String email, String password) {
 		return ur.findByEmailAndPassword(email, password);
 	}
-	
+
+	@DeletePasswords
 	public Set<User> findFriends(int id) {
 		return ur.findFriends(id); // TODO: with user ? see repository
 	}
@@ -64,19 +68,14 @@ public class UserService {
 		friends.stream().forEach(x -> ur.addFriends(id, x)); // TODO: Do with list ?
 	}
 
+	@DeletePasswords
 	public Set<User> findAllOthers(int id) {
-		// TODO: see difference; List or Set ?
-//		Set<User> result = new HashSet<>();
-//		ur.findAll().stream().distinct().filter(x -> x != u).forEach(y -> result.add(y));;
-//		List<User> result = ur.findAll();
-//		result.remove(id);
-//		return result;
+		Set<User> result = ur.findAllOthers(id);
+		result.stream().forEach(x -> x.setPassword(null));
 		return ur.findAllOthers(id);
 	}
-//	public List<Group> findAllGroupForOneUser(User u) {
-//		return ur.findAllGroupForOneUser(u);
-//	}
 
+	@DeletePasswords
 	public Set<User> findByNicknameOrEmailLike(String pattern) {
 		return ur.findByNicknameOrEmailLike(pattern);
 	}

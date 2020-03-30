@@ -11,10 +11,10 @@ import friendsbets.core.sb.models.User;
 public class UserServiceSpringBootTest {
 	
 	@Autowired
-	UserService us;
+	UserService us; //tested class
 	
 	@Mock
-	User u;
+	User u1 = new User("a", "a", "a");
 	
 	@InjectMocks
 	GroupService gs;

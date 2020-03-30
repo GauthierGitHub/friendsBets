@@ -29,7 +29,7 @@ export class Serializer {
      * @param type TypeScript Class that neede
      */
     static toTypeScriptObject<T>(o: Object, type: (new () => T)): T { 
-        // TODO: verify perf
+        // TODO: verify perf       
         o = JSON.parse(JSON.stringify(o).replace(/,\\"|{\\"/g, x => x + "_")); //regEx: ," or {"
         // add pictures or defaults pictures
         if ("picturePath" in o) // TODO: ask where store img
