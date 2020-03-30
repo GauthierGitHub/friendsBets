@@ -74,7 +74,8 @@ public class User {
 	 */
 	public User() {	}
 
-	public User(String nickname, String email, String password) {
+	public User(int id, String nickname, String email, String password) {
+		this.id = id;
 		this.nickname = nickname;
 		this.email = email;
 		this.password = password;
