@@ -52,7 +52,7 @@ class UserServiceTest {
 		assertThrows(NoSuchElementException.class, () -> us.findById(5), "Searching a non-existing user should throw a NoSuchElementException exception");
 		// behavior test
 		verify(ur, times(1)).findById(1);
-		verify(ur, times(5)).findById(5);
+		verify(ur, times(1)).findById(5);
 		verifyNoMoreInteractions(ur);
 	}
 	

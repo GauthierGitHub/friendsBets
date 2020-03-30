@@ -11,7 +11,8 @@
     <maven.compiler.target>11.0.5</maven.compiler.target>
   </properties>
   <dependencies>
-    <!--  UNIT TEST -->
+    <!--  UNIT TEST OLDER VERSIONS -->
+    <!-- 
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -28,7 +29,9 @@
       <artifactId>mockito-junit-jupiter</artifactId>
       <version>3.1.0</version>
     </dependency>
+    -->
   </dependencies>
+  
   <modules>
     <module>friendsbets-core</module>
     <module>friendsbets-core-springboot</module>
