@@ -11,37 +11,31 @@ import { CookieService } from 'ngx-cookie-service';
 export class ConnectionService {
 
   private _connectedUser: User;
-  private url: string = "http://localhost:8080/"
+  private url: string = "http://localhost:8080/authentication/"
 
   constructor(private httpClient: HttpClient, private cookieServ: CookieService) {
     // TODO: Remove me !
     if (!this.connectedUser) this.login("Email8", "Password8");
-    
   }
 
   /**
-    * webservice return the user just writted in database
+    * Webservice return the user who is just writted in database.
     * @param m 
     * @param success 
     */
   public register(m: User, success?: () => void): void {
     m.id = undefined;
     let u = Serializer.serializeToJSON(m);
-    this.httpClient.post<User>(this.url + "user/", u).subscribe(x => {
+    this.httpClient.post<User>(this.url + "register", u).subscribe(x => {
       this._connectedUser = Serializer.toTypeScriptObject(x, User);
       console.log(this._connectedUser); 
       success();
     });
   }
 
-  /**
-   * webservice return the user just writted in database
-   * @param m 
-   */
   public update(m: User): void {
     // TODO: Verify if serializer is needed
-    let url2 = this.url + "user/" + m.id;
-    this.httpClient.put(url2, m).subscribe(x => this._connectedUser = m);
+    this.httpClient.put(this.url + "update", m).subscribe(x => this._connectedUser = m);
   }
 
   /**
@@ -50,13 +44,21 @@ export class ConnectionService {
    */
   public delete(m: User): void {
     // TODO: Error and succes
-    this.httpClient.delete<User>(this.url + "user/" + m.id).subscribe(x => console.log("delete ok"));
+    this.httpClient.delete<User>(this.url + "delete/" + m.id).subscribe(x => console.log("delete ok"));
   }
 
+  /**
+   * Webservice add a token, writte user in db and return the user.
+   * TODO: token
+   * @param email 
+   * @param password 
+   * @param success 
+   * @param error 
+   */
   public login(email: string, password: string, success?: () => void, error?: () => void) {
     // TODO: token
     // let token: string = this.cookieServ.get("token");
-    return this.httpClient.post<User>(this.url + "authentication/login", {}, {
+    return this.httpClient.post<User>(this.url + "login", {}, {
       params: {
         "email": email,
         "password": password,
@@ -89,20 +91,6 @@ export class ConnectionService {
   //     //this.cookieServ = this.cookieServ.set();
   //   }, error, success/* , success(this.connectedMember), error() */);
   // }
-
-  // public findAll(): Observable<User[]> {
-  //   return this.httpClient.get<User[]>(this.url + "user/");
-  // }
-
-  // public findById(id: number): Observable<User> {
-  //   let url = this.url + "user/" + id;
-  //   return this.httpClient.get<User>(url);
-  // }
-
-  // public findByAliasOrEmailLike(search: string): Observable<User[]> {
-  //   return this.httpClient.get<User[]>(this.url + "search/" + search);
-  // }
-
 
   public set connectedUser(connectedUser: User) {
     this._connectedUser = connectedUser;

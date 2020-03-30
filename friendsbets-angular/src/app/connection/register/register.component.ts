@@ -11,20 +11,17 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   user: User;
-  title: string = "Register"
-  label: string = "Register !"
+  title: string = "Register";
+  label: string = "Register !";
 
   constructor(private cs: ConnectionService, private router: Router) { }
 
   ngOnInit(): void {
-    // hydrating object
-    // this.u = new User(-1, "defaultAlias", "defaultEmail", "defaultPassword");
-    // this.u = this.cs.connectedUser;
     // TODO: Remove me !
     this.user = this.cs.connectedUser == null ? new User(-1, "MADEBYREGISTER", "defaultEmail", "defautlPassword") : this.cs.connectedUser;
 
   }
-  
+
   registerUser() {
     this.cs.register(this.user, () => this.router.navigateByUrl("main"));
   }

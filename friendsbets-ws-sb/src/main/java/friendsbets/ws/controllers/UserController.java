@@ -36,26 +36,8 @@ public class UserController {
 		return us.findById(id);
 	}
 
-	/**
-	 * 
-	 * {"jsonType": "User", "id": 39, "alias": "aa", "image": "undefinedimageUrl",
-	 * "password": "aa", "email": "aa", "token": null, "tokenLastUsed": null}
-	 * 
-	 * @param m
-	 */
-	@PostMapping("")
-	public User save(@RequestBody User m) {
-		return us.save(m);
-	}
-
-	@PutMapping("/{id}")
-	public void update(@PathVariable int id, @RequestBody User m) {
-		m.setId(id);
-		us.update(m);
-	}
-
 	@DeleteMapping("/{id}")
-//	@RolesAllowed({"Administrator"})
+//	@RolesAllowed({"Administrator"}) ?
 	public void delete(@PathVariable int id) {
 		us.delete(us.findById(id));
 	}
