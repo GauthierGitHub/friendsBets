@@ -76,6 +76,6 @@ public class UserService {
 	@DeletePasswords
 	public Set<User> findByNicknameOrEmailLike(String pattern) {
 		return ur.findByNicknameOrEmailLike(pattern);
-	}
+	} 
 
 }

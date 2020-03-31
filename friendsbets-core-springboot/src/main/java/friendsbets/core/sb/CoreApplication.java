@@ -1,16 +1,12 @@
 package friendsbets.core.sb;
 
 import org.jboss.logging.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import friendsbets.core.sb.models.User;
-import friendsbets.core.sb.services.UserService;
 
 @SpringBootApplication
 @EnableAutoConfiguration
@@ -27,7 +23,7 @@ public class CoreApplication {
 //	UserService us;
 	
 	@Bean
-	public CommandLineRunner test(UserService ms) {
+	public CommandLineRunner test(/*UserService us*/) {
 		return (args2) -> {
 //			System.out.println(ms.findAll());
 //			System.out.println(ms.findById(1000));

@@ -24,6 +24,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import friendsbets.core.sb.models.User;
 import friendsbets.core.sb.repositories.UserRepository;
 
+
 @SpringBootTest
 class UserServiceTest {
 	
@@ -42,6 +43,7 @@ class UserServiceTest {
 	User u4 = new User("nickname4", "email4", "password4");
 	List<User> lu = new ArrayList<User>();
 	Set<User> friends = new HashSet<User>();
+	Set<User> others = new HashSet<User>();
 	
 	public UserServiceTest() {
 		lu.add(u1);
@@ -50,6 +52,9 @@ class UserServiceTest {
 		lu.add(u4);
 		friends.add(u2);
 		friends.add(u3);
+		others.add(u2);
+		others.add(u3);
+		others.add(u4);
 	}
 			
 	// reseting mocks after each use
@@ -58,12 +63,13 @@ class UserServiceTest {
 		reset(ur);
 	}
 	
-//	@Test
+	@Test
 	void save() { // TODO: make it works
 		// configuring mock
-		when(ur.save(u1)).thenReturn(Optional.of(Optional.of(u1).orElseThrow()).orElseThrow());
+		when(ur.findById(1)).thenReturn(Optional.of(u1));
+		when(ur.save(u1)).thenReturn(ur.findById(u1.getId()).orElseThrow());
 		// state test
-		assertEquals(Optional.of(Optional.of(u1).orElseThrow()).orElseThrow()
+		assertEquals(u1
 				, us.save(u1)
 				, "yo");
 		// behavior test
@@ -121,8 +127,16 @@ class UserServiceTest {
 	}
 	
 	@Test
-	void addFriends() {
+	void addFriends() { // TODO: integration test ?
 //		when(ur.addFriends(1, u2)); // repository write user one by one
+	}
+	
+	@Test
+	void findAllOthers() {
+		when(ur.findAllOthers(1)).thenReturn(others);
+		assertEquals(others, us.findAllOthers(1));
+		verify(ur, times(1)).findAllOthers(1);
+		verifyNoMoreInteractions(ur);
 		
 	}
 	
