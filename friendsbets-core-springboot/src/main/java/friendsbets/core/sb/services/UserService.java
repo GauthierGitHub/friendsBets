@@ -34,12 +34,13 @@ public class UserService {
 
 	@DeletePassword
 	public User save(User u) {
-		ur.save(u);
+		System.out.println(ur);
+		ur.save(u); // automatic dirty checking set u.id
 		return ur.findById(u.getId()).orElseThrow();
 	}
 
 	@DeletePasswords
-	public List<User> findAll() {
+	public List<User> findAll() { // TODO: set not list
 		return ur.findAll();
 	}
 
@@ -54,7 +55,7 @@ public class UserService {
 	}
 
 	@DeletePassword
-	public User findByUserMailAndPassword(String email, String password) {
+	public User findByEmailAndPassword(String email, String password) {
 		return ur.findByEmailAndPassword(email, password);
 	}
 
@@ -64,14 +65,11 @@ public class UserService {
 	}
 	
 	public void addFriends(int id, HashSet<User> friends) {
-		System.out.println(friends);
 		friends.stream().forEach(x -> ur.addFriends(id, x)); // TODO: Do with list ?
 	}
 
 	@DeletePasswords
 	public Set<User> findAllOthers(int id) {
-		Set<User> result = ur.findAllOthers(id);
-		result.stream().forEach(x -> x.setPassword(null));
 		return ur.findAllOthers(id);
 	}
 
