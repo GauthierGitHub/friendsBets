@@ -29,7 +29,7 @@ public class Bet {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Match match;
@@ -72,11 +72,11 @@ public class Bet {
 		this.betType = betType;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

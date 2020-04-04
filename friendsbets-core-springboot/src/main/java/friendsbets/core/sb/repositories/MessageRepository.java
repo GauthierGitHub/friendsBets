@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import friendsbets.core.sb.models.Message;
 
-public interface MessageRepository extends JpaRepository<Message, Integer> {
+public interface MessageRepository extends JpaRepository<Message, Long> {
 
 
 	@Query(value="SELECT * FROM MessageFbs "

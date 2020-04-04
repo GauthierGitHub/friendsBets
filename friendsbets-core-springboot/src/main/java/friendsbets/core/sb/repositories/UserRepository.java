@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import friendsbets.core.sb.models.User;
 
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByEmailAndPassword(String email, String password);
 
@@ -31,7 +31,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 						+ "FROM UserFbs_friends "
 						+ "WHERE UserFbs_friends.User_id = ?1)"
 			, nativeQuery = true)
-	Set<User> findAllOthers(int id); // or User u ?
+	Set<User> findAllOthers(long id); // or User u ?
 
 	/**
 	 * native mysql 
@@ -46,13 +46,13 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 			+ "RIGHT JOIN UserFbs_friends ON UserFbs.id = UserFbs_friends.friends_id "
 			+ "WHERE UserFbs_friends.User_id = ?1" // ?1.get(id) OR ?1.id ??????
 			, nativeQuery = true)
-	Set<User> findFriends(int id);
+	Set<User> findFriends(long id);
 
 	/**
 	 * Native MySql
 	 * @Modfying & @Transactional both needed
 	 * TODO: Transactional annotations in service ?
-	 * Transactional actives automatic dirty checking
+	 * Transactional active automatic dirty checking
 	 * @param id
 	 * @param friend
 	 */
@@ -62,7 +62,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 			"INSERT INTO UserFbs_friends(User_id, friends_id) "
 			+ "VALUES (?1, ?2)",
 			nativeQuery = true)
-	void addFriends(int id, User friend);
+	void addFriends(long id, User friend);
 
 	// TODO: Create an index on UserFbs.email
 	User findByEmail(String email);

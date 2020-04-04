@@ -29,7 +29,7 @@ export class MessageService {
     // Date stamp.
     m.date = new Date();
     m = Serializer.serializeToJSON(m);
-    return this.httpClient.post(this.url, m).subscribe(() => success());
+    return this.httpClient.post(this.url, m).subscribe(() => {if(success) success()});
   }
 
   /**

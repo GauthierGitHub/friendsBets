@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//TODO: REMOVE CSRF DISABLE
 			.csrf().disable()
 			.authorizeRequests()
-				.antMatchers("/", "/authentication/login/*", "users").permitAll()
+				.antMatchers("/", "/authentication/login/*", "/users").permitAll()
 //				.anyRequest().authenticated()
 				.and()
 //			.formLogin()

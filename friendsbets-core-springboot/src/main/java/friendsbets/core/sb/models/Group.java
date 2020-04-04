@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Group {
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	@Column(nullable = true)
 	private String name;
 //	@ManyToOne
@@ -64,10 +64,10 @@ public class Group {
 //		userList.add(adminGroup);
 //	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

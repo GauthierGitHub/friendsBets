@@ -26,7 +26,7 @@ public class Match {
 	
 	@Id
 	@GeneratedValue // TODO: CHANGE FOR API ID ?
-    private int id; // id set by API
+    private long id; // id set by API
     private String matchStartDate;
     private int[] result =  new int[2];
     //private Object winner; Object can't be use by hibernate
@@ -35,11 +35,11 @@ public class Match {
     
     public Match() {}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

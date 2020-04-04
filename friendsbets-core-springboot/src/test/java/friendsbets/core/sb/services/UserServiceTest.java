@@ -24,7 +24,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import friendsbets.core.sb.models.User;
 import friendsbets.core.sb.repositories.UserRepository;
 
-
 @SpringBootTest
 class UserServiceTest {
 	
@@ -36,7 +35,7 @@ class UserServiceTest {
 	@InjectMocks
 	UserService us;
 	
-	// data fixtures
+	// data fixtures TODO: static final ? Given
 	User u1 = new User(1, "nickname1", "email1", "password1");
 	User u2 = new User(1, "nickname2", "email2", "password2");
 	User u3 = new User(1, "nickname3", "email3", "password3");
@@ -66,15 +65,11 @@ class UserServiceTest {
 	@Test
 	void save() { // TODO: make it works
 		// configuring mock
-		when(ur.findById(1)).thenReturn(Optional.of(u1));
-		when(ur.save(u1)).thenReturn(ur.findById(u1.getId()).orElseThrow());
+		when(ur.save(u1)).thenReturn(u1);
 		// state test
-		assertEquals(u1
-				, us.save(u1)
-				, "yo");
+		assertEquals(u1, us.save(u1), "Saving a user should return it");
 		// behavior test
 		verify(ur, times(1)).save(u1);
-		verify(ur, times(1)).findById(u1.getId());
 		verifyNoMoreInteractions(ur);
 	}
 	
@@ -89,16 +84,16 @@ class UserServiceTest {
 	@Test
 	void findById() {
 		// configuring mock
-		when(ur.findById(1)).thenReturn(Optional.of(u1));
-		when(ur.findById(5)).thenReturn(Optional.empty());
+		when(ur.findById(1L)).thenReturn(Optional.of(u1));
+		when(ur.findById(5L)).thenReturn(Optional.empty());
 		// state test
 		assertEquals(u1, us.findById(1)
 				, "Searching an existing user should return it.");
 		assertThrows(NoSuchElementException.class, () -> us.findById(5)
 				, "Searching a non-existing user should throw a NoSuchElementException exception");
 		// behavior test
-		verify(ur, times(1)).findById(1);
-		verify(ur, times(1)).findById(5);
+		verify(ur, times(1)).findById(1L);
+		verify(ur, times(1)).findById(5L);
 		verifyNoMoreInteractions(ur);
 	}
 	
@@ -129,6 +124,7 @@ class UserServiceTest {
 	@Test
 	void addFriends() { // TODO: integration test ?
 //		when(ur.addFriends(1, u2)); // repository write user one by one
+		// tester le nombre d'appel du foreach
 	}
 	
 	@Test

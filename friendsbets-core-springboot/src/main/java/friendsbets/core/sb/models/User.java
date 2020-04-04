@@ -23,8 +23,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * @Entity
- * @author Gauthier Barbet 
- *         TODO see serializable id FOR save personnal config 
+ * @author Gauthier Barbet TODO see serializable id FOR save personnal config
  *         TODO CASCADE.TYPE
  */
 //@Table(name="MyUser") // for change name of table
@@ -45,7 +44,7 @@ public class User {
 	@Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue
-	private int id;
+	private long id;
 	@Column(unique = true, nullable = false)
 	private String nickname;
 	@Column(nullable = false, columnDefinition = "BINARY (60)") // Better for BCryptPasswordEncoder
@@ -69,22 +68,45 @@ public class User {
 	protected String token;
 	protected LocalDateTime tokenLastUsed;
 
-	/**
-	 * TODO: delete this constructor
-	 */
-	public User() {	}
+	public User() {
+		// this() == super()
+		this(0L, null, null, null, null, null, null, null, null, null, null);
+	}
 
 	public User(String nickname, String email, String password) {
-		this.nickname = nickname;
-		this.email = email;
-		this.password = password;
+		this(-1, nickname, email, password, null, null, null, null, null, null, null);
 	}
-	
-	public User(int id, String nickname, String email, String password) {
+
+	public User(long id, String nickname, String email, String password) {
+		this(id, nickname, email, password, null, null, null, null, null, null, null);
+	}
+
+	/**
+	 * "Package private"scope : public inside package, private outside. Default
+	 * scope.
+	 */
+	User(long id, String nickname, String password, String email, String picturePath, Set<Bet> betsInitialized,
+			Set<Bet> betsFollowed, Set<Group> grpList, Set<User> friends, String token, LocalDateTime tokenLastUsed) {
+		super();
 		this.id = id;
 		this.nickname = nickname;
-		this.email = email;
 		this.password = password;
+		this.email = email;
+		this.picturePath = picturePath;
+		this.betsInitialized = betsInitialized;
+		this.betsFollowed = betsFollowed;
+		this.grpList = grpList;
+		this.friends = friends;
+		this.token = token;
+		this.tokenLastUsed = tokenLastUsed;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public long getId() {
+		return id;
 	}
 
 	public String getNickname() {
@@ -119,14 +141,6 @@ public class User {
 		this.grpList = grpList;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getId() {
-		return id;
-	}
-
 	public String getPicturePath() {
 		return picturePath;
 	}
@@ -143,8 +157,6 @@ public class User {
 		this.betsInitialized = betsInitialized;
 	}
 
-	@XmlTransient
-	@JsonIgnore
 	public Set<Bet> getBetsFollowed() {
 		return betsFollowed;
 	}

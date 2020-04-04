@@ -51,11 +51,11 @@ public class GroupService {
 		update(g);
 	}
 
-	public Group findById(int id) {
+	public Group findById(long id) {
 		return gr.findById(id).orElseThrow();
 	}
 
-	public Set<Group> findAllForOneUser(int id){
+	public Set<Group> findAllForOneUser(long id){
 		return gr.findAllForOneUser(id);
 	}
 	
