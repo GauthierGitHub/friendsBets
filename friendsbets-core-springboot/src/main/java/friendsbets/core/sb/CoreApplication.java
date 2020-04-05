@@ -37,6 +37,10 @@ public class CoreApplication {
 		};
 	}
 	
+	/**
+	 * Needed for inject it.
+	 * @return
+	 */
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
